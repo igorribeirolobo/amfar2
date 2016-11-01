@@ -1,0 +1,52 @@
+<?php
+include("application/classes/excelwriter.inc.php");
+
+$filename = $this->filename;
+$excel=new ExcelWriter($filename);
+
+if($excel==false){
+	echo $excel->error;
+	exit;
+	}
+
+$header = null;
+foreach ($this->dbtable[0] as $k => $v):
+   $header[] = $k;
+endforeach;
+
+$excel->writeLine($header);
+foreach($this->dbtable as $rs):
+	$dados = null;
+	foreach ($rs as $k => $v):
+	   $dados[] = $v;
+	endforeach;
+	$excel->writeLine($dados);
+endforeach;
+$excel->close();
+
+
+
+
+
+
+
+
+
+//die('ok');
+//$filename = 'seminarios.xls';
+$fd = fopen ($filename, "r");
+$size = filesize($filename);
+header("Pragma: ");
+header("Cache-Control: ");
+header("Content-type: application/octet-stream");
+header("Content-Disposition: attachment; filename=\"".$filename."\"");
+header("Content-length: $size");
+while(!feof($fd))
+	{
+	$buffer = fread($fd, 2048);
+	print $buffer;
+	}			
+fclose ($fd);
+//	exit;
+//	}
+?>

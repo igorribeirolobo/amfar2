@@ -1,0 +1,31 @@
+<style>
+	.links {font-size:13px;width:100%;border-collapse:collapse;border-color:black}
+	.links td{padding:4px 8px}
+	.links th{text-align:center;background:#369;color:#fff}
+	.links a{text-decoration:none;color:#808080;font-weight:bolder}
+	.links a:hover{text-decoration:underline;color:#f90}
+</style>
+
+
+<table class="links" border="1" cellpadding="0" cellspacing="0">
+	<tr>
+		<th>Entidade</th>
+	</tr><?
+		if(!$this->paginator){
+		echo"<tr><td class='none'>Nenhum Registro Localizado!</td></tr>";
+		}
+	
+	else{
+		$row = 0;
+		foreach($this->paginator as $rs):
+			$row++;
+			
+			$bg = ($row % 2 == 0) ? "#dddddd" : "#ffffff";
+			echo"
+			<tr bgcolor='$bg'>
+				<td><a href='$rs->link' target='_link'>$rs->nome</a><br />$rs->comentario</td>
+			</tr>";
+		endforeach;
+		} ?>
+</table>
+<?php echo $this->paginationControl($this->paginator, 'Sliding', 'paginator.phtml');?>

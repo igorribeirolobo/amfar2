@@ -1,0 +1,25 @@
+<?php
+$newfilename = sprintf('..%s/public/temp/%s', $this->baseUrl, date('Ymd.His'));
+//die("this->fullpath = $this->fullpath");
+if ($fdo = fopen ("$this->fullpath", "r")) {
+	$size = filesize("$this->fullpath");
+	$filename = basename($this->fullpath);
+	$temp = explode('.', $filename);
+	$newfilename .= ".{$temp[count($temp)-1]}";
+	//die("filename = $newfilename");
+	$fdw = fopen ($newfilename, "w");
+	//header("Pragma: ");
+	//header("Cache-Control: ");
+	//header("Content-type: $this->mimetype");
+	//header("Content-Disposition: attachment; filename=$filename");
+	//header("Content-length: $size");
+	while(!feof($fdo)) {
+		$buffer = fread($fdo, 2048);
+		fwrite($fdw, $buffer);
+		//print $buffer;
+		}			
+	fclose ($fdo);
+	fclose ($fdw);		
+	}
+header(sprintf('Location:%s', str_replace('..','', $newfilename)));
+?>

@@ -1,0 +1,44 @@
+<style>
+	.noticias{font-size:12px;color:#000;text-align:justify;padding:4px 0;border-bottom:solid 1px silver}
+	.noticias img{text-align:center}
+	.noticias .titulo{font-size:14px}
+	.noticias .subtitulo{font-style:italic;color:#a4a4a4}
+	.noticias .info{float:right;margin-top:10px;background:url('<?=$this->baseUrl?>/public/styles/seta.jpg') no-repeat 0 1px;padding-left:16px}
+	.noticias .info a{font-weight:bolder;text-decoration:none}
+	.noticias .info a:hover{color:#f90;text-decoration:underline}
+</style>
+<?php
+if(!empty($this->arquivo)):
+	echo"
+	<script>
+		window.open('$this->arquivo','popup','location=0,status=0,scrollbars=1,width=700,height=600');
+	</script>";
+endif;
+?>
+
+<table class="noticias" border="0" cellpadding="4" cellspacing="2" width="100%">
+	<tr><?
+		if (!count($this->paginator))	
+			echo"<tr><td class='empty' colspan='2'>Nenhum registro localizado!</td></tr>";
+		else {
+			$counter=0;
+			foreach($this->paginator as $rs):
+				//$this->fc->debug($rs);
+				$thumb = (!empty($rs->thumb)) ?"<img src='$this->baseUrl/public/news/thumbs/$rs->thumb' border='0' width='100'>" : null;
+				$link = (stristr($rs->link, 'http')) ? $rs->link : "$this->baseUrl/noticias/preview/id/$rs->idNoticia/";
+				?>
+				<tr>
+					<td style="text-align:center"><?=$thumb?></td>
+					<td class="noticias" style="padding-left:10px">
+						<b><?=$rs->datareg?></b><br />
+						<span class="titulo"><?=$rs->titulo?></span><br />
+						<span class="subtitulo"><?=$rs->subTitulo?></span><br />
+						<span class="info">
+							<a href="<?=$link?>" target='_news'>Leia mais...</a>
+						</span>
+					</td>
+				</tr><?
+			endforeach;
+			} ?>
+</table>
+<?php echo $this->paginationControl($this->paginator, 'Sliding', 'paginator.phtml'); ?>

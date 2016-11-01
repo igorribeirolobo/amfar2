@@ -1,0 +1,62 @@
+a {
+	font: bolder 10pt arial, verdana;
+	color:#666;
+	text-decoration:none;
+	}
+a:hover {
+	color:#60c659;
+	text-decoration:none;
+	font-weight:bold
+	}
+
+a:active {
+	color:#c40000;
+	text-decoration:none;
+	font-weight:bold
+	}				
+</style>
+
+
+<style>
+form {
+	width:410px;
+	background:#f0f0f0;
+	padding:4px;
+	border:1px solid #CBC6DC;
+	margin:8px auto;
+	}
+
+form .label {		
+	color:#000066;
+	background:#CBC6DC;
+	padding:0 4px;
+	}
+
+form tr {
+	  padding:0;
+	  background:#CBC6DC
+	  }
+
+form input{font-size:8pt}
+
+form #btSend {
+	font:bolder 8pt Tahoma, Verdana, Arial, Helvetica, Sans-Serif;
+	color:#444;
+	margin:4px 0
+	}
+
+form .msgErr {
+	background:#c40000;
+	color:#ffffef;
+	font-weight:bolder;
+	text-align:center;
+	}
+	
+#header {				
+	width:100%;
+	background:url(title_bg.jpg) repeat-x;
+	height:24px;
+	padding:2px 4px;
+	font:bolder 10pt Tahoma, Verdana, Arial, Helvetica, Sans-Serif;
+	color:#fff
+	}

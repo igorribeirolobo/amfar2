@@ -1,0 +1,111 @@
+#dvCalendar {
+
+	float:left;
+	position:absolute;
+	top:280px;
+	left:500px;
+	
+	width:154px;
+	_width:156px;
+
+	height:164px;
+	_height:auto;
+	margin-top:2px;
+	margin-bottom:2px;	
+	border-top:1px solid #efefef;
+	border-left:1px solid #efefef;
+	border-right:2px solid #404040;	
+	border-bottom:2px solid #404040;
+	text-align:center;
+	background:#e4e4e4;
+	z-index:100;
+	}
+
+#dvCalendar .topCalendar {
+	margin-top:2px;
+	margin-left:2px;
+	padding-right:4px;
+	width:auto;
+	height:auto;	
+	text-align:center;
+	background:#336699
+	}
+
+#dvCalendar .prev, .next, .icClose {
+	float:left;
+	width:14px;
+	height:auto;
+	text-align:center;
+	}
+
+#dvCalendar .icClose {
+	float:right;
+	}
+
+#dvCalendar #mes {
+	float:left;
+	border-top:1px solid #808080;
+	border-right:1px solid #c0c0c0;
+	border-left:1px solid #808080;
+	border-bottom:1px solid #c0c0c0;
+	width:96px;
+	_width:96px;
+	height:16px;
+	_height:20px;
+	text-align:center;
+	font: bolder 8pt Arial, Helvetica, Verdana, Tahoma, sans-serif;	
+	background:#404040;
+	color:#fff;
+	}
+
+#dvCalendar #calendar {
+	width:152px;
+	_width:158px;
+	height:auto;
+	padding:1px;
+	text-align:center
+	}
+
+#dvCalendar .dias {
+	float:left;
+	width:auto;
+	height:110px;
+	text-align:center;
+	font: 8pt Arial, Helvetica, Verdana, Tahoma, sans-serif;
+	}
+
+#dvCalendar .diasSemana {	
+	border-top:1px solid #404040;
+	border-right:1px solid #efefef;
+	border-left:1px solid #404040;
+	border-bottom:1px solid #efefef;
+	text-align:center;
+	font: bolder 8pt Arial, Helvetica, Verdana, Tahoma, sans-serif;
+	background: #404040;
+	color:#ffffff;
+	width:20px 
+	}
+
+#dvCalendar .dia {
+	width:18px;
+	text-align:center;	
+	font: 8pt Arial, Helvetica, Verdana, Tahoma, sans-serif;
+	border-bottom:1px solid #000;
+	border-right:1px solid #000; }
+
+#dvCalendar .dia a {
+	width:18px;
+	font: 8pt Arial, Helvetica, Verdana, Tahoma, sans-serif;
+	text-decoration:none; }
+
+#dvCalendar .dia a:hover {
+	width:18px;
+	font-weight:bolder;
+	background:#c40000;
+	color:#fff;
+	}
+
+#dvCalendar .nave {
+	border:0px;
+	width:20px;
+	}

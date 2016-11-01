@@ -1,0 +1,19 @@
+/* CSS Document */
+#logo
+{
+	border:     1px solid blue;
+	width:      213px;
+	height:     70px;
+	background: url(img/logo.gif) no-repeat;
+}
+
+#texto
+{
+	font-family: arial;
+	font-weight: bold;
+}
+
+table#table100
+{
+	width:100%;
+} 

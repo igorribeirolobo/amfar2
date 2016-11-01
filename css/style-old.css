@@ -1,0 +1,411 @@
+body {
+	margin:0;
+	padding:0;	
+	background:url(background.png) center center repeat-y;
+	text-align:center; /* hack para o IE */
+	}
+	
+
+#dvTudo {
+	width:778px;
+	margin:0 auto;
+	padding:0 2px;
+	text-align:left; /* "remédio" para o hack do IE */
+	background:#fff;
+	}
+	
+#dvMenu {
+   width:774px;
+   background:url(fundoMenu.png) repeat-x;
+   border-top:1px solid #B3B1B1;
+   border-bottom:1px solid #B3B1B1;   
+   height:20px;                        
+   text-align:left;
+   }
+         
+#dvTopo {
+   margin-top:2px;
+   width:774px;
+   background: #7BA0C5;   
+   height:74px;
+   }
+
+#today {
+   text-align:right;
+   padding-right:4px;
+   font: bolder 8pt tahoma,verdana,arial,verdana;
+	color:#003366;
+   }        
+  
+.clock {
+	width:50px;
+   text-align:center;
+   padding-right:4px;
+   padding-top:3px;
+   font:bolder 8pt Tahoma, Verdana, Arial, Helvetica;
+   color:#003366;
+   background:transparent;
+   border:0px;
+   }
+
+
+#dvMain {
+   float:left;
+   padding-top:4px;
+   margin-top:2px;
+   width:570px;
+   height:438px;
+   background:#fff;
+   }
+   
+#dvPublic {
+   float:right;
+   margin-top:8px;
+	width:203px;
+	height:438px;
+	background:#fff url(../images/fdScroll.png) no-repeat;
+	padding-top:40px;
+   text-align:center
+   }
+   
+#dvRodape {
+   float:left;
+    width:774px;
+   margin-top:2px;
+   border-top:1px solid #000;
+   background:url(dotsGray.png);
+   border-bottom:2px solid #33669
+   }
+
+P, p, TD, td  {
+   font:normal 8pt Arial,Helvetica,sans-serif,Verdana,Tahoma;
+   color:#000;
+   }
+   
+a {
+   color:#000;
+   text-decoration:none;
+   }
+.whitelink {
+   color:#000;
+   text-decoration:none;
+   }
+.blacklink {
+   color:#000;
+   text-decoration:none;
+   }
+a:hover {
+   font-weight:bold;
+   color:#000;
+   text-decoration:underline;
+   }
+a:hover.blacklink {
+   color:#000;
+   text-decoration:underline;
+   }
+
+.boxborder {border:1px solid #000}
+
+
+   
+.link_esp {
+	font-family: Arial, Helvetica, sans-serif, Verdana;
+	font-size: 8pt;
+	color: #003366;
+	font-weight: bold;
+	text-decoration: none;	}
+
+.Intertitulo1 {
+	font-family: Arial, Helvetica, sans-serif, Verdana;
+	font-size: 8pt;
+	color: #003366;
+	font-weight: bold;
+	text-decoration: none;
+	}
+	
+#padroes {
+	text-align:center;
+	font-weight: bold;
+	text-decoration: none;
+	}
+	
+#padroes a{
+	font-family: Arial, Helvetica, sans-serif, Verdana;
+	font-size: 8pt;
+	color: #003366;
+	font-weight: bold;
+	text-decoration: none;
+	}
+	
+#padroes a:visited {
+	color: #003366;
+	text-decoration:underline;
+	}
+
+#padroes a:hover {
+	color: #ff9900;
+	text-decoration:underline;
+	}
+
+
+.Intertitulo2 {
+	font-family: Arial, Helvetica, sans-serif, Verdana;
+	font-size: 8pt;
+	color: #003366;
+	text-decoration: none;
+
+}
+.Texto {
+	font-family: Arial, Helvetica, sans-serif, Verdana;
+	font-size: 8pt;
+	color: #666666;
+	text-decoration: none;
+
+}
+form {
+	padding-left:4pt;
+	border: 0pt #000000 solid;
+	font-family: Arial, Helvetica, sans-serif, Verdana;
+	font-size: 8pt;
+	margin:0;
+   }
+
+/*
+BODY {	
+	SCROLLBAR-FACE-COLOR: #003366; 
+	SCROLLBAR-HIGHLIGHT-COLOR: #FFFFFF; 
+	SCROLLBAR-SHADOW-COLOR: #EFF5F3; 
+	SCROLLBAR-3DLIGHT-COLOR: #003366; 
+	SCROLLBAR-ARROW-COLOR: #FFFFFF; 
+	SCROLLBAR-TRACK-COLOR: #EFF5F3 
+}
+*/
+
+/*   home  */
+.bulletOrange {
+	background: #fff url(setalaranja.gif) 2px 3px no-repeat;
+	font: 7pt Verdana, Tahoma, Arial, Helvetica, Sans-Serif;
+	color:#000;
+	padding:3px 2px 3px 14px;
+	border-bottom:1px solid #c0c0c0
+	}
+#banner{
+   margin:2px 0;
+   width:190px;
+   heigth:80px;
+   padding:4px 0px;
+   border-bottom:1px solid #c0c0c0}
+   
+#tbConheca td {
+   background:url(h_arrow.gif) 0 2px no-repeat;
+   padding-left:12px;
+   font: bolder 8pt Verdana, Tahoma, Arial, Helvetica, Sans-Serif;
+   color:#003366;
+   }
+   
+#tbConheca .titulo {
+   background:#003366;
+   padding-left:12px;
+   font-weight:bolder;
+   color:#fff;
+   }
+
+#tbConheca .texto {
+   padding:2px 4px;   
+   font: 8pt Verdana, Tahoma, Arial, Helvetica, Sans-Serif;
+	background:none;
+	color:#000;
+	font-weight:normal;
+	font-size:9pt;
+   }
+
+.visivel {display:inline}	
+.invisivel {display:none}
+
+#tabelas td {
+	border-bottom:1px solid #ccc
+	}
+
+#btSend {
+	font: 8pt Arial, Helvetica, Verdana, Tahoma, sans-serif;
+	text-align:center;
+	cursor:pointer;
+	}
+	
+.label {
+	font: bolder 8pt Arial, Helvetica, Verdana, Tahoma, sans-serif;
+	text-align:right;
+	padding:0 2px;
+	background:#eeeeee;
+	color:#a0a0a0;
+	border:1px solid #c0c0c0
+	}
+	
+/*  calendario */
+#dvCalendar {
+	float:left;
+	position:absolute;
+	top:350px;
+	left:550px;
+	width:154px;
+	
+	height:146px;
+	margin-top:2px;
+	margin-bottom:2px;	
+	border-top:1px solid #efefef;
+	border-left:1px solid #efefef;
+	border-right:2px solid #404040;	
+	border-bottom:2px solid #404040;
+	text-align:center;
+	background:#e4e4e4;
+	}
+	
+#topCalendar {
+	margin-top:2px;
+	margin-left:2px;
+	padding-right:4px;
+	width:auto;
+	height:auto;	
+	text-align:center;
+	background:#004f6d
+	}
+	
+#prev, #next, #icClose {
+	float:left;
+	width:14px;
+	height:auto;
+	text-align:center;
+	}
+
+#icClose {
+	float:right;
+	}	
+
+#mes {
+	float:left;
+	border-top:1px solid #000;
+	border-right:1px solid #c0c0c0;
+	border-left:1px solid #000;
+	border-bottom:1px solid #c0c0c0;
+	width:104px;
+	_width:104px;
+	height:18px;
+	text-align:center;
+	font: bolder 8pt Arial, Helvetica, Verdana, Tahoma, sans-serif;	
+	background:#404040;
+	color:#fff;
+	}
+
+#calendar {
+	width:152px;
+	_width:158px;
+	height:auto;
+	padding:1px;
+	text-align:center
+	}
+	
+#dias {
+	float:left;
+	width:auto;
+	height:110px;
+	text-align:center;
+	font: 8pt Arial, Helvetica, Verdana, Tahoma, sans-serif;
+	}
+
+#diasSemana {	
+	border-top:1px solid #404040;
+	border-right:1px solid #efefef;
+	border-left:1px solid #404040;
+	border-bottom:1px solid #efefef;
+	text-align:center;
+	font: bolder 8pt Arial, Helvetica, Verdana, Tahoma, sans-serif;
+	background: #404040;
+	color:#ffffff;
+	width:20px 
+	}
+	
+#dia {
+	width:18px;
+	text-align:center;	
+	font: 8pt Arial, Helvetica, Verdana, Tahoma, sans-serif;
+	border-bottom:1px solid #000;
+	border-right:1px solid #000;
+	height:18px;}
+
+#dia a {
+	width:18px;
+	font: 8pt Arial, Helvetica, Verdana, Tahoma, sans-serif;
+	text-decoration:none;
+	height:18px;}
+
+#dia a:hover {
+	width:18px;
+	font: 8pt Arial, Helvetica, Verdana, Tahoma, sans-serif;
+	font-weight:bolder;
+	background:#c40000;
+	color:#fff;
+	height:18px;
+	}
+	
+	
+	
+form {
+	width:410px;
+	background:#f0f0f0;
+	padding:4px;
+	border:1px solid #CBC6DC;
+	margin:8px auto;
+	}
+
+form .label {		
+	color:#000066;
+	background:#CBC6DC;
+	padding:0 4px;
+	}
+
+form tr {
+	  padding:0;
+	  background:#CBC6DC
+	  }
+
+form input{font-size:8pt}
+
+form #btSend {
+	font:bolder 8pt Tahoma, Verdana, Arial, Helvetica, Sans-Serif;
+	color:#444;
+	margin:4px 0
+	}
+
+form .msgErr {
+	background:#c40000;
+	color:#ffffef;
+	font-weight:bolder;
+	text-align:center;
+	}
+	
+#bar {
+	font: bolder 9pt Arial, Helvetica, Sans-Serif, Tahoma, Verdana;
+	padding:0 2px;
+	color:#ff6600;
+	}
+
+#bar a {
+	font: bolder 9pt Arial, Helvetica, Sans-Serif, Tahoma, Verdana;
+	padding:0 2px;
+	color:#000066;
+	}
+	
+#bar a:hover {
+	font: bolder 8pt Arial, Helvetica, Sans-Serif, Tahoma, Verdana;
+	padding:0 2px;
+	color:#ff6600;
+	}
+	
+.tbCaption {				
+	width:100%;
+	background:url(title_bg.jpg) repeat-x;
+	height:24px;
+	padding:2px 4px;
+	font: bolder 10pt Arial, Helvetica, Sans-Serif, Tahoma, Verdana;
+	color:#fff;
+	}

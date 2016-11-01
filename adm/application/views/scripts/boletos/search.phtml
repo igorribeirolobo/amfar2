@@ -1,0 +1,67 @@
+<style>
+	.list{font-size:12px;width:100%}
+	.list th{background:#def2f5;color:#599da1;font-size:11px;font-weight:normal}
+	.list th a{color:#fff;text-decoration:none}
+	.list th a:hover{text-decoration:underline;color:yellow}
+	.list td a{color:#f60;text-decoration:none;font-weight:bolder}
+	.list td a:hover{text-decoration:underline;color:#369}
+</style>
+<script>
+	$(document).ready(function(){
+		$('.del').click(function(){
+			if(!confirm('Tem certeza que deseja excluir este registro?'))
+				return false;
+			if(!confirm('Uma vez excluído, não tem como recuperar este registro.\n\nConfirma a Exclusão?'))
+				return false;
+			return true;
+			})
+		$('.edit').click(function(){
+			dialogModal('<?=$this->baseUrl?>/boletos/open/id/' + this.id, 'boletos', 420, 500);
+			})
+
+		})	
+</script>
+<form method="post" id="searchform" action="" style="margin:0">
+	<table class='list' cellpadding='2' cellspacing='2' border='0'>
+		<caption style="background:#599da1;color:white;text-align:left;padding-left:10px">
+			Digite o número de documento do boleto: <input type="text" value="" name="numdoc" id="numdoc" style="border:solid 1px silver;width:100px" />
+			<input type="submit" id="searchsubmit" name="searchsubmit" value=" Buscar " border="0" class="button" />
+		</caption><?
+		if($this->boletos):?>
+			<thead>
+				<tr>
+					<th>Emissão</th>
+					<th>NumDoc</th>
+					<th>Sacado</th>
+					<th>Valor</th>
+					<th>Vcto</th>			
+					<th>Pgto</th>
+				</tr>
+			</thead>
+			<tfoot>
+				<tr>
+					<td colspan="6" align="center">Localizado <?=count($this->boletos)?> Registro(s)</td>
+				</tr>
+			<tbody><?
+				$count = 0;			
+				foreach($this->boletos as $row) :
+					$count++;
+					$bg = ($count%2 == 0) ? '#dddddd':'#ffffff';
+					$emissao = $this->fc->Ymd2dmY($row->dataLct);
+					$vcto = $this->fc->Ymd2dmY($row->vcto);
+					$pgto = ($row->pgto) ? $this->fc->Ymd2dmY($row->pgto) : '00/00/0000';
+					$valor = number_format($row->valor,2,',','.');
+					echo"
+					<tr bgcolor='$bg' align='center'>
+						<td width='70'>$emissao</td>
+						<td><a href='#' class='edit' id='$row->idFinanceiro'>$row->numDoc</a></td>
+						<td align='left'>$row->sacado</td>
+						<td>$valor</td>						
+						<td width='70'>$vcto</td>
+						<td width='70'>$pgto</td>
+					</tr>";
+				endforeach; ?>
+			</tbody><?
+		endif; ?>
+	</table>
+</form>

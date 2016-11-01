@@ -1,0 +1,123 @@
+<link type="text/css" href="<?=jsLib?>/themes/base/ui.all.css" rel="stylesheet" />
+<script type="text/javascript" src="<?=jsLib?>/ui/ui.datepicker.js"></script>
+<script type="text/javascript" src="<?=jsLib?>/ui/ui.core.js"></script>
+	
+<script>
+	$(document).ready(function(){
+		$('.data').datepicker({  
+			dateFormat: 'dd/mm/yy',  
+			dayNames:['Domingo','Segunda','Terça','Quarta','Quinta','Sexta','Sábado','Domingo'],  
+			dayNamesMin:['D','S','T','Q','Q','S','S','D'],  
+			dayNamesShort:['Dom','Seg','Ter','Qua','Qui','Sex','Sáb','Dom'],  
+			monthNames:['Janeiro','Fevereiro','Março','Abril','Maio','Junho','Julho','Agosto','Setembro','Outubro','Novembro','Dezembro'],  
+			monthNamesShort:['Jan','Fev','Mar','Abr','Mai','Jun','Jul','Ago','Set','Out','Nov','Dez'],  
+			nextText:'Próximo',prevText: 'Anterior'
+			});
+
+		$('#btSave').click(function(){
+			if($('#data').val()==''){alert('Digite a data da curso!');$('#data').focus();return false;}
+			if($('#userId').val()==''){alert('Selecione o(a) diretor(a)!');$('#userId').focus();return false;}
+			updateTextArea('descricao');
+			if($('#descricao').val()==''){alert('Digite a descrição da curso!');$('#descricao').focus();return false;}
+			return true;
+			})
+			
+		if($('#msg').val().length > 0) alert($('#msg').val());
+		
+		})
+
+	// settings para o editor		
+	var imagesDir = "<?=jsLib?>/wysiwyg/icons/"; // Images Directory
+	var cssDir = "<?=jsLib?>/wysiwyg/styles/";	// CSS Directory
+	var popupsDir = "<?=jsLib?>/wysiwyg/popups/";	// Popups Directory
+	var wysiwygWidth = 780;
+	var wysiwygHeight = 450;	// WYSIWYG Width and Height
+</script>		
+<script type="text/javascript" src="<?=jsLib?>/wysiwyg.js"></script>
+<style>
+	#curso{width:100%;font:12px Arial, Helvetica, Sans-Serif, Tahoma, Verdana}
+	#curso caption{font-size:16px;font-weight:bolder;background:#6F8799;padding:4px;color:#fff}
+	#curso th{background:#def2f5;padding:4px;text-align:right;width:75px}
+	#curso td{border:solid 0px silver; padding:2px}
+	
+	#curso .text {width:400px;border:solid 1px #369;padding:2px}
+	#curso .data{width:80px;text-align:center}
+	#curso .parcelas{width:80px;text-align:center}
+	#curso .valor{width:80px;text-align:right}
+	#curso .descricao{height:200px}
+</style>
+
+<form name="fcurso" id="fcurso" method="POST" action="<?=$this->links?>/open/id/<?=$this->id?>">		
+	<input type="hidden" id="msg" value="<?=$this->message?>"/>
+	<table id="curso" class="list" cellpadding="2" cellspacing="2" border="0" width="100%">
+		<tr>
+			<td colspan="8" style="border:0;text-align:right">
+				<a href="<?=$this->links?>/list"><img src="<?=$this->baseImg?>/Undo.png" border="0" /></a>
+			</td>
+		</tr>
+		<tr>
+			<th>ID Curso:</th>
+			<td class="center"><?=sprintf("%06d",$_POST['idCurso'])?></td>
+			<th>Início:</th>
+			<td class="center">
+				<input type="text" class="text data" name="inicio" id="inicio" 
+					value="<?=($_POST['inicio']) ? $this->fc->Ymd2dmY($_POST['inicio']) : '00/00/0000'?>"/></td>
+			<th>Final:</th>
+			<td class="center">
+				<input type="text" class="text data" name="final" id="final"
+					value="<?=($_POST['final']) ? $this->fc->Ymd2dmY($_POST['final']) : '00/00/0000'?>"/></td>
+			<th>Máx.:</th>
+			<td class="center">
+				<input type="text" class="text data" name="dataMax" id="dataMax" 
+					value="<?=($_POST['dataMax']) ? $this->fc->Ymd2dmY($_POST['dataMax']) : '00/00/0000'?>"/></td>
+		</tr>
+		<tr>
+			<th>Valor:</th>
+			<td class="center">
+				<input type="text" class="text valor" name="valor" id="valor" value="<?=number_format($_POST['valor'], 2, ',','.')?>"/></td>
+			<th>Parc.:</th>
+			<td class="center">
+				<input type="text" class="text parcelas" name="parcelas" id="parcelas" value="<?=$_POST['parcelas']?>"/></td>
+			<th nowrap>Carga Hor.:</th>
+			<td class="center">
+				<input type="text" class="text parcelas" name="cargaHoraria" id="cargaHoraria" value="<?=$_POST['cargaHoraria']?>"/></td>
+			<th nowrap>Status:</th>
+			<td class="center">
+				<select name="ativo" id="ativo" size="1">
+					<option <?=($_POST['ativo'])?'selected':''?> value="0">Inativo</option>
+					<option <?=($_POST['ativo'])?'selected':''?> value="1">Ativo</option>
+				</select>
+			</td>
+		</tr>
+		<tr>
+			<th>Título:</td>
+			<td colspan="7">
+				<input type="text" class="text upper" name="titulo" id="titulo" style="width:100%" maxlenght="100"
+					value="<?=$_POST['titulo']?>"/></td>
+		</tr>
+		<tr>
+			<th>Categoria:</th>
+			<td colspan="7">
+				<select name="status" id="status" size="1">
+					<option <?=($_POST['status'] == '0')?'selected':''?> value="0">CURSO DE ATUALIZAÇÃO</option>
+					<option <?=($_POST['status'] == '1')?'selected':''?> value="1">CURSO DE ESPECIALIZAÇÃO</option>
+				</select>
+			</td>
+		</tr>
+
+		<tr>
+			<td colspan="8">
+				<span>Descrição</span>
+				<textarea class="text descricao" name="descricao" id="descricao" maxlength="2048"><?=$_POST['descricao']?></textarea>						
+				<script>generate_wysiwyg('descricao')</script>
+			</td>
+		</tr>
+		<tr>
+			<td colspan="8" style='text-align:center;border:0'>
+				<input type="image" name="btSave" id="btSave" src="<?=$this->baseImg?>/btOut.png" 
+					onmouseover= "this.src='<?=$this->baseImg?>/btOver.png'"
+					onmouseout = "this.src='<?=$this->baseImg?>/btOut.png'"/>
+			</td>
+		</tr>
+	</table>
+</form>

@@ -1,0 +1,123 @@
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+	<head>
+		<meta http-equiv="Content-Type" content="text/html;charset=ISO-8859-1" />
+		<title>AMF - Associação Mineira de Farmacêuticos - Área Restrita</title>	
+		<style>
+			.formfeed {page-break-after:always}	
+		</style>
+
+	</head>
+
+	<body><?
+		$sacado = $this->cadastro;			
+		$dadosboleto["identificacao"]	= "ASSOCIAÇÃO MINEIRA DE FARMACÊUTICOS - AMF";
+		$dadosboleto["endereco"] 		= "AVENIDA DO CONTORNO, 9215 - SALAS 501/502";
+		$dadosboleto["cidade_uf"]		= "CEP 30110-130  - Belo Horizonte/MG";
+		$dadosboleto["cpf_cnpj"] 		= "17.431.743/0001-19";
+		$dadosboleto["telefone"]		= "(31) 3291-6242";
+		$dadosboleto["cedente"]			= "ASSOCIAÇÃO MINEIRA DE FARMACÊUTICOS - AMF";
+		$dadosboleto["agencia"] = "0083"; // Num da agencia, sem digito
+		$dadosboleto["conta"] = "026522"; 	// Num da conta, sem digito
+		$dadosboleto["conta_dv"] = "8"; 	// Digito do Num da conta
+		$dadosboleto["conta_cedente"] = "026522"; // ContaCedente do Cliente, sem digito (Somente Números)
+		$dadosboleto["conta_cedente_dv"] = "8"; // Digito da ContaCedente do Cliente
+		$dadosboleto["carteira"] = "1";  // Código da Carteira
+		$dadosboleto["quantidade"] = "01";
+		$dadosboleto["aceite"] = "N";
+		$dadosboleto["especie"] = "R$";
+		$dadosboleto["especie_doc"] = "DM";
+		$dadosboleto["inicio_nosso_numero"]="90";  // Inicio do Nosso numero - Pode ser 80 ou 81 ou 82 (Confirmar com gerente qual usar)
+		$dadosboleto["logoEmpresa"]= "$this->ImgBoletos/logoEmpresa.jpg";
+		$dadosboleto["urlImgs"] = "$this->ImgBoletos";
+		$dadosboleto["instrucoes1"] = "- &nbsp;Utilizar opção Título/Boleto para pagto. via internet ou caixa automático.";
+		$dadosboleto["instrucoes2"] = "- Em caso de dúvidas entre em contato com amfar@amfar.com.br";
+		$dadosboleto["instrucoes3"] = "&nbsp;&nbsp;ou pelo telefone: 31 3291-6242";
+		$dadosboleto["demonstrativo"] = "";
+		$dadosboleto["demonstrativo1"] = "Cobrado taxa de R$ " . str_replace(".", ",",sprintf("%.2f",0)) . ' referente ao custo do boleto';
+		$dadosboleto["demonstrativo2"] = "";
+		$dadosboleto["demonstrativo3"] = "";
+		$dadosboleto["sacado"]	 = "$sacado->nome&nbsp;&nbsp;-&nbsp;&nbsp;$sacado->cpf";
+		$dadosboleto["endereco1"]= "$sacado->ender $sacado->num&nbsp;&nbsp;$sacado->compl&nbsp;&nbsp;$sacado->bairro";
+		$dadosboleto["endereco2"]= "$sacado->cep&nbsp;&nbsp;$sacado->cidade&nbsp;&nbsp;$sacado->uf";
+		$dadosboleto["data_documento"] = date("d/m/Y"); // Data de emissão do Boleto
+		$dadosboleto["data_processamento"] = date("d/m/Y");; // Data de processamento do boleto (opcional)
+		$dadosboleto["uso_banco"] = "";
+		//$this->fc->debug($dadosboleto);
+		define('imgBoleto', $this->ImgBoletos); //echo "imgBoleto=". imgBoleto;
+		include 'funcoes_cef.phtml';
+		foreach($this->boletos as $row) :
+			$vcto = $this->fc->Ymd2dmY($row->vcto);
+			$v=explode('/', $vcto);
+			$dataLimite=date("d/m/Y", mktime(0,0,0,$v[1],$v[0]+30,$v[2]));			
+			
+			$dadosboleto["instrucoes"] = "- Sr. Caixa, não receber após $dataLimite<br>- Cobrar multa de 2% mais juros de 1% ao mês.";			
+			$dadosboleto["instrucoes4"] = "Ref.: $row->historico";		
+
+			$valor_cobrado = str_replace(",", ".",$row->total); // Valor - REGRA: Tanto faz símbolo da casa decimal com "." ou ","
+			$valor_boleto=number_format($valor_cobrado+$taxa_boleto, 2, ',', '');
+			
+			$dadosboleto["nosso_numero"] = $row->numDoc;  // Nosso numero sem o DV - REGRA: Máximo de 11 caracteres!
+			$dadosboleto["numero_documento"] = $dadosboleto["nosso_numero"];	// Num do pedido ou do documento = Nosso numero
+			$dadosboleto["data_vencimento"] = $vcto; // Data de Vencimento do Boleto - REGRA: Formato DD/MM/AAAA
+			$dadosboleto["valor_boleto"] = $valor_boleto; 	// Valor do Boleto - REGRA: Com vírgula e sempre com duas casas depois da virgula
+			$dadosboleto["valor_unitario"] = $valor_boleto;
+			$dadosboleto["demonstrativo"]=$dadosboleto["instrucoes4"];			
+
+
+			$codigobanco = "104";
+			$codigo_banco_com_dv = geraCodigoBanco($codigobanco);
+			$nummoeda = "9";
+			$fator_vencimento = fator_vencimento($dadosboleto["data_vencimento"]);
+			
+			//valor tem 10 digitos, sem virgula
+			$valor = formata_numero($dadosboleto["valor_boleto"],10,0,"valor");
+			//agencia é 4 digitos
+			$agencia = formata_numero($dadosboleto["agencia"],4,0);
+			//conta é 5 digitos
+			$conta = formata_numero($dadosboleto["conta"],5,0);
+			//dv da conta
+			$conta_dv = formata_numero($dadosboleto["conta_dv"],1,0);
+			//carteira é 2 caracteres
+			$carteira = $dadosboleto["carteira"];
+			
+			//nosso número (sem dv) é 10 digitos
+			// $nnum = $dadosboleto["inicio_nosso_numero"] . formata_numero($dadosboleto["nosso_numero"],8,0);
+			$nnum = $dadosboleto["inicio_nosso_numero"] . formata_numero($dadosboleto["nosso_numero"],16,0);
+			
+			//dv do nosso número
+			$dv_nosso_numero = digitoVerificador_nossonumero($nnum);
+			$nossonumero_dv ="$nnum$dv_nosso_numero";
+			
+			//echo $nossonumero_dv;
+			//conta cedente (sem dv) é 11 digitos
+			$conta_cedente = formata_numero($dadosboleto["conta_cedente"],11,0);
+			//dv da conta cedente
+			$conta_cedente_dv = formata_numero($dadosboleto["conta_cedente_dv"],1,0);
+			
+			$ag_contacedente = $agencia . $conta_cedente;
+			
+			// 43 numeros para o calculo do digito verificador do codigo de barras
+			$dv = digitoVerificador_barra("$codigobanco$nummoeda$fator_vencimento$valor$carteira$conta$nnum", 9, 0);
+			// Numero para o codigo de barras com 44 digitos
+			//$linha = "$codigobanco$nummoeda$dv$fator_vencimento$valor$nnum$ag_contacedente";
+			$linha = "$codigobanco$nummoeda$dv$fator_vencimento$valor$carteira$conta$nnum";
+			//echo "<br/>linha=$codigobanco$nummoeda $dv $fator_vencimento$valor $carteira$conta$nnum";
+			
+			$nossonumero = substr($nossonumero_dv,0,18).'-'.substr($nossonumero_dv,18,1);
+			$agencia_codigo = $agencia." / ". $conta_cedente ."-". $conta_cedente_dv;
+			
+			
+			$dadosboleto["codigo_barras"] = $linha;
+			$dadosboleto["len_codigo_barras"] = strlen($linha);
+			$dadosboleto["linha_digitavel"] = monta_linha_digitavel($linha);
+			$dadosboleto["agencia_codigo"] = '0083 / 026522-8';
+			$dadosboleto["nosso_numero"] = $nossonumero;
+			$dadosboleto["codigo_banco_com_dv"] = $codigo_banco_com_dv;
+
+			
+			
+			include 'layout_cef.phtml';
+			echo"<p class='formfeed'>&nbsp;</p>";								
+		endforeach; ?>
+	</body>
+</html>

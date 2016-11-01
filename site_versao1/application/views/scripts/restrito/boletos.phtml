@@ -1,0 +1,112 @@
+<style>
+	#tbHistorico{margin-top:10px;margin-right:10px;width:100%}
+	#tbHistorico td{font-size:9pt}
+	#tbHistorico caption{background:#066;font:16pt bolder Verdana, Tahoma, Arial, Helvetica, Sans-Serif;color:#fff}
+	#tbHistorico th{font-weight:normal;letter-spacing:0;background:#E2FADE;color:#066;padding:4px;border:solid 1px #60c660}
+	#tbHistorico td{padding:4px;border:solid 1px #60c660}
+	b{font-weight:bolder}
+	.msgErr{background:#f00;color:#fff;font-weight:bolder;text-align:center}
+</style>
+
+<table width='100%' border='0' cellpadding='2' cellspacing='2'/>
+	<caption class="caption">Histórico de Pagamentos</caption>
+</table>
+
+<hr size="1">
+
+<?php
+$dataLimite = date("Y-m-d", time() + (86400 * 7)); // vai mostrar o ultimo dia do mes atual
+//echo "dataLimite = $dataLimite";
+if ($this->user->status > 0):
+	if ($this->user->validade < date('Y-m-d'))
+		$status = sprintf("<b>VENCIDA em %s</b> - $this->dataVal Clique no link Renovar minha Inscrição ao lado
+			para gerar o Boleto da renovação da sua Inscrição.", $this->fc->ymd2dmY($this->user->validade));
+	elseif($this->user->validade <= $dataLimite)
+		$status = sprintf("<b>A VENCER EM %s</b> - Clique no link Renovar minha Inscrição ao lado
+		para gerar boleto de renovação da sua inscrição.", $this->fc->ymd2dmY($dataLimite));
+	else 
+		$status = "<b>ATIVO - Nenhuma pendência de pagamento até o momento.</b>";
+endif;	
+//$this->fc->debug($this->user);
+?>
+
+
+<pre>
+Id Cadastro Nº	: <?=sprintf("%06d", $this->user->idCadastro)?>
+<br />Cadastrado em	: <?=$this->fc->msql2dmY($this->user->dataReg, true)?>
+<br />Nome		: <?=$this->user->nome?>
+<br />Email		: <?=$this->user->email?>
+<br />Fone		: <?=$this->user->fone?>
+<br />Cel		: <?=$this->user->fone2?>
+
+<br />Último Acesso	: <?=$this->fc->msql2dmY($this->user->ultAcesso, true)?>
+<br />Atualizado em	: <?=$this->fc->msql2dmY($this->user->atualizado, true)?>
+
+<?
+//if ($this->user->status > 0): ?>
+<!-- Validade	: <?//$this->fc->Ymd2dmY($this->user->validade)?>
+<br />Situação	: <?//$status?> --><?
+//endif;
+?>
+<br />
+</pre>
+
+<p style="font-size:13px;text-align:justify">As vezes o banco não informa o número do boleto pago e quando isso acontece, 
+não temos como saber de quem foi o pagamento. Caso tenha pago seu boleto e o mesmo
+apareça como <b>VENCIDO</b>, envie uma cópia do <b>BOLETO PAGO</b> para o atendimento 
+(secretaria@amfar.com.br) para que possamos localizar e dar baixa no seu pagamento regulalizando 
+a sua situação.</p>
+
+<table id='tbHistorico' cellpadding='2' cellspacing='2' border='0'>
+<caption>Histórico de Pagamentos</caption>
+<thead>
+	<tr align='center'>
+		<th>Vcto</th>
+		<th>Histórico</th>
+		<th>Valor R$</th>			
+		<th>Pgto</th>
+		<th><img src='<?=$this->baseImg?>/printer.png' border='0' alt="Imprimir Boletos" title="Imprmir Boletos" /></th>
+	</tr>
+</thead>
+
+
+<?php
+
+if (!$this->paginator)
+	echo "<tr><td colspan='5' class='msgErr'>Nenhum registro localizado em seu histórico de pagamentos</td></tr>";
+else {
+	$pendente = false;
+	foreach($this->paginator as $rs):
+		$linkBoleto = null;
+
+		if ($rs->pgto=='1900-01-01' || $rs->pgto=='') {
+			$rs->pgto='00/00/0000';
+			
+			if($rs->vcto >= date('Y-m-d'))
+				$linkBoleto ="<a href='http://www.amfar.com.br/boletos/boleto.php?id=$rs->idFinanceiro' target='_boletos'>
+					<img src='$this->baseImg/printer.png' border='0'></a>";
+			
+			$pendente = true;
+			}
+			
+		echo"<tr>
+			<td align='center'>" . $this->fc->Ymd2dmY($rs->vcto) . "</td>
+			<td>$rs->historico</td>
+			<td align='right'>" . number_format($rs->total, 2, ',', '.') . "</td>			
+			<td align='center'>" . $this->fc->Ymd2dmY($rs->pgto) . "</td>
+			<td align='center'>$linkBoleto</td>
+		</tr>";
+	endforeach;
+
+	if ($pendente):
+		echo"<tr>
+			<td colspan='5' align='center'>
+				<b>Existe(m) boleto(s) pendente de pagamento. Caso já tenha pago, envie cópia do comprovante para baixarmos.</b><br /> 
+				Caso não o tenha pago, clique na data de pagamento para re-imprimir o boleto caso o mesmo não esteja esteja vencido.<br />
+				<b style='color:red'>Caso o boleto esteja vencido, solicite à secretaria nova data de vencimento.</b>
+			</td>
+		</tr>";
+	endif;
+	} ?>
+</table>
+<?php echo $this->paginationControl($this->paginator, 'Sliding', 'paginator.phtml'); ?>

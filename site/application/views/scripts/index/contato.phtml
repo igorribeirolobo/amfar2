@@ -1,0 +1,88 @@
+
+<?
+?>
+<style>
+	#fcontato{}
+	#fcontato td{padding:0 4px}
+	#fcontato .label{text-align:right;color:#808080;font-size:13px}
+</style>
+<script>
+	$(document).ready(function(){
+		$('.fone').mask('(99) 9999-9999',{placeholder:'_'});
+		
+		$('#btSend').click(function(){
+			if($('#nome').val().trim()==''){
+				alert("Por favor, preencha o campo 'Nome'\n\n");
+				$('#nome').focus();
+				return false;
+				}
+			if($('#email').val().trim()==''){
+				alert("Por favor, preencha o campo 'E-mail'\n\n");
+				$('#email').focus();
+				return false;
+				}
+			if(!$('#email').val().validEmail()){
+				alert("Por favor, preencha o campo 'E-mail'\n\n");
+				$('#email').focus();
+				return false;
+				}
+			if($('#fone').val().trim()==''){
+				alert("Por favor, preencha o campo 'Telefone'\n\n");
+				$('#fone').focus();
+				return false;
+				}
+			if($('#assunto').val().trim()==''){
+				alert("Por favor, preencha o campo 'Assunto'\n\n");
+				$('#assunto').focus();
+				return false;
+				}
+			if($('#mensagem').val().trim()==''){
+				alert("Por favor, preencha o campo 'Mensagem'\n\n");
+				$('#mensagem').focus();
+				return false;
+				}
+			})
+		})
+</script>		
+<form name="fcontato" id="fcontato" action="" method="POST">
+	<div align="center">	
+		<p style="padding:0 4px;font-size:13px" align="center">
+			A <b class="blue">AMFAR</b> está a sua disposição para o esclarecimento de dúvidas sobre a instituição,<br /> 
+			nossos serviços, cursos, congressos, convênios e outros.<br /><br />
+			Preencha o formulário abaixo ou se preferir ligue <b>31 3291-6242</b> ou escreva para:<br />
+			<b>AMF - Associação Mineira de Farmacêuticos<br />
+			Av. do Contorno, 9215 - Sl 502 - Ed. Humberto Martins Vieira<br />
+			Prado - 30110-130 - Belo Horizonte/MG
+		</p>
+		<input type="hidden" name="process" value="0"/>
+		<table cellSpacing="1" cellPadding="1" width="70%" border="0" align="center">
+			<tr>
+				<td class="label">Nome:</td>
+				<td>
+					<input type="text" class="text upper" id="nome" name="nome" maxLength="40" value="<?=$_POST['nome']?>" /></td>
+			</tr>
+			<tr>
+				<td class="label">E-mail:</td>
+				<td><input type="text" class="text lower" id="email" name="email" value="<?=$_POST['email']?>" /></td>
+			</tr>
+			<tr>
+				<td class="label">DDD/Fone:</td>
+				<td><input type="text" class="text fone" id="fone" name="fone" value="<?=$_POST['fone']?>" /></td>
+			</tr>
+			<tr>
+				<td class="label">Assunto:</td>
+				<td><input type="text" class="text upper" name="assunto" id="assunto" value="<?=$_POST['assunto']?>" ></td>
+			</tr>
+			<tr>
+				<td class="label">Mensagem:</td>
+				<td><textarea name="mensagem" id="mensagem" rows="5" cols="40" class="text"></textarea></td>
+			</tr>
+			<tr align="center">
+				<td></td>
+				<td>
+					<input type="submit" class="button" id="btSend" name="btSend" value="Enviar" />
+				</td>
+			</tr>
+		</table>
+	</div>	
+</form>

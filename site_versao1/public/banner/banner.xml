@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<banner>
+	<globals
+		width="632" height="145" 
+		currentItem="0" radius="6" transition="X" 
+		showButtons="false" buttonLocation="right"
+		blurX="0" blurY="10"
+		showContent="true"
+		bgColor="#000000" bgAlpha="0.3" bgPaddingBottom="0"
+		titleColor="#F8F505" titleFontSize="20"
+		descriptionColor="#ffffff" descriptionFontSize="16"
+		cssFile="css/gallery.css">
+		<buttonTitleColor default="#000000" rollOver="#CD0000" current="#FFFFFF"/>
+		<buttonDescriptionColor default="#444444" rollOver="#FF0000" current="#F0F0F0"/>		
+	</globals>
+    <item>
+        <image>/site/public/banner/images/cursoFC2013.jpg</image>
+        <buttonTitle><![CDATA[none]]></buttonTitle>
+        <buttonDescription><![CDATA[]]></buttonDescription>
+        <title><![CDATA[Farmacologia Clínica- IX Turma]]></title>
+        <description><![CDATA[Início previsto para Abril/2013]]></description>
+        <timer>7</timer>
+        <url></url>
+        <target>_self</target>
+    </item>
+
+    <item>
+        <image>/site/public/banner/images/cursoFH2013.jpg</image>
+        <buttonTitle><![CDATA[none]]></buttonTitle>
+        <buttonDescription><![CDATA[Novo Formato]]></buttonDescription>
+        <title><![CDATA[Farmácia Hospitalar e Serv. de Saúde]]></title>
+        <description><![CDATA[Aguarde nova data]]></description>
+        <timer>7</timer>
+        <url></url>
+        <target>_self</target>
+    </item>
+    <item>
+        <image>/site/public/banner/images/cursoSP2013.jpg</image>
+        <buttonTitle><![CDATA[none]]></buttonTitle>
+        <buttonDescription><![CDATA[none]]></buttonDescription>
+        <title><![CDATA[Saúde Pública]]></title>
+        <description><![CDATA[Aguarde nova data]]></description>
+        <timer>7</timer>
+        <url></url>
+        <target>_self</target>
+    </item>
+</banner>

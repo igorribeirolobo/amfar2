@@ -1,0 +1,148 @@
+<style>
+	#agenciamento{font-size:13px;padding-right:20px}
+	#agenciamento p{text-align:justify}
+</style>
+<div id="agenciamento">
+	<p>
+		Pensando no futuro e atenta às constantes transformações do mercado,
+		a <b>Associação Mineira de Farmacêuticos</b> concentra seus esforços nas pessoas
+		que farão a Empresa alcançar suas metas.</p>
+		
+	<p>É um trabalho que não se faz em um dia.
+		Requer grandes investimentos, principalmente dos farmacêuticos associados,
+		para captar, formar, manter e reconhecer o trabalho de sua Equipe.</p>
+	
+	<p><b>Modernidade, agilidade, comprometimento e seriedade</b> são palavras-chave
+		dentro da <b>AMFAR</b>, uma Empresa em constante evolução, que aposta no
+		sucesso e oferece o melhor atendimento aos seus Clientes.</p>
+	<p>Nossos recursos são as pessoas nas quais acreditamos e investimos ou seja: <b>VOCÊ!</b></p>
+	
+	<p style="padding:4px; text-align:center; background:#D9E7F8">
+		<b class="blue">Portanto, precisamos nos unir.<br />
+		Venha fazer parte dessa Equipe de vencedores!</b></p>
+	
+	<p style="background:#eeeee4; padding:4px"><b>Envie seu Currículo</b></p>
+	
+	<ol>
+		<li>Preencha seu nome completo</li>
+		<li>Preencha corretamente o campo email pessoal</li>
+		<li>Preencha corretamente seu telefone para contato</li>
+		<li>Descreva resumidademente sua área de atuação</li>
+		<li>Caso queira completar alguma informação, utilize a caixa observações</li>
+		<li>Anexe seu curriculo no formato WORD ou PDF</li>
+		<li><b>ASSOCIADOS AMF TÊM PRIORIDADE NO PROCESSO SELETIVO<b></li>
+	</ol> 
+</div>
+
+<style>
+	#tbCurriculo{font-size:13px}
+	#tbCurriculo td{padding:4px 8px 4px 0}
+	#tbCurriculo .label{text-align:right;white-space:nowrap}
+	#tbCurriculo .text{width:300px}
+	#tbCurriculo .fone{width:100px;text-align:center}
+	#tbCurriculo .cpf{width:120px;text-align:center}
+</style>
+<script>
+	$(document).ready(function(){
+		$('#cpf').mask('999.999.999-99',{placeholder:'_'});
+		$('.fone').mask('(99) 9999-9999',{placeholder:'_'});
+		$('#perfil').limit('255','#perfilLen');
+		$('#obs').limit('255','#obsLen');
+		$('#nome').focus();
+		
+		$('#btSend').click(function(){
+			if($('#nome').val().trim()==''){
+				alert("O campo 'Nome' é obrigatório!\n\n");
+				$('#nome').focus();
+				return false;
+				}
+			if($('#cpf').val().trim()==''){
+				alert("O campo 'CPF' é obrigatório!\n\n");
+				$('#cpf').focus();
+				return false;
+				}
+			if(!$('#cpf').val().validCPF()){
+				alert("O 'CPF' digitado é inválido!\n\n");
+				$('#cpf').focus();
+				return false;
+				}
+			if($('#email').val().trim()==''){
+				alert("O campo 'E-mail' é obrigatório!\n\n");
+				$('#email').focus();
+				return false;
+				}
+			if(!$('#email').val().validEmail()){
+				alert("O 'E-mail' digitado é inválido!\n\n");
+				$('#email').focus();
+				return false;
+				}
+			if($('#fone').val().trim()==''){
+				alert("O campo 'Fone' é obrigatório!\n\n");
+				$('#fone').focus();
+				return false;
+				}
+			if($('#celular').val().trim()==''){
+				alert("O campo 'Celular' é obrigatório!\n\n");
+				$('#celular').focus();
+				return false;
+				}
+			if($('#perfil').val().trim()==''){
+				alert("O campo 'Área de Atuação' é obrigatório!\n\n");
+				$('#perfil').focus();
+				return false;
+				}
+			if($('#uploaded').val()=='' && $('#userfile').val()==''){
+				alert("Anexe seu curriculo no formato Word ou PDF para envio !\n\n");
+				$('#userfile').focus();
+				return false;
+				}
+			})
+		})
+</script>
+<form name="curriculo" id="curriculo" style="margin-top:0" action="#" method="POST" enctype="multipart/form-data">
+	<input type="hidden" id="msg" value="<?=$this->message?>" />
+	
+	<table id="tbCurriculo" cellspacing="0" cellPadding="0" width="100%" border="0">
+		<tr>
+			<td class="label">Nome Completo:</td>
+			<td><input class="text upper" id="nome" name="nome" maxlength="50" value="<?=$_POST['nome']?>" /></td>
+		</tr>
+		<tr>
+			<td class="label">CPF:</td>
+			<td><input class="text cpf" id="cpf" name="cpf" maxlength="20" value="<?=$_POST['cpf']?>" /></td>
+		</tr>
+		<tr>
+			<td class="label">E-mail pessoal:</td>
+			<td ><input class="text lower" id='email' name="email" maxlength="100" value="<?=$_POST['email']?>" /></td>
+		</tr>
+		<tr>
+			<td class="label">DDD/Fone Fixo:</td>
+			<td><input id='fone' name="fone" class="text fone" value="<?=$_POST['fone']?>" /></td>
+		</tr>
+		<tr>
+			<td class="label">DDD/Celular:</td>
+			<td><input id='celular' name="celular" class="text fone" value="<?=$_POST['celular']?>" /></td>
+		</tr>
+		<tr>
+			<td class="label">Assunto:</td>
+			<td ><input readonly name="assunto" class="text" value="ENVIO DE CURRICULUM VITAE" /></td>
+		</tr>
+		<tr>
+			<td class="label">Área de Atuação (Máx.: <span id="perfilLen"></span>)<br />sem quebra de linha:</td>
+			<td><textarea id="perfil" name="perfil" style="height:120px;width:100%" class="text" ><?=$_POST['perfil']?></textarea></td>
+		</tr>
+		<tr>
+			<td class="label">Observações (Máx.: <span id="obsLen"></span>)<br />sem quebra de linha:</td>
+			<td><textarea id="obs" name="obs" style="height:120px;width:100%" class="text" ><?=$_POST['obs']?></textarea></td>
+		</tr>
+		<tr>
+			<td class="label">Anexo:</td>
+			<td><input type="file" id="userfile" name="userfile" /></td>
+		</tr>
+		<tr>
+			<td style="text-align:center; background:#eeeee4"></td>
+			<td style="text-align:center; background:#eeeee4">
+				<input type="submit" class="button" id="btSend" name="btSend" value="Enviar" /></td>
+		</tr>
+	</table>
+</form>

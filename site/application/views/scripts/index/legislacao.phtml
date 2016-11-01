@@ -1,0 +1,32 @@
+<style>
+	.legislacao {font-size:13px;width:100%;border-collapse:collapse;border-color:black}
+	.legislacao td{padding:4px 8px}
+	.legislacao th{text-align:center;background:#369;color:#fff}
+	.legislacao a{text-decoration:none;color:#808080;font-weight:bolder}
+	.legislacao a:hover{text-decoration:underline;color:#f90}
+</style>
+
+<table class="legislacao" width="100%" border="1" cellpadding="2" cellspacing="0"><?
+	$row=0;
+	foreach($this->paginator as $rs):
+		$row++;
+		$bg = ($row % 2 == 0) ? "#dddddd" : "#ffffff";
+		echo"
+		<tr bgcolor='$bg'>
+			<td><b>$rs->titulo</b></td>
+		</tr>
+			
+		<tr bgcolor='$bg'>
+			<td>$rs->chamada<br />$rs->resumo<br />";
+				
+			if (isset($rs->link)) {
+				if (stristr($rs->link, 'http'))
+					echo"<a href='$rs->link' target='_blank'>Ler matéria completa</a></td></tr>";
+				else
+					echo"<a href='legislacao/$rs->link' target='_blank'>Ler matéria completa</a></td></tr>";
+				}			
+		$row++;
+	endforeach;	
+?>
+</table>
+<?php echo $this->paginationControl($this->paginator, 'Sliding', 'paginator.phtml');?>

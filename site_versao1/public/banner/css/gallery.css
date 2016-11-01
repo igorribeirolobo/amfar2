@@ -1,0 +1,10 @@
+/* CSS Document */
+a:link {
+	color: #00CCFF;
+  	text-decoration: underline;
+}
+
+a:hover {
+  	color: #FF0000;
+  	text-decoration: none;
+}

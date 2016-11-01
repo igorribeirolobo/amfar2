@@ -1,0 +1,217 @@
+<script type="text/JavaScript">
+	<!--
+	function MM_openBrWindow(theURL,winName,features) { //v2.0
+		window.open(theURL,winName,features);
+	}
+	//-->
+</script>
+<script>
+	$(document).ready(function(){
+		$('.lks').click(function(){
+		//alert('id='+this.id);
+			var t=this.id.split(':');
+			$('.cursos').each(function(){
+				$(this).css('display',(t[1]=='cursos')?'block':'none');
+				})
+			$('.simposios').each(function(){
+				$(this).css('display',(t[1]=='simposios')?'block':'none');
+				})
+			$('.congressos').each(function(){
+				$(this).css('display',(t[1]=='congressos')?'block':'none');
+				})
+			$('.foruns').each(function(){
+				$(this).css('display',(t[1]=='foruns')?'block':'none');
+				})
+			})
+		})
+</script>
+<style>
+	#fldCursos{font-size:11px}
+	#fldCursos table{font-size:11px}
+	.links{background:#ccc;text-align:center;font-size:10pt;font-weight:bolder}
+	.links a{text-decoration:none;font-size:12px}
+	.links a:hover{text-decoration:underline;color:#006}
+	.hidden{display:none}
+</style>
+
+<fieldset id="fldCursos">
+	<legend>Agenda de Eventos sobre Oncologia</legend>
+	
+	<table cellpadding="2" cellspacing="2" border="0" width="100%">
+		<tr>
+			<td colspan="3" align="center"><b style="color:#006">Selecione uma das opções abaixo</b></td>
+		</tr>
+		<tr>
+			<td class="links"><a href="#" id="lk:cursos" class="lks">Cursos</a></td>
+			<td class="links"><a href="#" id="lk:simposios" class="lks">Simposios</a></td>
+			<td class="links"><a href="#" id="lk:congressos" class="lks">Congressos</a></td>
+			<td class="links"><a href="#" id="lk:foruns" class="lks">Foruns</a></td>
+		</tr>
+	</table>
+
+
+
+
+
+<div class="cursos">
+	<table cellpadding="8" cellspacing="8">
+		<tr>
+			<td colspan="2" align="center">
+				<a href="http://www.interonco.com.br" target="_blank">
+					<img src="eventos/images/interonco.gif" border="0" /></a>
+			</td>
+		</tr>
+		<tr><td colspan="2"><hr size="1"/></td></tr>
+
+		<tr>
+			<td colspan="2" align="center">
+				<a href="http://www.einstein.br/ensino/pos-graduacao-e-residencia-medica/Paginas/pos-graduaco-e-residencia-medica.aspx" target="_blank">
+					<img src="eventos/images/albert.png" border="0" /></a><br />
+				<b>Especialização em Oncologia</b><br />
+				Data de Inicio: 10/02/2011  - Duração: 11 meses <br />
+				Local: Hospital Israelita Albert Einsten - R. Padre Lebret s/n<sup><u>o</u></sup> - Morumbi<br />
+				Horário: terças-ferias e quinta-feiras das 19h às 23h<br />
+				Informações e inscrições: 40 Vagas sendo 2 para aprimoramento
+			</td>
+		</tr>
+		<tr><td colspan="2"><hr size="1"/></td></tr>
+		<tr>
+			<td align="center">	
+				<b>CIPE - A.C. CAMARGO</b><br />
+				Centro Internacional<br />
+				de Pesquisa e Ensino<br /><br />
+				2011 - Antineoplásicos: Farmacologia, Interações e Uso Adequado 
+			</td>
+			<td align="center">
+				<a href="#"><img src="eventos/images/emkt_Antineoplasicos_p.jpg" width="200" height="221" border="0"
+					onClick="window.open('eventos/emkt_Antineoplasicos.html','','scrollbars=yes,width=617,height=450')"></a>
+			</td>
+		</tr>
+		<tr><td colspan="2"><hr size="1"/></td></tr>
+
+		<tr>
+			<td align="center">	
+				<b>CIPE - A.C. CAMARGO</b><br />
+				Cursos de Aprimoramento<br />
+				Teórico/Prático<br /><br />
+				Inscrições Abertas<br /><br />
+				Inscrições online: <a href="http://www.accamargo.org.br/centrodeensino" target="_blank">www.accamargo.org.br/centrodeensino</a>
+			</td>
+			<td align="center">
+				<a href="#"><img src="eventos/images/emktAprimoramento.jpg" width="200" border="0"
+					onClick="window.open('eventos/emkt farmacia.pdf','','scrollbars=yes,width=617,height=450')"></a>
+			</td>
+		</tr>
+		<tr><td colspan="2"><hr size="1"/></td></tr>
+		
+		<tr>
+			<td align="center">	
+				<b>CIPE - A.C. CAMARGO</b><br />
+				Centro Internacional de Pesquisa e Ensino<br />
+				Programação 2011:<br /><b>para Cursos e Eventos</b>
+			</td>
+			<td align="center">
+				<a href="#"><img src="eventos/images/emkt_programacao_p.jpg" width="200" height="191" border="0"
+					onClick="window.open('eventos/emkt_programacao.html','','scrollbars=yes,width=617,height=450')"/></a>
+			</td>
+		</tr>
+		<tr><td colspan="2"><hr size="1"/></td></tr>
+		
+
+		<tr>
+
+			<td align="center" colspan="2">
+				<a href="http://institutoracine.enviodemkt.com.br/ver_mensagem.php?id=H|405|33630|129105952077958600" target="_blank">
+					<img src="eventos/images/pcare.png" border="0"/></a>
+			</td>
+		</tr>
+		<tr><td colspan="2"><hr size="1"/></td></tr>
+		<tr>
+			<td align="center" colspan="2">
+				<a href="eventos/pos_saocamilo.pdf" target="_blank">
+					<img src="eventos/images/saocamilorj.jpg" border="0"/></a>
+			</td>
+		</tr>
+		<tr><td colspan="2"><hr size="1"/></td></tr>
+		<tr>
+			<td align="center" colspan="2">
+				<a href="eventos/saocamilors.html" target="_blank">
+					<img src="eventos/images/saocamilors_icone.jpg" border="0"/></a>
+			</td>
+		</tr>
+
+	</table>
+</div>
+
+
+
+
+
+
+
+
+<!-- xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx -->
+<div class="simposios hidden">
+	<table cellpadding="8" cellspacing="8" border="0" width="100%">
+		<tr>
+			<td>
+				Prezados colegas farmacêuticos,
+				É com muita alegria e satisfação que o Hospital Ana Costa de Santos, em virtude das comemorações de um ano de atividades desenvolvidas junto a comunidade da Região da Baixada Santista de seu Instituto de Oncologia, convida a todos os profissionais farmacêuticos inscritos nesta sociedade e comunidade à participar do I Simpósio Multidisciplinar do Instituto de Oncologia- HAC. 
+				O evento ocorrerá durante o período de 23 a 26 de março, no Hospital Ana Costa de Santos, Rua: Amazonas,  143- 10º andar, Auditório A. 
+				Ficaríamos honrados com a presença de todos, principalmente no dia 25/03 onde serão discutidos temas de relevância no âmbito da atuação do profissional farmacêutico.
+				<p align="right"><a href="eventos/Simposio_Multidisciplinar_Hospital_Ana_Costa_de_Santos.pdf" target="_blank">
+					Veja a programação</a></p>
+			</td>
+		</tr>
+
+	</table>
+</div>
+
+
+
+
+
+
+
+<!-- xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx -->
+<div class="foruns hidden">
+	<table cellpadding="8" cellspacing="8" border="0" width="100%">
+		<tr>
+			<td align="center">
+				<a href="#"><img src="eventos/images/forumSirioLibanez.jpg" border="0" onClick="window.open('eventos/forumSirioLibanez.pdf','','scrollbars=yes')"/></a>
+			</td>
+		</tr>
+
+	</table>
+</div>
+
+
+
+
+
+
+	<!-- xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx -->
+	<div class="congressos hidden">
+		<table cellpadding="8" cellspacing="8" border="0" width="100%">
+			<tr>
+				<td align="center">
+					<a href="http://www.uopeccan.org.br/" target="_blank">
+						<img src="mini.php?img=eventos/images/oupeccan.png&wh=100" border="0"/></a>
+				</td>
+				<td style="font-size:12px">
+					<b style="font-size:16px">União Oeste Paranaense de Estudos e Combate ao Câncer</b><br />
+					<b>II Congresso Multiprofissional de Oncologia do Hospital do Câncer de Cascavel - UOPECCAN.</b><br /><br /> 
+					As informações completas estão disponíveis no site <a href="http://www.uopeccan.org.br/" target="_blank">www.uopeccan.org.br</a>
+				</td>
+			</tr>
+		<tr><td colspan="2"><hr size="1"/></td></tr>
+		
+		<tr>
+			<td align="center" colspan="2">
+				<a href="#"><img src="eventos/images/SBOC_icone.png" border="0"
+					onClick="window.open('eventos/sboc.html','','scrollbars=yes,width=550,height=600')"/></a>
+			</td>
+		</tr>
+		</table>
+	</div>
+</fieldset>

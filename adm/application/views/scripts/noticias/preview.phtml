@@ -1,0 +1,40 @@
+<?php
+$rs = $this->news;
+//$this->fc->debug($rs);
+//die();
+?>
+<style>
+	.noticias{font-size:12px;color:#000}
+	.noticias img{text-align:center}
+	.noticias .titulo{text-align:center;font-size:16pt;color:#f90;font-weight:bolder}
+	.noticias .subtitulo{font-style:italic;color:#a4a4a4}
+	.noticias .legenda{font-size:11px;text-align:left}
+	.noticias .info{float:right;font-weight:bolder;font-size:9px}
+	.noticias p{text-align:justify}
+</style>
+
+<table class="noticias" border="0" cellpadding="2" cellspacing="0">
+	<tr><?
+	if(!empty($rs->foto)): ?>			
+		<td rowspan="2" style="text-align:center" valign="top" width="300">
+			<img src="<?=$this->baseUrl?>/public/news/<?=$rs->foto?>" border="0" width="300"><br />
+			<span class="legenda"><?=$rs->legenda?></span><br />
+			<span class="info"><?=(strlen($rs->fotografo)>1)? "Foto: $rs->fotografo" : null?></span>
+		</td>
+	<?endif;?>
+		<td class="titulo">
+			<span class="destaque"><?=$rs->titulo?></span><br />
+			<span class="subtitulo"><?=$rs->subtitulo?></span>
+		</td>
+	</tr>
+	<tr>
+		<td style="padding-left:20px">
+			<?=$rs->materia?><br /><br />
+			<span class="info">
+				<?=(trim($rs->fonte)!='') ? "Fonte: $rs->fonte" : null?><br />
+				<?=(trim($rs->creditos)!='') ? "Creditos: $rs->creditos" : null?><br />
+				<?=(trim($rs->link)!='') ? "Link Original: <a href='$rs->link' target='_blank'>$rs->link</a>" : null?>
+			</span>
+		</td>
+	</tr>
+</table>

@@ -1,0 +1,122 @@
+<?php
+$rs = $this->cadastro;
+?>
+<script>
+	$(document).ready(function(){
+		$('.del').click(function(){
+			if(!confirm('Tem certeza que deseja excluir este registro?'))
+				return false;
+			if(!confirm('Uma vez excluído, não tem como recuperar este registro.\n\nConfirma a Exclusão?'))
+				return false;
+			return true;
+			})
+		if($('#msg').val().length>0) alert($('#msg').val());
+		})	
+</script>
+<input type="hidden" id="msg" value="<?=$this->message?>"/>
+
+<style>
+	.list{font-size:12px;width:100%}
+	.list caption{background:#369;color:#fff;font-size:16px;padding:2px}
+	.list th{background:#E0E4F9;color:#006;font-size:11px;font-weight:normal}
+	.list th a{color:#fff;text-decoration:none}
+	.list th a:hover{text-decoration:underline;color:yellow}
+	.list td a{color:#006;text-decoration:none}
+	.list td a:hover{text-decoration:underline;color:red}
+</style>
+
+<table class='list' cellpadding='2' cellspacing='2' border='0'>
+	<caption>Detalhes do Cadastro</caption>
+	<tr>
+		<td colspan="7" class="pre"><?			
+			echo "<pre>";
+			echo "Nome&nbsp;: <b>$rs->nome</b>";
+			echo "<br/>Email: <b>$rs->email</b>";
+			echo "<br/>Fone&nbsp;: <b>$rs->fone</b>";
+			echo "<br/>Cel.&nbsp;: <b>$rs->celular</b>";
+			echo "<br/>";
+			echo "<br/>Cadastrado em&nbsp;: <b>". $this->fc->Ymd2dmY($rs->datareg, true);
+			echo "<br/>Atualizado em&nbsp;: <b>". $this->fc->Ymd2dmY($rs->updated, true);
+			echo "</b><br/>Último Acesso&nbsp;: <b>". $this->fc->Ymd2dmY($rs->ultAcesso, true);
+			echo "</b><br/>Registro Nº&nbsp;&nbsp;&nbsp;: <b>".sprintf("%06d", $rs->id);
+			echo "</b><br/>Válido até&nbsp;&nbsp;&nbsp;&nbsp;: <b>". $this->fc->Ymd2dmY($rs->validade);
+			echo "</b><br/>Status&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;: <b>$rs->status - ";
+			if ($rs->status < 0)
+				echo "CANCELADO";
+			elseif ($rs->status == 0)
+				echo "INATIVO";
+			elseif ($rs->status == 1)
+				echo "ATIVO";
+			elseif ($rs->status == 2)
+				echo "ISENTO";
+			elseIf ($rs->status == 3)
+				echo "DIRETORIA";						
+			elseIf ($rs->status == 4)
+				echo "FORNECEDOR";	
+			echo "<b></pre>";
+			?>
+		</td>
+	</tr>
+</table>
+
+<br />
+
+
+
+<table class='list' cellpadding='2' cellspacing='2' border='0'>
+	<caption>Histórico de Pagamentos</caption>
+	<tr align='center'>
+		<th>Emissao</th>				
+		<th colspan="3">Histórico</th>
+		<th>Vcto</th>
+		<th>Valor R$</th>			
+		<th>Pgto</th>
+	</tr>				
+	<?
+	if (count($this->boletos) == 0)
+		echo "<tr><td colspan='7' class='msgErr'>Nenhum registro localizado.</td></tr>";
+	else {			
+	 	$count = 0;
+		foreach($this->boletos as $rs) :
+			$count++;
+			$bg = ($count % 2 == 0) ? '#dddddd' : '#ffffff';
+			$rs->pgto = $this->fc->Ymd2dmY($rs->pgto);
+			if($rs->pgto == '01/01/1900') $rs->pgto = null;					
+			echo"
+			<tr align='center' bgcolor='$bg'>	
+				<td>". $this->fc->Ymd2dmY($rs->dataLct) ."</td>
+				<td align='left' colspan='3'>$rs->historico</td>
+				<td>". $this->fc->Ymd2dmY($rs->vcto) ."</td>
+				<td>". number_format($rs->valor,2,',','.')."</td>			
+				<td>". $this->fc->Ymd2dmY($rs->pgto) ."</td>
+			</tr>";
+		endforeach;
+		}
+		?>
+</table>
+
+<br />
+<table class='list' cellpadding='2' cellspacing='2' border='0'>
+	<caption>Inscrição em Cursos ou Eventos</caption>
+	<tr align='center'>
+		<th>Data</th>
+		<th>Título</th>
+	</tr>	
+	<?
+	if (count($this->eventos) == 0)
+		echo "<tr><td colspan='7' class='msgErr'>Nenhum registro localizado.</td></tr>";
+	else {			
+	 	$count = 0;
+		foreach($this->eventos as $row) :
+			//$this->fc->debug($row);
+			$count++;
+			$bg = ($count % 2 == 0) ? '#dddddd' : '#ffffff';				
+			echo"
+			<tr align='center' bgcolor='$bg'>
+				<td>". $this->fc->Ymd2dmY($row->data) ."</td>
+				<td align='left'>$row->titulo</td>
+			</tr>";
+		endforeach;
+		}
+		?>
+</table>

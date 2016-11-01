@@ -1,0 +1,33 @@
+<style>
+	.new p{font-size:13px;line-height:150%;text-indent:50px;margin:6px 0}
+	.new p.title{background:#FAD9D8;margin:4px 0;padding:2px;font-size:16px;color:#f00;text-indent:10px;}
+</style>
+<div class="new">
+	<p class="title">
+		Antes de associar-se, consulte as regras para associados e caso esteja de acordo, retorne a este link.</p>
+
+
+	<p>Não é permitido mais de uma associação por pessoa, caso você já tenha um cadastro efetuado 
+		previamente, mesmo antigo,entre no link Atualizar meu Cadastro (ao lado), digite seu email atual e seu cpf e clique em Recuperar Senha, 
+		que o sistema irá gerar uma senha temporária com a qual voce atualizará seus dados cadastrais e imprimirá o boleto para 
+		regularização da anuidade.</p>
+
+	<p>
+		Em caso de dúvida, entre em contato através do e-mail atendimento@sbrafh.org.br<br /> 
+		Temos prazer em lhe atender.</p>
+	<br />
+	<p class="title">Efetivando sua inscrição:</p>
+
+	<p>
+		Preencha o cadastro abaixo e após o envio e gravação dos seus dados, clique no botão 'Imprimir Boleto' no final da tela.
+		Desta forma, será gerado um boleto no valor de <b>R$ <?=number_format($this->taxaAnuidade,2,',','.')?></b> para Farmacêuticos ou 
+		<b>R$ <?=number_format($this->taxaAnuidade/2,2,',','.')?></b>, 
+		para Estudantes de Graduação.</p>	
+	
+	<p>
+		Caso você seja estudante de Graduação é necessário o envio de cópia de documento de comprovação da matrícula para 
+		<a href="mailto:atendimento@sbrafh.org.br">atendimento@sbrafh.org.br</a>, em até 72h da efetivação do cadastro. A não apresentação da comprovação solicitada, 
+		incorre na suspensão temporária de acesso as áreas restritas do site, findando a suspensão quando do recebimento dos comprovantes.</p>
+	<br />
+</div>
+<?php echo $this->render('associados/cadastro.phtml') ?>

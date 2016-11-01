@@ -1,0 +1,51 @@
+<style>
+	.contrato {;border-collapse:collapse;border-color:black}
+	.contrato th {background:#599da1;color:#fff;font-weight:bolder;font-size:11px;text-align:center;padding:2px 4px}
+	.contrato td {padding:2px 4px;font-size:12px}
+	.contrato td a{color:#000;text-decoration:none;padding:2px 0;font-size:12px}
+	.contrato td a:hover{font-weight:normal;color:#888;text-decoration:underline}
+	.contrato tfoot{font-size:13px}
+	.contrato .none{text-align:center;color:red;font-weight:bolder}
+</style>
+
+<script>
+	$(document).ready(function(){
+		$('.trcursos:even').css('background','#fff');
+		})
+</script>
+
+<table width='100%' class='contrato' border='1' cellpadding='0' cellspacing='0'>
+	<thead>
+		<tr>
+			<th>Data</th>
+			<th>Curso</th>
+			<th>Início</th>
+			<th>Inscrição<br />R$</th>
+			<th>Parcelas<br />R$</th>
+			<th>Total<br />R$</th>
+		</tr>
+	</thead>
+	<tbody><?	
+		if(!$this->contratos)
+			echo"<tr><td colspan='5' class='none'>Nenhum Contrato localizado</td></tr>";
+		else{
+			foreach($this->contratos as $rs):
+				$data = $this->fc->Ymd2dmY($rs->data);
+				$inicio = $this->fc->Ymd2dmY($rs->inicio);
+				$total = number_format($rs->valorTotal + $rs->matricula, 2, ',', '.');
+				$parcela = number_format($rs->parcela, 2, ',', '.');
+				$inscricao = number_format($rs->matricula, 2, ',', '.');	
+				echo"
+				<tr>
+					<td align='center'>$data</td>
+					<td><a href='$this->links/contrato/id/$rs->idAlunoCursos/' target='_contrato'>$rs->titulo</a></td>
+					<td align='center'>$inicio</td>
+					<td align='right'>$inscricao</td>					
+					<td align='center' nowrap>$rs->parcelas x $parcela</td>
+					<td align='right'>$total</td>
+				</tr>";
+			endforeach;
+			} ?>
+	</tbody>
+</table>
+		

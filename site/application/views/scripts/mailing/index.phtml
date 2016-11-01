@@ -1,0 +1,123 @@
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+	<head>
+		<title>AMF - Associação Mineira de Farmacêuticos</title>
+		<meta http-equiv="content-type" content="text/html; charset=iso-8859-1">
+		<link rel="stylesheet" type="text/css" media="screen" href="<?=$this->baseUrl?>/public/styles/style.css" />	
+		<script type="text/javascript" type="text/javascript" src="<?=jsLib?>/jquery-1.3.2.js"></script>
+		<script type="text/javascript" type="text/javascript" src="<?=jsLib?>/prototypes.js"></script>
+		<script type="text/javascript" type="text/javascript" src="<?=jsLib?>/jquery.maskedinput-1.2.2.min.js"></script>
+		<script type="text/javascript" type="text/javascript" src="<?=jsLib?>/jquery.limit-1.0.source.js"></script>
+		<link id="lnkRelShortCutIcon" rel="shortcut icon" href="<?=$this->baseImg?>/favicon.png" />
+
+		<script language="javascript" type="text/javascript">
+			 $(document).ready(function(){
+				if ($.browser.msie) {
+					}
+				else {
+					$('fieldset').css('border-width','1px');
+					$('fieldset').css('border-color','#369');
+					$('fieldset').css('-moz-border-radius','10px');
+					$('fieldset').css('-webkit-border-radius','10px');
+					$('fieldset').css('border-radius','10px');
+					}
+
+				$('.text').focus(function(){$(this).css('background','#E0E4F9')}).blur(function(){$(this).css('background','#fff')})
+				$('.upper').keyup(function(){$(this).val($(this).val().upper())})
+				$('.lower').keyup(function(){$(this).val($(this).val().lower())})				
+				
+				$('#btMailing').click(function(){
+					if($('#name').val().trim()==''){
+						alert('Por favor digite seu nome!');
+						$('#name').focus();
+						return false;
+						}
+					if($('#email').val().trim()==''){
+						alert('Por favor digite seu email!');
+						$('#email').focus();
+						return false;
+						}				
+					if(!$('#email').val().validEmail()){
+						alert('Por favor digite corretamente seu email!');
+						$('#email').focus();
+						return false;
+						}
+					if($('#uf').val()==''){
+						alert('Por favor selecione seu estado!');
+						$('#uf').focus();
+						return false;
+						}
+					if($('#excluir').is(':checked')){
+						if(!confirm('Tem certeza que deseja excluir seu email de nossa lista?\n\n')){
+							$('#excluir').attr('checked', false);
+							return false;
+							}
+						}
+					})
+				
+				if ($('#msg').val()!='' && $('#msg')!= undefined) alert($('#msg').val());
+				})
+
+		</script>
+		
+		
+		<style type="text/css">			
+			#mailing{font-family:Arial, Helvetica, Sans-Serif, Tahoma, Verdana;font-size:12px}
+			#mailing .label{text-align:right;padding:0 4px;font-size:12px;white-space:nowrap}
+			#mailing td{padding:0 4px;font-size:12px}
+			#mailing .button{cursor:pointer}
+			#mailing .button:hover{color:#f90}
+			legend{padding:0 10px}
+		</style>
+	</head>
+
+	<body style="background:#e4e4e4">
+		<fieldset>
+			<legend>Mailing</legend>
+			<form action="" method="post" name="mailing" id="mailing">
+				<input type="hidden" id="msg" value="<?=$this->message?>" />
+				<table border="0" cellspacing="0" cellpadding="0" width="100%">
+					<caption></caption>							
+					<tr>
+						<td class="label">Seu Nome:</td>
+						<td>
+							<input type="text" class="text upper" id="name" name="name" value="<?=$_POST['name']?>" maxlength="50" />
+						</td>
+					</tr>
+							
+					<tr>
+						<td class="label">Seu E-mail:</td>
+						<td>
+							<input type="text" class="text lower" name="email" id="email" value="<?=$_POST['email']?>" maxlength="80" />
+						</td>
+					</tr>
+								
+					<tr>
+						<td class="label">Estado:</td>
+						<td>
+							<select name="uf" id="uf" size="1">						
+								<option value="">Selecione o Estado</option><?
+								foreach($this->estados as $rs):
+									$selected = ($_POST['uf']==$rs->uf) ? 'selected' : null;
+									echo"<option $selected value='$rs->uf'>$rs->estado</option>";
+								endforeach; ?>
+							</select>
+						</td>
+					</tr>
+						
+					<tr>
+						<td align="center" colspan="2" nowrap>				
+							<input type="checkbox" name="excluir" id="excluir" value="1">
+								<b class="negrito">Excluir meu email da lista</small>
+						</td>
+					</tr>		
+			
+					<tr>
+						<td align="center" colspan="2" height="30"><br />
+							<input type="submit" id="btMailing" name="btMailing" value="Enviar" class="button" />
+						</td>
+					</tr>
+				</table>
+			</form>
+		</fieldset>
+	</body>
+</html>

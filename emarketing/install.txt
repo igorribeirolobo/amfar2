@@ -1,0 +1,98 @@
+Ola´, bem vindo ao sistema de e-mailing desenvolvido pela equipe de participantes do forum php do Imasters.
+
+1) Descompacte o pacote na area de sites do seu servidor ou na raiz do seu site caso o mesmo 
+	esteja publicado em algum provedor externo.
+	
+2) Uma vez descompactado, altere as configurações das pastas 'images', 'config', 'files' e 'files/images'
+	estas pastas devem ser liberadas para gravações para uploads.
+	
+3) Execute o config.php digitando http://www.seusite.com/e-mailing/config.php
+	ou para a raiz no servidor local http://seuservidor_ou_ip/e-mailing/config.php
+	ou para um site específico no servidor local http://seuservidor_ou_ip/site_tal/e-mailing/config.php
+	
+4) Caso não tenha executado o procedimento 2, o script de configuração não permitirá
+	a configuração até que as três pastas estejam liberadas para gravação.
+	
+5) Preencha os dados para a configuração:
+
+	# EMPRESA: é a empresa remetente
+	
+	# Site URL: Endereço do site onde ficará hospedada a aplicação
+	
+	Configuração do mySQL
+	
+	# Nome do Host ou IP: Endereço do servidor mysql
+	(Em alguns provedores é mantido como localhost, em outros, é fornecido o IP ou um alias tipo http://mysql.seudominio.com)
+	
+	#Usuário: Geralmente o login de FTP fornecido pelos provedores
+	
+	#Senha: Senha para acesso ao mysql, geralmente criado pelo responsável pelo site
+	
+	Configuração para o SMTP
+	
+	#Mail-From: É colocado no header do email portanto é o email remetente.
+	
+	#Return-Path: É colocado no header do email para o caso do mesmo retornar por algum erro.
+	Necessário para manutenção na tabela de mailing.
+	
+	Configuração para o admin
+	
+	#Nome: Nome do administrador
+	#Senha: Senha do administrador
+	
+6) Se tudo correu perfeitamente, é criado um arquivo de configuração na pasta config com o nome config.php
+	que deverá conterm os seguintes dados:
+	
+	<?
+		// idenficação da empresa
+		$_coName='LAB GRAPHIC DESIGN';	// Nome da empresa
+	
+		$_coSite='http://10.1.1.110/mailing';	// url do site ex.: http://www.seusite.com.br
+
+		$_homePage='index.php;	// para no script mgrReturn.php	
+		
+	
+		// acesso ao mysql
+	
+		$host='localhost';	// host ou ip do mysql
+	
+		$userDB='fulano';	// login do mysql
+	
+		$pwdDB='fulano';	// senha do mysql
+	
+		$dataBase='mailing';	// base de dados
+	
+	
+	// emails para envio
+	
+		$_mailFrom='qualquer@qualquer.com';	// e-mail do remetente
+	
+		$_returnPath='qualquer@qualquer.com';	// e-mail para o Return-Path
+	
+		$_vs=1.1;	// versao da aplicação
+	
+		$_data='2007/05/17';	// data da ultima atualização
+	
+	?>
+	
+	Na base dados deve constar as tabelas:
+	#mailing: que irá guardas os emails
+	#mailing_users: que irá guardar os usuarios da aplicação
+	 o ID #1 será sempre o master
+	#mailing_setup: que irá guardar configurações para o email
+	#mailing_returns: para gravar caso o usuario clique em qualquer link no email
+	
+7) Caso os emails enviados não mostrem qualquer imagem, verifique no arquivo sender.php
+	se o caminho das imagens estão corretos.
+	todos os testes foram efetuados considerando a aplicação estar na raiz do site
+	neste caso no meu servidor ficou como: http://10.1.1.110/mailing/e-mailing já preparando
+	para ser instalado em qualquer dentro de um site na web no padrão: http://www.meusite.com.br/e-mailing
+	
+8) O script mrgReturn.php grava a data do retorno do email bem como o arquivo(campanha) enviada
+	e faz um redirect para a página inicial do site.
+	Caso a pagina inicial não seja index.php, altera-a para o nome correto da sua página  inicial.
+
+
+Bugs reportar para o email lab.design@globo.com
+
+*****************************************************************************************************************

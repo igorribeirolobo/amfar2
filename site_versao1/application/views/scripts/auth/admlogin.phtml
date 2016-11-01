@@ -1,0 +1,50 @@
+<script language="javascript">
+	$(document).ready(function() {
+		$('#btLogin').click(function(){
+			if ($('#email').val()==''){alert('Por favor digite seu email!');$('#email').focus();return false;}
+			if(!$('#email').val().validEmail()){alert('Por favor digite o email!');$('#email').focus();return false;}
+			if($('#password').val()==''){alert('Por favor digite sua senha!');$('#password').focus();return false;}
+			})
+		})
+</script>
+<style>
+	.login{}
+	.login th{text-align:right;padding:0 4px;font-weight:normal;font-size:12px;color:#006}
+	.login td{color:#006}
+	.login .email{width:250px;text-align:left}
+	.login .senha{width:90px;text-align:center}
+	.login .cpf{width:130px;text-align:center}
+	.login a{color:#006;text-decoration:none}
+	.login a:hover{color:#f60;text-decoration:underline}
+	legend {color:#006}
+</style>
+
+<center>
+	<div style="width:350px;padding:20px 0">	
+		<fieldset>
+			<legend>&nbsp;&nbsp;Login de Usuário Administrativo&nbsp;&nbsp;</legend>
+			<form id="myForm" method="POST" action="" style="margin:0">
+				<input type="hidden" id="msg" value="<?=$this->message?>"/>
+				<table class="login" cellpadding="1" cellspacing="1" border="0" width="100%" style="background:#D9E7F8;">
+					<tr>
+						<td colspan="2" style="text-align:center">
+							<img src="<?=$this->baseUrl?>/public/images/login.gif" border="0"/><br />
+						</td>
+					</tr>
+					<tr>
+						<td colspan="2"><hr size="1" color="#000000" style="margin:0"></td>
+					</tr>
+					<tr>
+						<th>Senha:</th>
+						<td><input class="text senha lower" type="password" name="password" id="password" maxlength="10" value=""/></td>
+					</tr>
+					<tr>
+						<td colspan="2" style="text-align:center">
+							<input class='button' type='submit' name='btLogin' id='btLogin' value='Acessar'/>
+						</td>
+					</tr>
+				</table>
+			</form>	
+		</fieldset>
+	</div>
+</center>

@@ -1,0 +1,83 @@
+<style>
+	#tbCursos{margin-top:10px;margin-right:10px;width:100%}
+	#tbCursos td{font-size:9pt}
+	#tbCursos caption{background:#066;font:16pt bolder Verdana, Tahoma, Arial, Helvetica, Sans-Serif;color:#fff}
+	#tbCursos th{font-weight:normal;letter-spacing:0;background:#E2FADE;color:#066;padding:4px;border:solid 1px #60c660}
+	#tbCursos td{padding:4px;border:solid 1px #60c660}
+	b{font-weight:bolder}
+	.msgErr{background:#f00;color:#fff;font-weight:bolder;text-align:center}
+</style>
+
+
+<?php
+$dataLimite = date("Y-m-d", time() + (86400 * 7)); // vai mostrar o ultimo dia do mes atual
+//echo "dataLimite = $dataLimite";
+if ($this->user->status > 0):
+	if ($this->user->validade < date('Y-m-d'))
+		$status = sprintf("<b>VENCIDA em %s</b> - $this->dataVal Clique no link Renovar minha Inscrição ao lado
+			para gerar o Boleto da renovação da sua Inscrição.", $this->fc->ymd2dmY($this->user->validade));
+	elseif($this->user->validade <= $dataLimite)
+		$status = sprintf("<b>A VENCER EM %s</b> - Clique no link Renovar minha Inscrição ao lado
+		para gerar boleto de renovação da sua inscrição.", $this->fc->ymd2dmY($dataLimite));
+	else 
+		$status = "<b>ATIVO - Nenhuma pendência de pagamento até o momento.</b>";
+endif;	
+//$this->fc->debug($this->user);
+?>
+
+
+<pre>
+Id Cadastro Nº	: <?=sprintf("%06d", $this->user->idCadastro)?>
+<br />Cadastrado em	: <?=$this->fc->msql2dmY($this->user->dataReg, true)?>
+<br />Nome		: <?=$this->user->nome?>
+<br />Email		: <?=$this->user->email?>
+<br />Fone		: <?=$this->user->fone?>
+<br />Cel		: <?=$this->user->fone2?>
+
+<br />Último Acesso	: <?=$this->fc->msql2dmY($this->user->ultAcesso, true)?>
+<br />Atualizado em	: <?=$this->fc->msql2dmY($this->user->atualizado, true)?>
+
+<?
+//if ($this->user->status > 0): ?>
+<!-- Validade	: <?//$this->fc->Ymd2dmY($this->user->validade)?>
+<br />Situação	: <?//$status?> --><?
+//endif;
+?>
+<br />
+</pre>
+
+
+<table id='tbCursos' cellpadding='2' cellspacing='2' border='0'>
+<caption>Lista de Cursos Matriculados</caption>
+<thead>
+	<tr align='center'>
+		<td colspan="5">
+			Clique no curso abaixo para fazer sua re-matrícula. 
+			Após efetuar a re-matrícula, será gerado um boleto corresponde à primeira parcela do curso escolhido que deverá ser pago até a data de vencimento.
+		</td>
+	</tr>
+	<tr align='center'>
+		<th>ID</th>
+		<th>Título</th>
+		<th>Valor R$</th>
+	</tr>
+</thead>
+
+
+<?php
+
+if (!$this->cursos)
+	echo "<tr><td colspan='5' class='msgErr'>Nenhum curso localizado para este cadastro</td></tr>";
+else {
+	foreach($this->cursos as $rs):
+		//$this->fc->debug($rs); die();
+		$id = sprintf('%03d', $rs->idCurso);
+		$valor = number_format($rs->valor/$rs->parcelas, 2, ',','.');
+		echo"<tr>
+			<td align='center'>$id</td>
+			<td><a href='$this->links/rematricula/id/$rs->idCurso/'>$rs->titulo</a></td>
+			<td align='center'>$valor</td>
+		</tr>";
+	endforeach;
+	} ?>
+</table>

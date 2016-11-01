@@ -1,0 +1,91 @@
+<script language="javascript">
+	$(document).ready(function() {
+		$('#btLogin').click(function(){
+			if ($('#email').val()==''){alert('Por favor digite seu email!');$('#email').focus();return false;}
+			if(!$('#email').val().validEmail()){alert('Por favor digite o email!');$('#email').focus();return false;}
+			if($('#password').val()==''){alert('Por favor digite sua senha!');$('#password').focus();return false;}
+			})
+
+		$('#btRecover').click(function(){
+			if ($('#cpf').val()==''){alert('Por favor digite seu CPF/CNPJ!');$('#cpf').focus();return false;}
+			if (!$('#cpf').val().validCPF()){alert('Por favor digite corretamente seu CPF/CNPJ!');$('#cpf').focus();return false;}
+			if($('#email2').val()==''){alert('Por favor digite o email para receber a sua senha!');$('#email2').focus();return false;}
+			if(!$('#email2').val().validEmail()){alert('Por favor digite o email para receber a sua senha!');$('#email2').focus();return false;}
+			})
+		})
+</script>
+<style>
+	.login{}
+	.login th{text-align:right;padding:0 4px;font-weight:normal;font-size:12px;color:#006}
+	.login td{color:#006}
+	.login .email{width:250px;text-align:left}
+	.login .senha{width:90px;text-align:center}
+	.login .cpf{width:130px;text-align:center}
+	.login a{color:#006;text-decoration:none}
+	.login a:hover{color:#f60;text-decoration:underline}
+	legend {color:#006}
+</style>
+
+<center>
+	<div style="width:350px;padding:20px 0">	
+		<fieldset>
+			<legend>&nbsp;&nbsp;Login de Usuário Cadastrado&nbsp;&nbsp;</legend>
+			<form id="myForm" method="POST" action="" style="margin:0">
+				<input type="hidden" id="msg" value="<?=$this->message?>"/>
+				<table class="login" cellpadding="1" cellspacing="1" border="0" width="100%" style="background:#D9E7F8;">
+					<tr>
+						<td colspan="2" style="text-align:center">
+							<img src="<?=$this->baseUrl?>/public/images/login.gif" border="0"/><br />
+						</td>
+					</tr>
+					<tr>
+						<td colspan="2"><hr size="1" color="#000000" style="margin:0"></td>
+					</tr>
+					<tr>
+						<th>Email:</th>
+						<td><input class="text email" type="text" name="email" id="email" maxlength="80" value="<?=$_POST['email']?>"/></td>
+					</tr>
+					<tr>
+						<th>Senha:</th>
+						<td><input class="text senha" type="password" name="password" id="password" maxlength="10" value=""/></td>
+					</tr>
+					<tr>
+						<td colspan="2" style="text-align:center">
+							<input class='button' type='submit' name='btLogin' id='btLogin' value='Acessar'/>
+						</td>
+					</tr>
+					<tr>
+						<td colspan="2"><hr size="1" color="#000000" style="margin:0"></td>
+					</tr>
+					<tr>
+						<td colspan='2' style='text-align:center;font-size:13px'>
+							Caso não lembre sua senha ou o email cadastrado, 
+							Preencha seu CPF/CNPJ na caixa abaixo e informe o e-mail para receber os dados, 
+							caso o mesmo seja diferente do email informado no seu cadastro.</td>
+					</tr>
+					<tr>
+						<th>CPF/CNPJ:</th>
+						<td><input class="text cpf" type="text" name="cpf" id="cpf" maxlength="20" value="<?=$_POST['cpf']?>" /></td>
+					</tr>
+					<tr>
+						<th nowrap>E-mal:</th>
+						<td>
+							<input class="text email" type="text" name="email2" id="email2" maxlength="80" value="<?=$_POST['email2']?>"/>
+						</td>
+					</tr>
+					<tr>
+						<td colspan="2" style="text-align:center">
+							<input class='button' type='submit' name='btRecover' id='btRecover' value='Recuperar Senha'/>
+						</td>
+					</tr>
+					<tr>
+						<td colspan="2"><hr size="1" color="#000000" style="margin:0"></td>
+					</tr>
+					<tr>
+						<td colspan="2" style="text-align:center;padding:10px 0"><a href="<?=$this->baseUrl?>/cadastro/">Não tenho Cadastro</a></td>
+					</tr>
+				</table>
+			</form>	
+		</fieldset>
+	</div>
+</center>

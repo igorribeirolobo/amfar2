@@ -1,0 +1,247 @@
+<html>
+	<head>
+		<meta http-equiv="Content-Language" content="pt-br">
+		<meta name="GENERATOR" content="Microsoft FrontPage 5.0">
+		<meta name="ProgId" content="FrontPage.Editor.Document">
+		<meta http-equiv="Content-Type" content="text/html; charset=windows-1252">
+		<title>CONTRATO DE PRESTAÇÃO DE SERVIÇOS EDUCACIONAIS</title>
+		<style>
+			
+			#contrato {
+				padding:0 10px;
+				width:100%;
+				background:#fff
+				}
+
+			#contrato tr{
+				background:#fff
+				}
+	
+			#contrato p{
+				width:100%;
+				font:normal 8pt Tahoma, Verdama, Arial, Helvetica, Sans-Serif;
+				margin:0
+				}
+
+			#contrato .clausula{
+				font:bolder 9pt Tahoma, Verdama, Arial, Helvetica, Sans-Serif;
+				margin:10px 0 0 0
+				}
+
+			#contrato .itens{
+				font:normal 8pt Tahoma, Verdama, Arial, Helvetica, Sans-Serif;
+				text-align:justify;
+				margin:4px 0 0 10px
+				}
+
+			#contrato .itens2{
+				font:normal 8pt Tahoma, Verdama, Arial, Helvetica, Sans-Serif;
+				text-align:justify;
+				margin:4px 0 0 20px
+				}
+
+			#contrato .titulo{
+				font:bolder 10pt Tahoma, Verdama, Arial, Helvetica, Sans-Serif;
+				text-align:center}
+		</style>
+	</head>
+	<body>
+		<div id='contrato'><a name='contrato'>
+			<p class=titulo>CONTRATO DE PRESTAÇÃO DE SERVIÇOS EDUCACIONAIS</p>
+			<p align=justify><br/>CONTRATADA: <b> 
+				ASSOCIAÇÃO MINEIRA DE FARMACÊUTICOS - (AMF)</b>, associação civil, 
+				inscrita no CNPJ sob o nº 17.431.743/0001-19, sediada nesta capital, na Avenida 
+				do Contorno, 9215, salas 501/502, neste ato representada por sua Presidente, 
+				<b>Jacqueline Mansur Peixoto, brasileira, divorciada, Farmacêutica, CPF nº. 553.399.486-68.</p>
+			<br/>	
+			<p align=justify>CONTRATANTE:  
+				<b><?=$rsCurso->nome?></b>, residente na <b><?=$rsCurso->ender?>, <?=$rsCurso->num?> <?=$rsCurso->compl?>,&nbsp; 
+				<?=$rsCurso->bairro?>, <?=$rsCurso->cidade?>, <?=$rsCurso->uf?></b>,
+				portador do RG nº <b><?=$rsCurso->rg?></b> e CPF nº <b><?=$rsCurso->cpf?></b>
+				para o curso de <b><?=$rsCurso->titulo?></b>.<br/><br/>
+				As partes acima, de comum acordo, assinam este Contrato e Prestação de 
+				Serviços Educacionais, mediante as seguintes cláusulas e condições:</p>
+
+			<p class=clausula>CLÁUSULA PRIMEIRA - DO OBJETO</p>
+			<?
+				$vrExt=explode(' ' ,valorPorExtenso($rsCurso->cargaHoraria));
+				$len=count($vrExt);
+				$extenso='';
+				for ($x=0; $x < $len-1; $x++) { 
+					$extenso .= "$vrExt[$x] ";
+					}
+				$extenso=trim($extenso);
+			?>
+
+			<p class=itens>Prestação de serviços educacionais, especificamente a realização do curso
+			mencionado acima, promovido pela <b>CONTRATADA</b>, em parceira com a UNIVERSIDADE ESTADUAL DE 
+			MONTES CLAROS, CNPJ 22.675.359/0001-00, com sede em Montes Claros/MG, no Campus 
+			Universitário Professor Darcy Ribeiro, Vila Mauriceia, CEP 39401-089.</p>
+			
+			<p class=itens><b>Parágrafo Primeiro</b>: A carga horária do curso é de <b><?=$rsCurso->cargaHoraria?></b>  
+			 (<?=$extenso?>) horas e seu início, dependendo da formação de turma com um número mínimo de alunos(as) 
+			determinado pela <b>CONTRATADA</b>, com início previsto para <b><?=$rsCurso->inicio?></b>  
+			e término previsto para <b><?=$rsCurso->final?></b>.</p>
+			
+			<p class=itens><b>Parágrafo Segundo</b>: A carga horária prevista nesta cláusula será dividida da 
+			seguinte maneira:</p>
+			<?
+				$vrExt=explode(' ' ,valorPorExtenso($rsCurso->cargaHoraria/2));
+				$len=count($vrExt);
+				$extenso='';
+				for ($x=0; $x < $len-1; $x++) { 
+					$extenso .= "$vrExt[$x] ";
+					}
+				$extenso=trim($extenso);
+			?>
+			<p class=itens>I - <b>360</b> (trezentos e sessenta) horas-aula serão cumpridas em sala de aula 
+			se serão utilizada abordagens teóricas, estudos de casos e seminários.</p>
+			<p class=itens>II - <b>60</b> (sessenta) horas-aula, destinadas a trabalhos práticos e elaboração 
+			de monografia, a serem desenvolvidos no período determinado pela CONTRATADA.</p>
+			<p class=itens><b>Parágrafo Terceiro</b>: Caso não seja possível formar turma para a realização do 
+			curso, será devolvida integralmente ao(à) <b>CONTRATANTE</b> a quantia por ele 
+			desembolsada.</p>
+			<p class=itens><b>Parágrafo Quarto</b>: As aulas e atividades serão ministradas no período 
+			vespertino e noturno das sextas-feiras, matutino e vespertino dos sábados e 
+			matutinos dos domingos, com intervalos para lanche/almoço, que não estão 
+			incluídos no valor do curso.</p>
+			<p class=itens><b>Parágrafo Quinto</b>: Não estão incluídas neste contrato a reposição de aulas 
+			perdidas pelo(a) aluno(a), mesmo que estas aulas sejam oferecidas em cursos 
+			futuros.</p>
+			<p class=clausula>CLÁUSULA SEGUNDA - DA FREQÜÊNCIA MÍNIMA E DO CERTIFICADO DE CONCLUSÃO</p>
+			<p class=itens>Ao final do curso, será entregue o respectivo certificado de conclusão ao(à) 
+			aluno(a) que:</p>
+			<p class=itens>I - mantiver freqüência mínima de 75% (setenta e cinco por cento) da carga 
+			horária de cada disciplina, ressaltando-se que, salvo nos casos expressamente 
+			previstos em lei, é terminantemente proibido o abono de faltas;</p>
+			<p class=itens>II - lograr êxito nos trabalhos práticos de cada disciplina, que deverão ser 
+			entregues nos prazos estipulados pela coordenação, obtendo 75% (setenta e cinco 
+			por cento) de aproveitamento da nota integral;</p>
+			<p class=itens>III - logar êxito, na monografia, que deverá ser entregue pelo(a) aluno(a) 
+			antes da conclusão do curso, de acordo com as regras da ABNT e conforme 
+			orientação da <b>CONTRATADA</b>, obtendo 75% (setenta e cinco por cento) de 
+			aproveitamento da nota integral.</p>
+			<p class=itens><b>Parágrafo Primeiro</b>: Caso o(a) aluno(a) não atinja a freqüência mínima de 75% 
+			(setenta e cinco por cento) da carga horária de cada disciplina do curso, será 
+			fornecida pela <b>CONTRATADA</b> apenas uma declaração contendo o programa do curso e a 
+			carga horária total.</p>
+			<p class=itens><b>Parágrafo Segundo</b>: Para todos os fins, entende-se a hora-aula equivale a 50 (cinquenta) 
+			minutos de ensino e/ou atividade.</p>
+			<p class=itens><b>Parágrafo Terceiro</b>: A avaliação dos trabalhos do(a) aluno(a) por disciplina e 
+			da monografia será feita conforme critérios estabelecidos pela Universidade 
+			Estadual de Montes Claros e divulgados pela Associação Mineira de Farmacêuticos.</p>
+			<p class=itens><b>Parágrafo Quarto</b>: A emissão do certificado será de responsabilidade exclusiva 
+			da Universidade Estadual de Montes Claros.</p>
+			<p class=clausula>CLÁUSULA TERCEIRA - DO LOCAL DA REALIZAÇÃO DO CURSO</p>
+			<p class=itens>O curso objeto deste contrato será ministrado, preferenciamente, nas 
+			dependências da Racco Support Center, situada em Belo Horizonte/MG, na Av. 
+			Barbacena, 60, Barro Preto.</p>
+			<p class=itens>Parágrafo Único: O local da realização do curso poderá alterado para outra 
+			localidade de Belo Horizonte/MG, a critério da <b>CONTRATADA</b>, desde que, para isso, 
+			seja afixado um aviso, na aula imediatamente anterior à mudança em lugar de 
+			destaque e acessível a todos os(as) alunos(as).</p>
+			<p class=clausula>CLÁUSULA QUARTA - DO CALENDÁRIO DO CURSO E DO CORPO DOCENTE</p>
+			<p class=itens>À <b>CONTRATADA</b> reserva-se o direito de efetuar as alterações que se fizerem 
+			necessárias no calendário e no corpo docente para o bom andamento do curso, sem 
+			prejuízo do programa previsto.</p>
+			
+		
+			<p class=clausula>CLÁUSULA QUINTA - DO VALOR DO CURSO</p>
+			<p class=itens>O valor total do curso é de <b><?=formatVal($rsCurso->valor)?></b> (<?=trim(valorPorExtenso($rsCurso->valor))?>), 
+			dividido em <b><?=substr("00$rsCurso->parcelas",-2)?> parcela(s)</b> iguais de 
+			<b><?=formatVal($rsCurso->valor/$rsCurso->parcelas)?></b> (<?=trim(valorPorExtenso($rsCurso->valor/$rsCurso->parcelas))?>), 
+			devendo a primeira 
+			ser paga até a data da assinatura deste instrumento e as demais parcelas 
+			restantes, por meio de boleto bancário, que será entregue ao(à) <b>CONTRATANTE</b> no 
+			local da realização do curso.</p>
+			<p class=itens><b>Parágrafo Primeiro</b>:&nbsp; Pagamentos em cheques somente serão considerados 
+			realizados após a devida compensação bancária.</p>
+			<p class=itens><b>Parágrafo Segundo</b>: Na hipótese de qualquer mudança legislativa ou normativa 
+			alterar a equação econômica-financeira do presente instrumento, fica assegurada 
+			à <b>CONTRATADA</b> a possibilidade de revisão do preço de modo a preservar o 
+			equilíbrio contratual.</p>
+			<p class=clausula>CLÁUSULA SEXTA - DAS OBRIGAÇÕES RECÍPROCAS</p>
+			<p class=itens>O(A) <b>CONTRATANTE</b> obriga-se a quitar todas as parcelas contratuais nas datas 
+			dos respectivos vencimentos, idependentemente da freqüência no curso, sendo que 
+			a <b>CONTRATADA</b>, obriga-se a cumprir a programação prevista.</p>
+			<p class=clausula>CLÁUSULA SÉTIMA - DO INADIMPLEMENTO E SUAS CONSEQÜÊNCIAS</p>
+			<p class=itens>Em caso de inadimplemento, o valor do débito original será acrescido de multa 
+			de 2% (dois por cento), além de juros de 1% (um por cento) ao mês e correção 
+			monetária pelo IGP-M/FGV.</p>
+			<p class=itens>Parágrafo Único: Caso a inadimplência perdure por mais de 30 (trinta) dias, a 
+			<b>CONTRATADA</b> poderá rescindir o presente contrato, sem prévia notificação, 
+			incorrendo o(a) <b>CONTRATANTE</b> nas penas previstas na Cláusula Nona, Inciso I, 
+			alínea a deste instrumento.</p>
+			<p class=itens><b>Parágrafo Segundo</b>: Prolongando-se a inadimplência por mais de 90 (noventa) 
+			dias, o(a) <b>CONTRATANTE</b> responderá nos termos do parágrafo anterior e do art. 6º 
+			da Lei nº 9.870/99.</p>
+			<p class=clausula>CLÁUSULA OITAVA - DA VIGÊNCIA</p>
+			<p class=itens>Este instrumento vigerá da data de sua assinatura até a data de entrega do 
+			certificado de conclusão do curso ao(à) <b>CONTRATANTE</b>.</p>
+			<p class=clausula>CLÁUSULA NONA - DA RESCISÃO E DAS PENALIDADES</p>
+			<p class=itens>O presente contrato poderá ser rescindido:</p>
+			<p class=itens>I - Pelo(a) <b>CONTRATANTE</b>, com&nbsp; notificação prévia de 30 (trinta) dias por 
+			escrito à <b>CONTRATADA</b>.</p>
+			<p class=itens2>a) Por simples desistência, incorrendo na penalidade equivalente a 50% (cinquenta 
+			por cento) do valor que restar a pagar no momento da notificação, além de 
+			possíveis débitos pendentes, que serão corrigidos conforme a Cláusula Sétima 
+			deste instrumento e, no que couber, das perdas e dadnos, dos juros de 
+			atualização monetária pelo IGP-M/FGV, dos honorários advocatícios e das custas 
+			judiciais, nos termos dos arts. 389 e 476 do Código Civil;</p>
+			<p class=itens2>b) Por comprovado motivo, alheio à sua vontade, e que o(a) impeça de 
+			permanecer no curso, devendo, neste caso, pagar à <b>CONTRATADA</b> apenas o 
+			correspodente aos serviços prestados até a data em que deixar o curso.</p>
+			<p class=itens>II - Pela <b>CONTRATADA</b>:</p>
+			<p class=itens2>a) Por inadimplência do(a) <b>CONTRATANTE</b>, respondendo este(a) nos termos da 
+			Cláusula Sétima e da alínea a do inciso anterior deste contrato;</p>
+			<p class=itens2>b) Por comprovado motivo, alheio à sua vontade, e que a impeça de manter o 
+			curso, devendo, neste caso, devolver ao(à) <b>CONTRATANTE</b> todos os valores por 
+			ele(a) pagos por serviços ainda não prestados.</p>
+			<p class=itens><b>Parágrafo Primeiro</b>: Em qualquer dos casos, fica o(a) <b>CONTRATANTE</b> obrigado(a) 
+			a saldar o valor da parcela vencida, além dos outros citados neste contrato.</p>
+			<p class=itens><b>Parágrafo Segundo</b>: A parte que, culposa ou dolosamente, der causa à rescisão 
+			do contrato, incorrerá, no que lhe couber, nas penas previstas na Cláusula Nona, 
+			Inciso I, alínea a deste instrumento.</p>
+			<p class=clausula>DAS DISPOSIÇÕES FINAIS:</p>
+			<p class=itens>As partes elegem o foro da comarca de Belo Horizonte, como o provento para 
+			dirimir quaisquer dúvidas oriundas do presente contrato.</p>
+			<br/>
+			<p class=itens>E por estarem assim, justas e <b>CONTRATADA</b>s, assinam as partes o presente 
+			contrato, em 02(duas) vias de igual teor e forma, na presença de 02(duas) 
+			testemunhas abaixo identificadas.</p><br/<br>
+			
+			<p>Belo Horizonte, 24 de Abril de 2010</p>
+			<br/>
+			<p>Associação Mineira de Farmacêuticos<br>
+			<style>
+				#assinatura1 {
+					float:left;					
+					width:40%;
+					}
+				#assinatura2 {					
+					float:right;
+					width:40%;
+					}
+			</STYLE>
+			<div id="assinatura1" style="HEIGHT: 190px">
+				<p style="BORDER-TOP: #000 1px solid; MARGIN-TOP: 60px; TEXT-ALIGN: center">
+					<b>Jacqueline Mansur Peixoto</b><br>
+					Presidente da AMF</p>
+				<p style="BORDER-TOP: #000 1px solid; MARGIN-TOP: 60px; TEXT-ALIGN: center">
+					Primeira Testemunha:<br>
+					<b>Maria Adalgisa G.Prates</b><br>
+					CPF: 464.992.966-00</p>
+			</div>
+
+			<div id="assinatura2">
+				<p style="BORDER-TOP: #000 1px solid; MARGIN-TOP: 60px; TEXT-ALIGN: center">
+					<b><?=$rsCurso->nome?></b><br>
+					Aluno(a)</p>
+				<p style="BORDER-TOP: #000 1px solid; MARGIN-TOP: 60px; TEXT-ALIGN: center">
+					Segunda Testemunha:<br>
+					<b>Regina dos Santos Faria</b><br>
+					CPF: 817.224.276-04</p>
+			</div>
+		</div>
+	</body>
+</html>

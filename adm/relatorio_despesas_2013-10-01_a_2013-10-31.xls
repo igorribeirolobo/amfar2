@@ -1,0 +1,104 @@
+        <html xmlns:o="urn:schemas-microsoft-com:office:office"
+               xmlns:x="urn:schemas-microsoft-com:office:excel"
+                xmlns="http://www.w3.org/TR/REC-html40">
+
+                <head>
+                <meta http-equiv=Content-Type content="text/html; charset=iso-8859-1">
+                <meta name=ProgId content=Excel.Sheet>
+                <!--[if gte mso 9]><xml>
+                 <o:DocumentProperties>
+                  <o:LastAuthor>Sriram</o:LastAuthor>
+                  <o:LastSaved>2005-01-02T07:46:23Z</o:LastSaved>
+                  <o:Version>10.2625</o:Version>
+                 </o:DocumentProperties>
+                 <o:OfficeDocumentSettings>
+                  <o:DownloadComponents/>
+                 </o:OfficeDocumentSettings>
+                </xml><![endif]-->
+                <style>
+                <!--table
+                    {mso-displayed-decimal-separator:"\.";
+                    mso-displayed-thousand-separator:"\,";}
+                @page
+                    {margin:1.0in .75in 1.0in .75in;
+                    mso-header-margin:.5in;
+                    mso-footer-margin:.5in;}
+                tr
+                    {mso-height-source:auto;}
+                col
+                    {mso-width-source:auto;}
+                br
+                    {mso-data-placement:same-cell;}
+                .style0
+                    {mso-number-format:General;
+                    text-align:general;
+                    vertical-align:bottom;
+                    white-space:nowrap;
+                    mso-rotate:0;
+                    mso-background-source:auto;
+                    mso-pattern:auto;
+                    color:windowtext;
+                    font-size:10.0pt;
+                    font-weight:400;
+                    font-style:normal;
+                    text-decoration:none;
+                    font-family:Arial;
+                    mso-generic-font-family:auto;
+                    mso-font-charset:0;
+                    border:none;
+                    mso-protection:locked visible;
+                    mso-style-name:Normal;
+                    mso-style-id:0;}
+                td
+                    {mso-style-parent:style0;
+                    padding-top:1px;
+                    padding-right:1px;
+                    padding-left:1px;
+                    mso-ignore:padding;
+                    color:windowtext;
+                    font-size:10.0pt;
+                    font-weight:400;
+                    font-style:normal;
+                    text-decoration:none;
+                    font-family:Arial;
+                    mso-generic-font-family:auto;
+                    mso-font-charset:0;
+                    mso-number-format:General;
+                    text-align:general;
+                    vertical-align:bottom;
+                    border:none;
+                    mso-background-source:auto;
+                    mso-pattern:auto;
+                    mso-protection:locked visible;
+                    white-space:nowrap;
+                    mso-rotate:0;}
+                .xl24
+                    {mso-style-parent:style0;
+                    white-space:normal;}
+                -->
+                </style>
+                <!--[if gte mso 9]><xml>
+                 <x:ExcelWorkbook>
+                  <x:ExcelWorksheets>
+                   <x:ExcelWorksheet>
+                    <x:Name>NOME_PLANILHA</x:Name>
+                    <x:WorksheetOptions>
+                     <x:Selected/>
+                     <x:ProtectContents>False</x:ProtectContents>
+                     <x:ProtectObjects>False</x:ProtectObjects>
+                     <x:ProtectScenarios>False</x:ProtectScenarios>
+                    </x:WorksheetOptions>
+                   </x:ExcelWorksheet>
+                  </x:ExcelWorksheets>
+                  <x:WindowHeight>10005</x:WindowHeight>
+                  <x:WindowWidth>10005</x:WindowWidth>
+                  <x:WindowTopX>120</x:WindowTopX>
+                  <x:WindowTopY>135</x:WindowTopY>
+                  <x:ProtectStructure>False</x:ProtectStructure>
+                  <x:ProtectWindows>False</x:ProtectWindows>
+                 </x:ExcelWorkbook>
+                </xml><![endif]-->
+                </head>
+
+                <body link=blue vlink=purple>
+                <table x:str border=0 cellpadding=0 cellspacing=0 style='border-collapse: collapse;table-layout:fixed;'><tr><td class=xl24 width=64 >dataLct</td><td class=xl24 width=64 >numDoc</td><td class=xl24 width=64 >tipoDoc</td><td class=xl24 width=64 >historico</td><td class=xl24 width=64 >valor</td><td class=xl24 width=64 >vcto</td><td class=xl24 width=64 >pgto</td><td class=xl24 width=64 >acrescimo</td><td class=xl24 width=64 >desconto</td><td class=xl24 width=64 >total</td><td class=xl24 width=64 >empresa</td><td class=xl24 width=64 >modulo</td><td class=xl24 width=64 >curso</td><td class=xl24 width=64 >emissao</td><td class=xl24 width=64 >numCheque</td><td class=xl24 width=64 >dataCheque</td><td class=xl24 width=64 >nominal</td><td class=xl24 width=64 >valorCheque</td><td class=xl24 width=64 >observacoes</td></tr><tr><td class=xl24 width=64 >11/10/2013</td><td class=xl24 width=64 >008295601</td><td class=xl24 width=64 >BOLETO</td><td class=xl24 width=64 >DEVOLUÇÃO DE MATRICULA</td><td class=xl24 width=64 >150,00</td><td class=xl24 width=64 >31/10/2013</td><td class=xl24 width=64 >24/09/2013</td><td class=xl24 width=64 >0,00</td><td class=xl24 width=64 >0,00</td><td class=xl24 width=64 >150,00</td><td class=xl24 width=64 >AMF</td><td class=xl24 width=64 >1</td><td class=xl24 width=64 >OUTROS</td><td class=xl24 width=64 ></td><td class=xl24 width=64 >303628</td><td class=xl24 width=64 ></td><td class=xl24 width=64 >ROSANA VANESSA OLIVEIRA SILVA</td><td class=xl24 width=64 >150,00</td><td class=xl24 width=64 ></td></tr><tr><td class=xl24 width=64 >10/10/2013</td><td class=xl24 width=64 >2013000043164</td><td class=xl24 width=64 >NOTA FISCAL</td><td class=xl24 width=64 >REPASSE 15% NEWTON DE PAIVA</td><td class=xl24 width=64 >2.198,75</td><td class=xl24 width=64 >21/10/2013</td><td class=xl24 width=64 ></td><td class=xl24 width=64 >0,00</td><td class=xl24 width=64 >0,00</td><td class=xl24 width=64 >2.198,75</td><td class=xl24 width=64 >INST. CULT. NEWTON PAIVA FERREIRA</td><td class=xl24 width=64 >7</td><td class=xl24 width=64 >VII FC</td><td class=xl24 width=64 ></td><td class=xl24 width=64 >303627</td><td class=xl24 width=64 ></td><td class=xl24 width=64 >INST. CULT. NEWTON PAIVA FERREIRA</td><td class=xl24 width=64 >2.198,75</td><td class=xl24 width=64 ></td></tr><tr><td class=xl24 width=64 >15/10/2013</td><td class=xl24 width=64 >NÃO</td><td class=xl24 width=64 >NOVO TIPO DE DOCUMENTO</td><td class=xl24 width=64 >PAGAMENTO PROFESSOR</td><td class=xl24 width=64 >500,00</td><td class=xl24 width=64 >20/10/2013</td><td class=xl24 width=64 >20/10/2013</td><td class=xl24 width=64 >0,00</td><td class=xl24 width=64 >0,00</td><td class=xl24 width=64 >500,00</td><td class=xl24 width=64 >AMF</td><td class=xl24 width=64 >7</td><td class=xl24 width=64 >VII FC</td><td class=xl24 width=64 ></td><td class=xl24 width=64 >303630</td><td class=xl24 width=64 ></td><td class=xl24 width=64 >MÁRIO BORGES ROSA</td><td class=xl24 width=64 >445,00</td><td class=xl24 width=64 ></td></tr><tr><td class=xl24 width=64 >15/10/2013</td><td class=xl24 width=64 >851</td><td class=xl24 width=64 >NOTA FISCAL</td><td class=xl24 width=64 >COMPUTADOR AMF</td><td class=xl24 width=64 >2.080,00</td><td class=xl24 width=64 >20/10/2013</td><td class=xl24 width=64 ></td><td class=xl24 width=64 >0,00</td><td class=xl24 width=64 >0,00</td><td class=xl24 width=64 >2.080,00</td><td class=xl24 width=64 >INFO PAMPULHA</td><td class=xl24 width=64 >0</td><td class=xl24 width=64 ></td><td class=xl24 width=64 ></td><td class=xl24 width=64 >303629</td><td class=xl24 width=64 ></td><td class=xl24 width=64 >PAMPULHA COMERCIO DE INFORMATICA ME</td><td class=xl24 width=64 >2.080,00</td><td class=xl24 width=64 ></td></tr><tr><td class=xl24 width=64 >16/10/2013</td><td class=xl24 width=64 >NÃO</td><td class=xl24 width=64 >NOVO TIPO DE DOCUMENTO</td><td class=xl24 width=64 >PAGAMENTO PROFESSORA</td><td class=xl24 width=64 >1.800,00</td><td class=xl24 width=64 >20/10/2013</td><td class=xl24 width=64 >20/10/2013</td><td class=xl24 width=64 >0,00</td><td class=xl24 width=64 >0,00</td><td class=xl24 width=64 >1.800,00</td><td class=xl24 width=64 >AMF</td><td class=xl24 width=64 >7</td><td class=xl24 width=64 >VII FH</td><td class=xl24 width=64 ></td><td class=xl24 width=64 >303632</td><td class=xl24 width=64 ></td><td class=xl24 width=64 >MÁRCIA APARECIDA ANTÔNIO</td><td class=xl24 width=64 >1.793,31</td><td class=xl24 width=64 ></td></tr><tr><td class=xl24 width=64 >11/10/2013</td><td class=xl24 width=64 >RECIBO</td><td class=xl24 width=64 >CHEQUE</td><td class=xl24 width=64 >ALUGUEL DA SALA</td><td class=xl24 width=64 >990,00</td><td class=xl24 width=64 >18/10/2013</td><td class=xl24 width=64 ></td><td class=xl24 width=64 >0,00</td><td class=xl24 width=64 >0,00</td><td class=xl24 width=64 >990,00</td><td class=xl24 width=64 >FACULDADE DE MEDICINA</td><td class=xl24 width=64 >7</td><td class=xl24 width=64 >VII FC</td><td class=xl24 width=64 ></td><td class=xl24 width=64 >303765</td><td class=xl24 width=64 ></td><td class=xl24 width=64 >DOUGLAS JOSE ROMUALDO</td><td class=xl24 width=64 >990,00</td><td class=xl24 width=64 ></td></tr><tr><td class=xl24 width=64 >11/10/2013</td><td class=xl24 width=64 >CHEQUE</td><td class=xl24 width=64 >CHEQUE</td><td class=xl24 width=64 >CAIXA AMF</td><td class=xl24 width=64 >117,30</td><td class=xl24 width=64 >15/10/2013</td><td class=xl24 width=64 >18/09/2013</td><td class=xl24 width=64 >0,00</td><td class=xl24 width=64 >0,00</td><td class=xl24 width=64 >117,30</td><td class=xl24 width=64 >AMF '</td><td class=xl24 width=64 >0</td><td class=xl24 width=64 ></td><td class=xl24 width=64 ></td><td class=xl24 width=64 >303778</td><td class=xl24 width=64 ></td><td class=xl24 width=64 >AMF</td><td class=xl24 width=64 >117,30</td><td class=xl24 width=64 ></td></tr><tr><td class=xl24 width=64 >15/10/2013</td><td class=xl24 width=64 >NÃO</td><td class=xl24 width=64 >NOVO TIPO DE DOCUMENTO</td><td class=xl24 width=64 >MANUTENÇÃO SITE</td><td class=xl24 width=64 >391,00</td><td class=xl24 width=64 >15/10/2013</td><td class=xl24 width=64 ></td><td class=xl24 width=64 >0,00</td><td class=xl24 width=64 >0,00</td><td class=xl24 width=64 >391,00</td><td class=xl24 width=64 >LAURO ASSIS LIMA DE BRITTO</td><td class=xl24 width=64 >0</td><td class=xl24 width=64 ></td><td class=xl24 width=64 ></td><td class=xl24 width=64 >303776</td><td class=xl24 width=64 ></td><td class=xl24 width=64 >LAURO ASSIS LIMA DE BRITTO</td><td class=xl24 width=64 >391,00</td><td class=xl24 width=64 ></td></tr><tr><td class=xl24 width=64 >10/10/2013</td><td class=xl24 width=64 >2013/1</td><td class=xl24 width=64 >GUIA</td><td class=xl24 width=64 >GUIA SOLICITAÇÃO AVULSA DE NFS</td><td class=xl24 width=64 >24,00</td><td class=xl24 width=64 >10/10/2013</td><td class=xl24 width=64 >10/10/2013</td><td class=xl24 width=64 >0,00</td><td class=xl24 width=64 >0,00</td><td class=xl24 width=64 >24,00</td><td class=xl24 width=64 >PREFEITURA</td><td class=xl24 width=64 >0</td><td class=xl24 width=64 ></td><td class=xl24 width=64 ></td><td class=xl24 width=64 ></td><td class=xl24 width=64 ></td><td class=xl24 width=64 ></td><td class=xl24 width=64 >0,00</td><td class=xl24 width=64 ></td></tr><tr><td class=xl24 width=64 >10/10/2013</td><td class=xl24 width=64 >034110</td><td class=xl24 width=64 >FATURA</td><td class=xl24 width=64 >CONTADOR</td><td class=xl24 width=64 >552,05</td><td class=xl24 width=64 >01/10/2013</td><td class=xl24 width=64 >01/10/2013</td><td class=xl24 width=64 >0,00</td><td class=xl24 width=64 >0,00</td><td class=xl24 width=64 >552,05</td><td class=xl24 width=64 >GERALDO GOMES JUNIOR</td><td class=xl24 width=64 >0</td><td class=xl24 width=64 ></td><td class=xl24 width=64 ></td><td class=xl24 width=64 >303769</td><td class=xl24 width=64 ></td><td class=xl24 width=64 >GERALDO GOMES JUNIOR</td><td class=xl24 width=64 >552,05</td><td class=xl24 width=64 ></td></tr><tr><td class=xl24 width=64 >10/10/2013</td><td class=xl24 width=64 >24000000000011463-8</td><td class=xl24 width=64 >BOLETO</td><td class=xl24 width=64 >TAXA DE CONDOMINIO E TAXA EXTRA REFORMA DE ELEVADOR</td><td class=xl24 width=64 >950,00</td><td class=xl24 width=64 >01/10/2013</td><td class=xl24 width=64 >01/10/2013</td><td class=xl24 width=64 >0,00</td><td class=xl24 width=64 >0,00</td><td class=xl24 width=64 >950,00</td><td class=xl24 width=64 >CONDOMINIO DO EDIFICIO HUMBERTO MARTINS</td><td class=xl24 width=64 >0</td><td class=xl24 width=64 ></td><td class=xl24 width=64 ></td><td class=xl24 width=64 >303771</td><td class=xl24 width=64 ></td><td class=xl24 width=64 >CONDOMINIO DO EDIFICIO HUMBERTO VIEIRA</td><td class=xl24 width=64 >950,00</td><td class=xl24 width=64 ></td></tr></table></body></html>

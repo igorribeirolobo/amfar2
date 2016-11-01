@@ -1,0 +1,47 @@
+<style>
+	.contrato {;border-collapse:collapse;border-color:black}
+	.contrato th {background:#369;color:#fff;font-weight:bolder;font-size:11px;text-align:center}
+	.contrato td {padding:2px 4px;font-size:13px}
+	.contrato td a{color:#000;text-decoration:none;padding:2px 0}
+	.contrato td a:hover{font-weight:normal;color:#888;text-decoration:underline}
+	.contrato tfoot{font-size:13px}
+</style>
+
+<script>
+	$(document).ready(function(){
+		$('.trcursos:even').css('background','#fff');
+		})
+</script>
+
+<table width='100%' class='contrato' border='1' cellpadding='0' cellspacing='0'>
+	<thead>
+		<tr>
+			<th>Data</th>
+			<th>Curso</th>
+			<th>Início</th>
+			<th>Valor R$</th>
+			<th>Parcelas R$</th>
+		</tr>
+	</thead>
+	<tbody><?	
+		if(!$this->contratos)
+			echo"<tr><td colspan='5' class='none'>Nenhum Contrato localizado</td></tr>";
+		else{
+			foreach($this->contratos as $rs):
+				$data = $this->fc->Ymd2dmY($rs->data);
+				$inicio = $this->fc->Ymd2dmY($rs->inicio);
+				$total = number_format($rs->valorTotal, 2, ',', '.');
+				$parcela = number_format($rs->parcela, 2, ',', '.');	
+				echo"
+				<tr>
+					<td align='center'>$data</td>
+					<td><a href='$this->links/contrato/id/$rs->idAlunoCursos/' target='_contrato'>$rs->titulo</a></td>
+					<td align='center'>$inicio</td>
+					<td align='right'>$total</td>
+					<td align='center'>$rs->parcelas x $parcela</td>
+				</tr>";
+			endforeach;
+			} ?>
+	</tbody>
+</table>
+		

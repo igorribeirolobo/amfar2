@@ -1,0 +1,106 @@
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+	<head>
+		<meta http-equiv="Content-Type" content="text/html;charset=ISO-8859-1" />
+		<title>AMF - Associação Mineira de Farmacêuticos - Área Restrita</title>
+		<link rel="stylesheet" type="text/css" media="screen" href="<?=$this->baseCss?>/style.css" />
+		<script type="text/javascript" src="<?=jsLib?>/jquery-1.3.2.js"></script>
+		<script>
+			$(document).ready(function(){
+				})
+		</script>
+		<style>
+			*{font: 12px Arial, Helvetica, Sans-Serif, Tahoma, Verdana;color:blue}
+			.list{width:auto}
+			p.pb {page-break-after:always}
+			.list caption{background:#fff;color:#369}
+			.list th{background:#fff;color:#369}
+			.list td{padding:2px 0}		
+		</style>	
+	</head>
+
+	<body>
+		<table class='list' cellpadding='1' cellspacing='1' border='0'><?
+		if($this->st < 5){?>
+			<thead>
+				<tr>
+					<th colspan="5">:: <?=$this->caption?></th>
+				</tr>
+				<tr>
+					<th>Vcto</th>
+					<th>Numdoc</th>
+					<th>Histórico</th>
+					<th>Valor R$</th>
+					<th>Total R$</th>
+				</tr>
+			</thead>
+			<tbody><?
+				$count = 0;
+				$total=0;			
+				foreach($this->dbtable as $row) :
+					$count++;
+					$class = ($count%2==0) ? 'destaque':'normal';
+					$vcto = $this->fc->Ymd2dmY($row->vcto);
+					$pgto = $this->fc->Ymd2dmY($row->pgto);
+					$total += $row->valor;
+					echo"
+					<tr class='$class'>
+						<td>$vcto</td>
+						<td style='padding-left:12px'>$row->numDoc</td>
+						<td class='left' style='padding-left:12px'>".substr($row->historico, 0, 60)."</td>
+						<td class='right' style='padding-left:12px'>". number_format($row->valor,2,',','.') ."</td>
+						<td class='right' style='padding-left:12px'>". number_format($total,2,',','.') ."</td>
+					</tr>";											
+				endforeach;
+				}
+		else { ?>
+			<thead>
+				<tr>
+					<th colspan="6">:: <?=$this->caption?></th>
+				</tr>
+				<tr>
+					<th>Data<br />Pgto</th>
+					<th>Numdoc</th>
+					<th>Histórico</th>
+					<th>Pago R$</th>
+					<th>Receb. R$</th>
+					<th>Saldo R$</th>
+				</tr>
+			</thead>
+			<tbody><?
+				$count = 0;
+				$totalDC=$totalCR=0;			
+				foreach($this->dbtable as $row) :
+					$count++;
+					$class = ($count%2==0) ? 'destaque':'normal';
+					$vcto = $this->fc->Ymd2dmY($row->vcto);
+					$pgto = $this->fc->Ymd2dmY($row->pgto);
+					$DC=($row->status==3)?number_format($row->valor,2,',','.'):null;
+					$CR=($row->status==4)?number_format($row->valor,2,',','.'):null;
+					echo"
+					<tr class='$class'>
+						<td width='50'>$pgto</td>
+						<td width='50'>$row->numDoc</td>
+						<td class='left'>".substr($row->historico, 0, 60)."</td>
+						<td class='right'>$DC</td>
+						<td class='right'>$CR</td>
+						<td class='right'>". number_format($totalCR - $totalDC,2,',','.') ."</td>
+					</tr>";
+	
+					if($row->status==3)
+						$totalDC += $row->valor;
+					else
+						$totalCR += $row->valor;
+				endforeach;						
+
+			echo"
+				<tr><td colspan='3' style='text-align:right'><b>Totais  R$</b></td>
+					<td class='right'><b>". number_format($totalDC,2,',','.') ."</b></td>
+					<td class='right'><b>". number_format($totalCR,2,',','.') ."</b></td>
+					<td class='right'><b>". number_format($totalCR-$totalDC,2,',','.') ."</b></td>
+				</tr>
+			</tbody>";			
+				}	?>
+			</tbody>
+		</table>
+	</body>
+</html>

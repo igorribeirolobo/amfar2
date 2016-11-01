@@ -1,0 +1,34 @@
+<style>
+	.paginator {font-size:12px;margin:10px 0 10px 0;background:#e8e8e8;padding:8px}
+	.paginator a{font-size:12px;border:0;padding:0 4px;color:#000;text-decoration:none}
+	.paginator a:hover{color:#f60}
+	.paginator .current{font-size:12px;padding:2px 8px;background:#000;color:#fff;border:solid 1px #000;}
+	.paginator .nave{border:solid 1px silver;padding:2px 8px}
+</style>
+<div class='paginator'>
+<?php
+if ($this->pageCount):
+	//$this->fc = new FuncoesUteis();
+	//$this->fc->debug($this); die();
+	echo"<div style='float:left'>";
+		echo"<span style='margin-right:50px'>Faixa: $this->firstItemNumber – $this->lastItemNumber de $this->totalItemCount Registros</span>";
+	echo "</div>";
+	
+	echo"<div style='float:right'>";
+		echo (isset($this->previous))? "<a href=\"". $this->url(array('page' => $this->first)) ."\">Primeiro</a> | " : "<span>Primeiro</span>";
+		echo (isset($this->previous))? "<a href=\"". $this->url(array('page' => $this->previous))."\">Anterior</a>" : "<span> Anterior</span>";
+		foreach ($this->pagesInRange as $page):    	
+			if ($page != $this->current): ?>
+				<a class="nave" title="<?php echo $page; ?>" href="<?php echo $this->url(array('page' => $page)); ?>"><?php echo $page; ?></a>
+			<?php else: ?>
+				<span class="current" title="<?php echo $page; ?>"><?php echo $page; ?></span>
+		<?php endif;
+	    endforeach;
+	    $page++;
+	
+		echo (isset($this->next)) ? "<a href=\"". $this->url(array('page' => $page))."\">Proximo</a> | " : "<span>Proximo</span> | ";
+	
+		echo (isset($this->next)) ? "<a href=\"". $this->url(array('page' => $this->last)). "\">Último</a>" : "<span>Último</span>";
+	echo "</div>";
+endif; ?>
+</div>

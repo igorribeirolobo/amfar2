@@ -1,0 +1,233 @@
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+	<head>
+		<title>AMF - Associação Mineira de Farmacêuticos</title>
+		<meta http-equiv="content-type" content="text/html; charset=iso-8859-1">
+		<link rel="stylesheet" type="text/css" media="screen" href="<?=$this->baseUrl?>/public/styles/style.css" />	
+		<script type="text/javascript" type="text/javascript" src="<?=jsLib?>/jquery-1.3.2.js"></script>
+		<script type="text/javascript" type="text/javascript" src="<?=jsLib?>/prototypes.js"></script>
+		<script type="text/javascript" type="text/javascript" src="<?=jsLib?>/jquery.maskedinput-1.2.2.min.js"></script>
+		<script type="text/javascript" type="text/javascript" src="<?=jsLib?>/jquery.limit-1.0.source.js"></script>
+		<link id="lnkRelShortCutIcon" rel="shortcut icon" href="<?=$this->baseImg?>/favicon.png" />
+
+		<script language="javascript" type="text/javascript">
+			 $(document).ready(function(){
+				if ($.browser.msie) {
+					}
+				else {
+					$('fieldset').css('border-width','1px');
+					$('fieldset').css('border-color','#369');
+					$('fieldset').css('-moz-border-radius','10px');
+					$('fieldset').css('-webkit-border-radius','10px');
+					$('fieldset').css('border-radius','10px');
+					}
+				$('.text').focus(function(){$(this).css('background','#E0E4F9')}).blur(function(){$(this).css('background','#fff')})
+				$('.upper').keyup(function(){$(this).val($(this).val().upper())})
+				$('.lower').keyup(function(){$(this).val($(this).val().lower())})				
+				$('.tr').mouseover(function(){bgcolor=$(this).css('background-color');
+					$(this).css('background-color','#f00');})
+						.mouseout(function(){$(this).css('background-color',bgcolor)})
+				$('.numeric').keypress(function(event){if (event.charCode&&(event.charCode<48||event.charCode>57)){alert('Somente números por favor!');event.preventDefault();}});		
+		
+				if ($('#msg').val()!='' && $('#msg')!= undefined) alert($('#msg').val());
+
+				$('.zebrado tr:odd').addClass('bgGray');
+  				$('.zebrado tr:even').addClass('bgWhite');
+				})		
+			function dialogModal(url, nome, height, width) {
+				eval(window.showModalDialog(url, nome,'Resizable:no; DialogHeight:'+height+'px ; DialogWidth:'+width+'px; Edge:raised; Help:no; Scroll:no; Status:no; Center:1;'));
+				return false;
+				}
+
+		</script>
+		
+		
+		<style type="text/css">			
+			.menutopo{text-align:right;padding:0 8px}
+			.menutopo a{font-size:11px;color:#000;text-decoration:none}						
+			.menutopo a:hover{color:#3261B2;text-decoration:underline}
+			.menutopo img{width:36px}
+			.wellcome{background:#D9E7F8;padding:4px;color:#3261B2;text-align:center;font-size:12px}	
+			/* End */
+		</style>
+	</head>
+
+	<body style="background:#e4e4e4">
+		<div id="content" style="width:1000px;margin:0 auto;border:0;background:#fff;padding:0">
+			<input type="hidden" id="msg" value="<?=$this->message?>"/>
+			
+			<table class="layout" cellpadding="0" cellspacing="0" border="0" width="100%">
+				<tr>
+					<td style="text-align:left;width:172px;text-align:center" rowspan="2" width="172">
+						<img src="<?=$this->baseImg?>/logoEmpresa.jpg" border="0" width="120" />
+					</td>
+					
+					<td width="14"><img src="<?=$this->baseImg?>/space.png" border="0" width="14" /></td>
+					
+					<td>
+						<img src="<?=$this->baseImg?>/logotopo2.gif" border="0" height="100" />
+						<p class="wellcome">
+							<?= $this->fc->date2str(date('d/m/Y'), true)?>
+							<?=(!$this->user->idCadastro) ? ' &mdash; Olá visitante, seja Bem Vindo':''?>
+						</p>
+					</td>
+					<td width="14"><img src="<?=$this->baseImg?>/space.png" border="0" width="14" /></td>
+					
+					<td class="menutopo" style="text-align:right" valign="top" width="144">
+						<a href="<?=$this->baseUrl?>/">Página Inicial</a>&nbsp;|&nbsp;
+						<a href="<?=$this->baseUrl?>/contato">Contato</a><br /><br />
+						<table cellpadding="0" cellspacing="0" border="0" width="100%">
+							<tr>
+								<td align="center" valign="top">
+									<img src="<?=$this->baseImg?>/facebook.gif" border="0" alt="Siga-nos no Facebook" title="Siga-nos no Facebook"/>
+								</td>
+								<td align="center" valign="top">
+									<img src="<?=$this->baseImg?>/twitter.gif" border="0" alt="Siga-nos no Twitter" title="Siga-nos no Twitter" />
+								</td>
+								<td align="center" valign="top">
+									<img src="<?=$this->baseImg?>/linkdin.gif" border="0" alt="Siga-nos no Link Din" title="Siga-nos no Link Din" />
+								</td>
+							</tr>
+						</table>
+					</td>
+				</tr>
+			</table>
+			
+			
+			<script>
+				$(document).ready(function(){
+					$('#mailing').click(function(){
+						dialogModal("<?=$this->baseUrl?>/mailing/", "_mailing", 340, 470);
+						})
+					})
+			</script>			
+			
+			
+			
+			<style>
+				.menulateral{width:172px;padding:4px 0;background:#94A1E2;border:solid 1px silver}
+				.menulateral div{font-size:13px;color:#808080;width:100%;margin:2px 0;border-bottom:solid 1px #fff;padding:3px}
+				.menulateral .label{text-align:center;font-size:13px;color:#fff;font-weight:bolder;}
+				.menulateral a{text-align:left;font-size:13px;color:#006;text-decoration:none;white-space:nowrap}
+				.menulateral a:hover{color:#D9E7F8;text-decoration:none}
+			</style>
+
+			<table class="layout" cellpadding="0" cellspacing="0" border="0" width="100%" style="margin:16px 0">		
+				<tr>
+					<td class="menulateral" valign="top" width="172">
+						<div><a href="<?=$this->baseUrl?>/">Página Inicial</a></div><?
+						//if(!$this->user){ // acesso público	?>
+
+							<div><a href="<?=$this->baseUrl?>/about/">Sobre a AMF</a></div>
+							<div><a href="<?=$this->baseUrl?>/about/diretoria/">Diretoria Atual</a></div>
+							<div><a href="<?=$this->baseUrl?>/about/agenda/">Agenda da Diretoria</a></div>
+							<div><a href="<?=$this->baseUrl?>/public/docs/AMF_NovoEstatuto.pdf" target="_pdf">Estatuto Social</a></div>
+							<div><a href="<?=$this->baseUrl?>/about/local/">Nossa Localização</a></div>
+							
+							<div class="label">&nbsp;</div>
+							<div><a href="<?=$this->baseUrl?>/index/agenciamento/">Agenciamento</a></div>
+							<div><a href="<?=$this->baseUrl?>/index/linksuteis/">Links Úteis</a></div>
+							<div><a href="<?=$this->baseUrl?>/index/legislacao/">Legislação</a></div>
+							<div><a href="<?=$this->baseUrl?>/index/galeria/">Galeria de Fotos</a></div>
+							
+							<div class="label">&nbsp;</div>
+							<div><a href="<?=$this->baseUrl?>/index/noticias/">Notícias do Setor</a></div>
+							<div><a href="<?=$this->baseUrl?>/index/eventos/">Agenda Anual de Eventos</a></div>
+							
+							<div><a href="<?=$this->baseUrl?>/cursos/list/st/1">Cursos de Especialização</a></div>
+							<div><a href="<?=$this->baseUrl?>/cursos/list/st/0">Cursos de Atualização</a></div>
+							
+							<div class="label">&nbsp;</div>
+							<div><a href="<?=$this->baseUrl?>/index/contato/">Fale Conosco</a></div>
+
+							<?if(!$this->user->idCadastro){?>
+								<!--
+								<div class="label">&nbsp;</div>
+								<div><a href="<?=$this->baseUrl?>/cadastro/">
+									<img src="<?=$this->baseImg?>/cadastro.png" border="0" 
+									alt="Preencha sua Ficha Cadastral" title="Preencha sua Ficha Cadastral"/></a>
+								</div>
+								-->	
+								<div><a href="<?=$this->baseUrl?>/auth/login/">
+									<img src="<?=$this->baseImg?>/login.png" border="0" 
+									alt="Login de Usuário Cadastrado" title="Login de Usuário Cadastrado"/></a>
+								</div>
+	
+								<div><a href="#" id='mailing'>
+									<img src="<?=$this->baseImg?>/mailing.png" border="0" 
+									alt="Faça parte do nosso mailing e fique informado!" title="Faça parte do nosso mailing e fique informado!"/></a>
+								</div><?
+								} else{ ?>						
+									<div class="label">&nbsp;</div>
+									<div style="text-align:center;padding:0;color:#fff"><b>** Acesso Restrito **</b></div>
+									<div>- <a href="<?=$this->baseUrl?>/cadastro/">Meu Cadastro</a></div>									
+									<div>- <a href="<?=$this->baseUrl?>/restrito/pendenciatcc/">Pendência de TCC</a></div>
+									<div>- <a href="<?=$this->baseUrl?>/restrito/boletos/">Boletos p/ Pagamentos</a></div>
+									<div>- <a href="<?=$this->baseUrl?>/cursos/contratos/">Contratos</a></div>
+									<div>- <a href="<?=$this->baseUrl?>/restrito/downloads/">Downloads</a></div>
+									<div>- <a href="<?=$this->baseUrl?>/restrito/informativos/">Informativos</a></div>
+									<div>- <a href="<?=$this->baseUrl?>/auth/logout/">Encerrar Sessão</a></div><?
+									}?>
+							
+
+							<div class="label">&nbsp;</div>
+							<div><a href="http://webmail.amfar.com.br" target="_webmail">Webmail</div>
+						</td>
+						
+						<td width="14"><img src="<?=$this->baseImg?>/space.png" border="0" width="14" /></td>
+						
+						<td valign="top" style="text-align:left;background:#fff">
+							<table cellpadding="0" cellspacing="0" border="0" width="100%" style="font-size:13px">
+								<tr>
+									<td style="padding:2px;background:#94A1E2;color:#fff;font-size:14px">
+										<img src="<?=$this->baseImg?>/icnave.png" border="0" style="margin-right:12px" />
+										<?=$this->where?></td>
+									<td style="text-align:right;padding:4px;background:#94A1E2;color:#fff;vertical-align:bottom">
+										<?=($this->user-nome)? "Logado: ".$this->user->nome : ''?>
+									</td>
+								</tr>
+								<tr bgcolor="#ffffff">
+									<td colspan="2" style="padding:16px 0">
+										<?php echo $this->layout()->content;?>
+									</td>
+								</tr>
+							</table>
+						</td>
+						
+						<td width="14"><img src="<?=$this->baseImg?>/space.png" border="0" width="14" /></td>
+						
+						<td valign="top" width="160" style="background:#D9E7F8;text-align:center">
+							<b>Parceiros</b>
+							<hr size="1" />
+							<a href="http://www.newtonpaiva.br" target="_blank">
+								<img  src="<?=$this->baseImg?>/parceiros/newtonpaiva.gif" border="0" width="160"/></a>
+							<hr size="1" />
+
+							<a class=dst href="http://esjus.com.br/emailmkt/nota/ESJUSESLA_nota-10-04.html" target="_esjus">
+							 <img src="<?=$this->baseImg?>/parceiros/logo_esjus.jpg" border="0" width="160" /></a>
+							<hr size="1" />
+
+							<a class=dst href="http://www.sbrafh.org.br/" target="_sbrafh">
+							 <img src="<?=$this->baseImg?>/parceiros/logoSbrafh.png" border="0" width="160" style="background:#fff"/></a>
+							<hr size="1" />
+
+							<a class=dst href="http://www.sobrafo.org.br/" target="_sbrafh">
+							 <img src="<?=$this->baseImg?>/parceiros/logoSobrafo.gif" border="0" width="160" /></a>
+						</td>
+					</tr>
+				</body>
+			</table>
+			
+			<table cellpadding="0" cellspacing="0" border="0" id="where" width="100%"
+				style="margin:0; padding:0;background:#94A1E2;color:#fff;font-size:12px;font-weight:normal;border-top:solid 1px black">
+				<tr>
+					<td style="text-align:center;padding:4px 2px;color:#000">
+						&copy; <?=date('Y')?> by  Associação Mineira de Farmacêuticos - Av. do Contorno, 9215 - Sl 502 - Ed. Humberto Martins Vieira - Prado - 30110-130 - BH/MG<br />
+						<span style="font-size:16px">Tel/Fax: 31 3291 6242 / 31 9974-5710 - secretaria@amfar.com.br</span>
+						<P style="text-align:right"><small>Desenvolvido e mantido por LAB GRAPHIC 11 4184-9311</small><p>
+					</td>
+				</tr>
+			</table>
+		</div>		
+	</body>
+</html>
+<? //$this->fc->debug($_SESSION)?>

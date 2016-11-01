@@ -1,0 +1,191 @@
+<?php
+$delAction = "$this->baseUrl/financeiro/list/st/$this->st/del/id";
+$urlEdit = "$this->baseUrl/boletos/open/curso/0/inscricao/0/id";
+$urlSearch = "$this->baseUrl/financeiro/list/st/$this->st";
+$urlPrint = "$this->baseUrl/financeiro/print/st/$this->st";
+$this->db = Zend_Registry::get('db');
+?>
+<link type="text/css" href="<?=jsLib?>/themes/base/ui.all.css" rel="stylesheet" />
+<script type="text/javascript" src="<?=jsLib?>/ui/ui.datepicker.js"></script>
+<script type="text/javascript" src="<?=jsLib?>/ui/ui.core.js"></script>
+<link type="text/css" href="<?=$this->baseCss?>/demos.css" rel="stylesheet" />
+<script>
+	$(document).ready(function(){
+		$('.data').datepicker({  
+			dateFormat: 'dd/mm/yy',  
+			dayNames:['Domingo','Segunda','Terça','Quarta','Quinta','Sexta','Sábado','Domingo'],  
+			dayNamesMin:['D','S','T','Q','Q','S','S','D'],  
+			dayNamesShort:['Dom','Seg','Ter','Qua','Qui','Sex','Sáb','Dom'],  
+			monthNames:['Janeiro','Fevereiro','Março','Abril','Maio','Junho','Julho','Agosto','Setembro','Outubro','Novembro','Dezembro'],  
+			monthNamesShort:['Jan','Fev','Mar','Abr','Mai','Jun','Jul','Ago','Set','Out','Nov','Dez'],  
+			nextText:'Próximo',prevText: 'Anterior'
+			});
+		$('#btSend').click(function(){
+			if($('#inicio').val()==''){alert('Informe a data inicial!');$('#inicio').focus();return false;}
+			if($('#final').val()==''){alert('Informe a data final!');$('#final').focus();return false;}
+			})
+
+		$('.del').click(function(){
+			if(!confirm('Tem certeza que deseja excluir este registro?'))
+				return false;
+			if(!confirm('Uma vez excluído, não tem como recuperar este registro.\n\nConfirma a Exclusão?'))
+				return false;
+			$('#del').val(this.id);
+			$('#frange').submit();
+			})
+		$('.edit').click(function(){
+			//var formWin= window.open('','winForm',
+			//	'left=0, top=0, width=570,height=460,toolbar=no,location=no,directories=no,status=no,menubar=no,scrollbars=yes,resizable=no');
+			//formWin.focus();
+			dialogModal('<?=$this->baseUrl?>/boletos/open/id/' + this.id, 'boletos', 420, 500);
+			})
+		
+		if($('#msg').val().length>0) alert($('#msg').val());
+		})	
+</script>
+<style>
+	.data{width:80px;text-align:center}
+	.edit a{color:000;font-weight:bolder}
+	.edit a:hover{color:f00}
+	.list{font-size:12px;width:100%}
+	.list caption{background:#369;color:#fff;font-size:16px;padding:2px}
+	.list caption a{color:#fff;text-decoration:none}
+	.list caption a:hover{text-decoration:underline;color:red}
+	.list th{background:#def2f5;color:#599da1;font-size:11px;font-weight:normal}
+	.list th a{color:#fff;text-decoration:none}
+	.list th a:hover{text-decoration:underline;color:yellow}
+	.list td a{color:#369;text-decoration:none;font-weight:bolder}
+	.list td a:hover{text-decoration:underline;color:#f60}
+</style>
+<table cellspacing="0" cellpadding="0" border="0" width="100%">
+	<tr>
+		<td class="list" valign="top">
+			<div style="float:left">
+				<form name="frange" id="frange" method="POST" action="<?=$urlSearch?>" style="margin:0">
+					<input type="hidden" id="del" name="del" value=""/>
+					<input type="hidden" id="msg" value="<?=$this->message?>"/>	
+					<table class='list' cellpadding='2' cellspacing='2' border='0' style='background:#fafafa'>
+						<tr>
+							<td class="center">Período Início: 
+								<input type="text" class="text data" name="inicio" id="inicio" value="<?=$_POST['inicio']?>"/>
+								Final:
+									<input type="text" class="text data" name="final" id="final" value="<?=$_POST['final']?>"/>
+								<input type="submit" name="btSend" id="btSend" value="Enviar" class="button"/>
+							</td>
+						</tr>
+					</table>
+				</form>
+			</div>
+			<div style="float:right"><?
+				if($this->dbtable):?>
+					<form name="fprint" id="fprint" method="POST" action="<?=$urlPrint?>" target="_print" style="margin:0">
+						<input type="hidden" name="dataInicial" value="<?=$this->fc->Ymd2dmY($this->inicio)?>"/>
+						<input type="hidden" name="dataFinal" value="<?=$this->fc->Ymd2dmY($this->final)?>"/>
+						<input style="margin-top:6px" type='submit' name='btPrint' id='btPrint' value='Imprimir' class='button'/>
+					</form><?
+				endif; ?>			
+			</div>
+			
+			
+			<table class='list' cellpadding='2' cellspacing='2' border='0'><?
+					if($this->st < 5){?>
+						<thead>
+							<tr>
+								<th>Vcto</th>
+								<th>Numdoc</th>
+								<th>Histórico</th>
+								<th>Valor R$</th>
+								<th>Pgto</th>
+							</tr>
+						</thead>
+						<tfoot>
+							<tr>
+								<td colspan="6">Localizado <?=count($this->dbtable)?> Registro(s)</td>
+							</tr>
+						<tbody><?
+						$count = 0;
+						$total=0;			
+						foreach($this->dbtable as $row):
+							$urlEdit = "$this->baseUrl/boletos/open/curso/$row->idCurso/id";
+							if(!$row->pgto || $row->pgto=='1900-01-01') $row->pgto = '00/00/0000';
+							$count++;
+							
+							$aluno = $this->fc->dbReader($this->db, "SELECT nome FROM cadastro WHERE idCadastro=$row->idCadastro")->nome;
+							
+							$bg = ($count % 2 == 0) ? '#dddddd':'#ffffff';
+							$vcto = $this->fc->Ymd2dmY($row->vcto);
+							$pgto = $this->fc->Ymd2dmY($row->pgto);
+							$valor = number_format($row->total,2,',','.');
+							$historico = ($aluno) ? "$aluno<br />$row->historico" : $row->historico;
+							echo"
+							<tr align='center' bgcolor='$bg'>
+								<td width='80'>$vcto</td>
+								<td width='80'>
+									<a href='#' id='$row->idFinanceiro' class='edit' alt='Alterar este registro' title='Alterar este registro'>$row->numDoc</a></td>
+								<td align='left'>$historico</td>
+								<td align='right'>$valor</td>
+								<td width='80'>$pgto</td>
+							</tr>";
+							$total += $row->total;
+						endforeach;
+						
+						$_total = number_format($total,2,',','.');
+						echo"
+							<tr><td colspan='3' style='text-align:right'><b>Total  R$</b></td>
+								<td align='right'><b>$_total</b></td>
+							</tr>";
+						?>
+						</tbody><?
+					}
+				else { ?>
+					<thead>
+						<tr>
+							<th>Data<br />Pgto</th>
+							<th>Numdoc</th>
+							<th>Histórico</th>
+							<th>Pago R$</th>
+							<th>Receb. R$</th>
+							<th>Saldo</th>
+						</tr>
+					</thead>
+					<tfoot>
+						<tr>
+							<td colspan="6">Localizado <?=count($this->dbtable)?> Registro(s)</td>
+						</tr>
+					<tbody><?
+					$count = 0;
+					$totalDC=$totalCR=0;			
+					foreach($this->dbtable as $row) :
+						$count++;
+						$bg = ($count % 2 == 0) ? '#dddddd':'#ffffff';
+						$vcto = $this->fc->Ymd2dmY($row->vcto);
+						$pgto = $this->fc->Ymd2dmY($row->pgto);
+						$DC=($row->status==3)?number_format($row->valor,2,',','.'):null;
+						$CR=($row->status==4)?number_format($row->valor,2,',','.'):null;
+						echo"
+						<tr align='center' bgcolor='$bg'> 
+							<td width='80'>$pgto</td>
+							<td width='80'>$rs->numDoc</td>
+							<td align='left'>$row->historico</td>
+							<td align='right'>$DC</td>
+							<td align='right'>$CR</td>
+						</tr>";
+						if($row->status==3)
+							$totalDC += $row->valor;
+						else
+							$totalCR += $row->valor;
+					endforeach;						
+
+					echo"
+						<tr><td colspan='3' style='text-align:right'><b>Totais  R$</b></td>
+							<td align='right'><b>". number_format($totalDC,2,',','.') ."</b></td>
+							<td align='right'><b>". number_format($totalCR,2,',','.') ."</b></td>
+							<td align='right'><b>". number_format($totalCR-$totalDC,2,',','.') ."</b></td>
+						</tr>";
+					?>
+					</tbody><?				
+				}	?>
+			</table>
+		</td>
+	</tr>
+</table>

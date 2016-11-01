@@ -1,0 +1,47 @@
+<style>
+	.cursos {;border-collapse:collapse;border-color:black;font-size:12px}
+	.cursos th {background:#def2f5;color:#599da1;font-weight:bolder;font-size:11px;text-align:center}
+	.cursos td {padding:2px 4px;font-size:13px}
+	.cursos td a{color:#599da1;text-decoration:none;padding:2px 0}
+	.cursos td a:hover{font-weight:normal;color:#ff9900;text-decoration:underline}
+	.cursos tfoot{font-size:13px}
+	.trcursos {background:#ddd}
+	.cursos ol li{text-align:left;font-size:12px}
+	.cursos p{text-align:justify;font-size:12px}
+</style>
+
+<script>
+	$(document).ready(function(){
+		$('.trcursos:even').css('background','#fff');
+		})
+</script>
+
+<table width='100%' class='cursos' border='0' cellpadding='2' cellspacing='0'>
+	<thead>
+		<tr>
+			<th width="80">In&iacute;cio</th>
+			<th style='text-align:left'>Curso</th>
+		</tr>
+	</thead>
+	<tbody><?
+		if(!$this->cursos)
+			echo"<tr><td colspan='2' style='text-align:center;font-weight:bolder'>
+				Nenhum curso localizado!</td></tr>";
+		else{
+			foreach($this->cursos as $rs):
+				if(!$rs->inicio)
+					$rs->inicio = "Aguarde";
+				else
+					$rs->inicio = $this->fc->Ymd2dmY($rs->inicio); 	
+				echo"
+				<tr class='trcursos'>
+					<td style='text-align:center;padding:0 4px;width:70px'>$rs->inicio</td>
+					<td align='left'><a href='$this->links/open/id/$rs->idCurso/'>$rs->titulo</a></td>
+				</tr>";
+			endforeach; 
+			}?>
+
+			
+	</tbody>
+</table>
+		

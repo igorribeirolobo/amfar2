@@ -1,0 +1,73 @@
+<?php
+echo $this->render('header.phtml');
+?>
+<script>
+	$(document).ready(function(){
+		$('.del').click(function(){
+			if(!confirm('Tem certeza que deseja excluir este registro?'))
+				return false;
+			if(!confirm('Uma vez excluído, não tem como recuperar este registro.\n\nConfirma a Exclusão?'))
+				return false;
+			return true;
+			})
+
+		$('.edit').click(function(){
+			var formWin= window.open('<?=$this->baseEdit?>/'+this.id,'winForm','left=0, top=0, width=570,height=420,toolbar=no,location=no,directories=no,status=no,menubar=no,scrollbars=yes,resizable=no');
+			formWin.focus();
+			})
+
+		if($('#msg').val().length>0) alert($('#msg').val());
+		})	
+</script>
+<input type="hidden" id="msg" value="<?=$this->message?>"/>
+<table cellspacing="0" cellpadding="0" border="0" width="100%">
+	<tr>
+		<td valign="top" style="background:#ccc">
+			<?=$this->render('menu.phtml');?>
+		</td>
+		<td class="palestras" valign="top">
+			<table id='list' cellpadding='2' cellspacing='2' border='0'>
+				<caption><?=$this->title?></caption>
+				<thead>
+					<tr>
+						<th><a href="<?=$this->urlNav?>/emissao">Emissão</a></th>
+						<th><a href="<?=$this->urlNav?>/sacado">Sacado</a></th>
+						<th><a href="<?=$this->urlNav?>/numdoc">NumDoc</a></th>
+						<th><a href="<?=$this->urlNav?>/valor">Valor</a></th>
+						<th><a href="<?=$this->urlNav?>/vcto">Vcto</a></th>			
+						<th><a href="<?=$this->urlNav?>/pgto">Pgto</a></th>
+						<th>Del</a></th>
+					</tr>
+				</thead>
+				<tfoot>
+					<tr>
+						<td colspan="8">Localizado <?=count($this->dbtable)?> Registro(s)</td>
+					</tr>
+				<tbody><?
+				$count = 0;			
+				foreach($this->dbtable as $row) :
+					$count++;
+					$class = ($count%2==0) ? 'destaque':'normal';
+					$emissao = $this->fc->Ymd2dmY($row->emissao);
+					$vcto = $this->fc->Ymd2dmY($row->vcto);
+					$pgto = $this->fc->Ymd2dmY($row->pgto);
+					$valor = number_format($row->valor,2,',','.');
+					echo"
+					<tr class='$class'>
+						<td width='50'><a href='#' class='edit' id='$row->id'>$emissao</a></td>
+						<td class='left'>$row->sacado</td>
+						<td>$row->numdoc</td>
+						<td class='right'>$valor</td>						
+						<td>$vcto</td>
+						<td>$pgto</td>
+						<td><a href='$this->urlDel/$row->id' class='del'>
+							<img src='$this->baseImg/del.gif' alt='Excluir' border='0'/></a></td>
+					</tr>";
+				endforeach;
+				?>
+				</tbody>
+			</table>
+		</td>
+	</tr>
+</table>
+<?php echo $this->render('footer.phtml');?>

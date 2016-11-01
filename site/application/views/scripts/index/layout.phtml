@@ -1,0 +1,207 @@
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+	<head>
+		<title>AMF - Associação Mineira de Farmacêuticos</title>
+		<meta http-equiv="content-type" content="text/html; charset=iso-8859-1">
+		<link rel="stylesheet" type="text/css" media="screen" href="<?=$this->baseUrl?>/public/styles/style.css" />
+		<script type="text/javascript" type="text/javascript" src="<?=jsLib?>/jquery-1.3.2.js"></script>
+		<link id="lnkRelShortCutIcon" rel="shortcut icon" href="<?=$this->baseImg?>/favicon.jpg" />
+
+		<script language="javascript" type="text/javascript">
+			 $(document).ready(function(){
+				if ($.browser.msie) {
+					}
+				else {
+					$('fieldset').css('border-width','1px');
+					$('fieldset').css('border-color','#369');
+					$('fieldset').css('-moz-border-radius','10px');
+					$('fieldset').css('-webkit-border-radius','10px');
+					$('fieldset').css('border-radius','10px');
+					}
+				$('.text').focus(function(){$(this).css('background','#def2f5')}).blur(function(){$(this).css('background','#fff')})
+				$('.upper').keyup(function(){$(this).val($(this).val().upper())})
+				$('.lower').keyup(function(){$(this).val($(this).val().lower())})				
+				$('.tr').mouseover(function(){bgcolor=$(this).css('background-color');
+					$(this).css('background-color','#f00');})
+						.mouseout(function(){$(this).css('background-color',bgcolor)})
+				$('.numeric').keypress(function(event){if (event.charCode&&(event.charCode<48||event.charCode>57)){alert('Somente números por favor!');event.preventDefault();}});		
+		
+				if ($('#msg').val()!='' && $('#msg')!= undefined) alert($('#msg').val());
+
+				})		
+			function dialogModal(url, nome, height, width) {
+				eval(window.showModalDialog(url, nome,'Resizable:no; DialogHeight:'+height+'px ; DialogWidth:'+width+'px; Edge:raised; Help:no; Scroll:no; Status:no; Center:1;'));
+				return false;
+				}
+		</script>
+		<style>
+			.mtd {
+				font-size:12px;
+				color:#a4a4a4;
+				margin:4px 0; 
+			/*	border-left:1px solid #14b7cd;
+				border-right:1px solid #14b7cd;
+				border-bottom:1px solid #c0c0c0; */
+				padding:4px 8px;
+				background:#def2f5;
+				width:150px;}
+				
+			.mtd a {
+				color:#808080;
+				text-decoration:none;
+				}
+				
+			.mtd a:hover {
+				color:#ff9900;
+				text-decoration:underline
+				}
+					
+			.mtdlabel{
+				background:#599da1;
+				color:#fff;
+				text-align:center;
+				font-size:13px;
+				font-weight:bolder;
+				padding:2px
+				}		
+		</style>
+
+	</head>
+
+	<body style="background:#e4e4e4">
+		<div id="content" style="width:820px;margin:0 auto;border:0;background:#fff;padding:0 10px">
+			<input type="hidden" id="msg" value="<?=$this->message?>"/>
+			
+			<table cellpadding="0" cellspacing="0" border="0" width="100%">
+				<tr>
+					<td>
+						<a href="<?=$this->baseUrl?>/">
+						<img src="<?=$this->baseImg?>/logoTopo.jpg" width="400" /></a>
+					</td>
+					<td align="right">
+						<img src="<?=$this->baseImg?>/marca-90-anos-01.jpg" width="300" /></a>
+					</td>
+				</tr>
+				<tr>	
+					<td class="wellcome" colspan="2">
+						<?= $this->fc->date2str(date('d/m/Y'), true)?>
+						<?=(!$this->user->idCadastro) ? ' &mdash; Olá visitante, seja Bem Vindo':''?>
+					</td>
+				</tr>
+			</table>
+			
+			<table cellpadding="0" cellspacing="0" border="0" width="100%">	
+				<tr>
+					<td valign="top" style="padding:4px 0;width:150px">
+						<div class='mtd'><a href="<?=$this->baseUrl?>/">Página Inicial</a></div>
+						<div class='mtd'><a href='<?=$this->baseUrl?>/about/'>Sobre a AMF</a></div>
+						<div class='mtd'><a href='<?=$this->baseUrl?>/about/diretoria/'>Diretoria Atual</a></div>
+						<div class='mtd'><a href="<?=$this->baseUrl?>/public/docs/AMF_NovoEstatuto.pdf" target="_pdf">Estatuto Social</a></div>
+						<div class='mtd'><a href="<?=$this->baseUrl?>/about/local/">Onde estamos</a></div>
+						<div class='mtd'><a href="<?=$this->baseUrl?>/index/linksuteis/">Links Úteis</a></div>									
+						
+						<div class='mtdlabel'>Cursos AMF</div>
+						<div class='mtd'><a href="<?=$this->baseUrl?>/cursos/list/st/1">Cursos de Especialização</a></div>
+						<div class='mtd'><a href="<?=$this->baseUrl?>/cursos/list/st/0">Cursos de Atualização</a></div>
+						
+						<div class='mtdlabel'>Espaco do Aluno</div>
+						<div class='mtd'><a href="<?=$this->baseUrl?>/index/agenciamento/">Serviço de Agenciamento</a></div><?							
+						if(!$this->user->idCadastro){
+							echo"
+							<div class='mtd'><a href='$this->baseUrl/cadastro/'>Fazer meu Cadastro</a></div>
+							<div class='mtd'><a href='$this->baseUrl/auth/login/'>Login do aluno</a></div>";
+							}
+						else{
+							echo"
+							<div class='mtd'><a href='$this->baseUrl/auth/login/'>Acessar meu espaço</a></div>
+							<div class='mtd'><a href='$this->baseUrl/cadastro/'>Meu Cadastro</a></div>									
+							<div class='mtd'><a href='$this->baseUrl/restrito/pendenciatcc/'>Pendência de TCC</a></div>
+							<div class='mtd'><a href='$this->baseUrl/restrito/boletos/'>Boletos p/ Pagamentos</a></div>
+							<div class='mtd'><a href='$this->baseUrl/cursos/contratos/'>Contratos</a></div>
+							<div class='mtd'><a href='$this->baseUrl/restrito/downloads/'>Downloads</a></div>
+							<div class='mtd'><a href='$this->baseUrl/restrito/informativos/'>Informativos</a></div>
+							<div class='mtd'><a href='$this->baseUrl/auth/logout/'>Encerrar Sessão</a></div>";
+							} ?>							
+						<div class='mtd'><a href="<?=$this->baseUrl?>/index/contato/">Fale Conosco</a></div>
+					</td>
+					<td style="vertical-align:top;padding-left:10px">
+						<table cellpadding="0" cellspacing="0" border="0" width="100%" style="margin:16px 0">		
+							<tr>						
+								<td style="padding:2px;font-size:14px;border-bottom:solid 1px #d4d4d4;color:#a4a4a4">
+									:: <?=$this->where?>
+								</td>
+								<td style="text-align:right;padding:4px;vertical-align:bottom;border-bottom:solid 1px silver">
+									<?=($this->user-nome)? "Logado: ".$this->user->nome : ''?>
+								</td>
+							</tr>
+							<tr bgcolor="#ffffff">
+								<td colspan="2" style="padding:16px 0">
+									<?php echo $this->layout()->content;?>
+								</td>
+							</tr>
+						</table>					
+					</td>
+				</tr>
+			</table>
+			<table width="800" border="0" cellpadding="0" cellspacing="0" style="margin:20px 0">
+				<caption class="titulo">Eventos da área (Banner de parceiros tamanho 800px x 120px</caption>
+				<tr>
+					<td style="text-align:center;padding:8px">
+						<a href="http://www.ismp-brasil.org/congresso/" target="_blank">
+						<img src="<?=$this->baseImg?>/parceiros/ismp_congresso_2013.jpg" border="0" width="100%" height="120"/></a>
+					</td>
+				</tr>
+			</table>
+			<table id="rodape" cellpadding="0" cellspacing="0" border="0" width="100%">
+				<tr>
+					<td class="titulo">
+						ATENDIMENTO
+					</td>
+					<td rowspan="2">&nbsp;</td>
+					<td class="titulo">
+						PARCEIROS
+					</td>
+					<td rowspan="2">&nbsp;</td>					
+					<td class="titulo" nowrap>
+						REDES SOCIAIS
+					</td>
+				</tr>
+				<tr>
+					<td style="text-align:center;padding:4px 10px" width="180" nowrap>
+						Tel/Fax: (31) <b style="font-size:16px">3291 6242</b><br />
+						secretaria@amfar.com.br<br /><br />
+						De segunda a sexta<br />
+						das 09:00 às 17:00hs							
+					</td>
+
+					<td class="parceiros" nowrap width='390'>
+						<ul>
+							<li><img src="<?=$this->baseImg?>/parceiros/newtonpaiva.gif" border="0" /></li>
+							<li><img src="<?=$this->baseImg?>/parceiros/logo_esjus.jpg" border="0" /></li>
+							<li><img src="<?=$this->baseImg?>/parceiros/logoSbrafh.png" border="0" /></li>
+							<li><img src="<?=$this->baseImg?>/parceiros/logoSobrafo.gif" border="0" /></li>
+						</ul						
+					</td>
+
+					<td class="redes" width="100">
+						<ul>
+							<li><img src="<?=$this->baseImg?>/facebook.gif" border="0" /> Facebook</li>
+							<li><img src="<?=$this->baseImg?>/twitter.gif" border="0" /> Twitter</li>
+							<li><img src="<?=$this->baseImg?>/linkdin.gif" border="0" /> Linkdin</li>
+						</ul						
+					</td>
+				</tr>
+				<tr>
+					<td colspan="5" style="text-align:center;padding-top:20px;color:#a4a4a4;font-size:11px">
+						&copy; <?=date('Y')?>  AMF - Associação Mineira de Farmacêuticos | 
+						Av. do Contorno, 9215 - Sl. 502, Ed. Humberto Martins Vieira - Prado - Belo Horizonte - MG CEP 30110-130
+						<P style="text-align:right;color:#14b7cd;font-size:10px">Desenvolvido e mantido por LAB GRAPHIC - SP<p>					
+					</td>
+			</table>
+		</div>		
+		<script type="text/javascript">
+			var ddsmoothmenu_icones = "<?=$this->baseUrl?>/public/images/nav-drop-arr.png";
+		</script>
+		<script src="<?=jsLib?>/ddsmoothmenu.js" type="text/javascript"></script>
+	</body>
+</html>
+<? //$this->fc->debug($_SESSION)?>

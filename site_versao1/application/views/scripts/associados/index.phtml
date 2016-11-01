@@ -1,0 +1,56 @@
+<?php echo $this->render('header.phtml');?>
+
+<table cellspacing="0" cellpadding="0" border="0"  width="100%">
+	<tr>
+		<td valign="top" width="160">
+			<style>
+				div .labelMenu{background:#f90;color:#fff;text-align:center;font-weight:bolder;padding:4px;width:160px;font-size:10pt}
+				div .linkMenu {border-bottom:solid 1px silver;width:160px;padding:2px 0}
+				div .linkMenu a{color:#888;text-decoration:none;text-align:left;font-size:10pt}
+				div .linkMenu a:hover{color:#f60;text-decoration:underline;font-weight:normal}
+				div .separator{border-bottom:solid 8px #f90}
+			</style>
+			<div class="linkMenu"><a href='<?=$this->baseUrl?>/'>Página Principal</a></div>
+			
+			<div class='linkMenu'><a href='<?=$this->links?>/'>Página Inicial</a></div>
+			
+			<div class='linkMenu'><a href='<?=$this->links?>/why/'>Porque ser Associado</a></div>
+			
+			<div class='linkMenu'><a href='<?=$this->links?>/rls'>Regras do Associado</a></div>
+			
+			<?
+			if(!$this->user->idCadastro){
+				echo"<div class='linkMenu'><a href='$this->links/new'>Quero me Associar</a></div>";
+				echo"<div class='linkMenu'><a href='$this->links/recover/'>Recuperar Senha</a></div>";
+				echo"<div class='linkMenu'><a href='$this->links/recad/'>Recadastramento</a></div>";
+				echo"<div class='linkMenu'>&nbsp;</div>";
+				echo"<div class='linkMenu'><a href='$this->links/mdx'
+					alt='Somente para associados ativos'
+					title='Somente para associados ativos' >Acesso MICROMEDEX</a></div>";
+				echo"<div style='margin-top:8px'>
+					<a href='$this->baseUrl/associados/login/'>
+					<img src='$this->baseUrl/public/images/associados.png' border='0'/></a>
+				</div>";
+				}
+			else {
+				echo"<div class='linkMenu'><a href='$this->links/upd'>Atualizar meu Cadastro</a></div>";				
+				echo"<div class='linkMenu'><a href='$this->links/logout/'>Encerrar minha sessão</a></div>";				
+				echo"<div class='linkMenu'><a href='$this->links/pwd'>Trocar Minha Senha</a></div>";				
+				echo"<div class='linkMenu'><a href='$this->links/rnv'>Renovar minha Inscrição</a></div>";				
+				echo"<div class='linkMenu'><a href='$this->links/hst'>Histórico de Pagamentos</a></div>";
+				echo"<div class='linkMenu'>&nbsp;</div>";				
+				echo"<div class='linkMenu'><a href='$this->links/mdx' target='_mdx'>Acesso MICROMEDEX</a></div>";
+				}
+			?>
+
+			<div class='linkMenu'>&nbsp;</div>
+			<div class="linkMenu"><a href='<?=$this->links?>/contato'>Atendimento ao Associado</a></div>
+		</td>
+		<td width="20">&nbsp;</td>
+		<td valign="top">
+			<?php echo $this->render($this->page);?>
+		</td>
+	</tr>
+</table>
+
+<?php echo $this->render('footer.phtml');?>

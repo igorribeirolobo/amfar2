@@ -1,0 +1,249 @@
+body {
+	margin-top:4px;
+	background:#c0c0c0
+	}
+
+fieldset{padding:6px;background:#fff}
+
+#dvTopo {
+	background:url(../css/title_bg.jpg) repeat-x;
+	font:bolder 14pt Arial, Verdana, Helvetica, sans-serif;
+	letter-spacing:.3em;
+	word-spacing:.3em;
+	text-align:center;
+	color:#fff;
+	height:26px;
+	border-bottom:1px solid #00;
+	border-bottom:3px solid #000;
+	}
+	
+#dvMenu {	
+	width:220px;
+	border:1px solid #ccc;
+	padding:2px;
+	background:#d7d7d7;
+	border:1px outset #808080;
+	}
+	
+#dvMain {
+	float:left;
+	margin-left:4px;	
+	text-align:center;
+	background:#d7d7d7;
+	border:1px outset #808080;
+	padding:2px;
+	}
+
+
+a{
+	font:normal 9pt  Arial, Helvetica,Verdana, Tahoma;
+	color:#2B3A46;
+	text-decoration:none
+	}
+
+a:visited {
+	color:#2B3A46;
+	text-decoration:none
+	}
+
+a:hover {
+	text-decoration:underline;
+	color:#2B3A46
+	}
+
+body {
+	font:9pt Arial, Verdana, Helvetica, sans-serif;
+	color:#2B3A46;
+	line-height:120%
+	}
+
+.fcolor{background:#2B3A46}
+.lColor {background:#BDBDDB}
+
+.bcolor{background:#000066}
+
+.titulo {
+	position:relative;
+	text-align:center;
+	padding-top:6pt;
+	height:16;
+	filter:glow(Color=#2B3A46,Strength=6);
+	font-size:20pt;
+	font-weight:bold;
+	color:#ffffff
+	}
+	
+.titulo2 {
+	position:relative;
+	padding-top:4pt;
+	height:14;
+	filter:glow(Color=#2B3A46,Strength=6);
+	font-size:18pt;
+	font-weight:bold;
+	color:#ffffff
+	}
+
+.titbusca {
+	position:relative;
+	padding-left:10pt;
+	padding-top:6pt;
+	filter:glow(Color=#2B3A46,Strength=6);
+	font-size:20pt;
+	font-weight:bold;
+	color:#ffffff
+	}
+
+td {
+	font: 9pt Arial, Helvetica, Verdana, sans-serif;
+	color:#2B3A46
+	}
+	
+input {
+	padding-left:2pt;
+	font: 9pt Arial, Helvetica, sans-serif,Verdana;
+	color:#2B3A46
+	}
+	
+checkbox {
+	font-size:7pt;
+	background-color:#2B3A46
+	}
+	
+select {
+	font: 8pt Arial, Helvetica, sans-serif,Verdana;
+	color:#2B3A46
+	}
+	
+textarea {
+	font: 9pt Arial, Helvetica, sans-serif, Verdana;
+	color:#2B3A46;
+	background-color:#ffffff
+	}
+
+.combo {
+	font: 9pt Arial, Helvetica, sans-serif, Verdana;
+	color:#2B3A46;
+	background-color:#ffffff}
+	
+.but {
+	background-color: #2B3A46;
+	font: bolder 11px Arial, Verdana, Helvetica, sans-serif;
+	color:#ffffff;
+	cursor:hand
+	}
+
+.boxborder {border-:1px solid #2B3A46}
+
+.boxborder2 {border:2px solid #2B3A46}
+
+.menu {
+	background:#ffffff;
+	padding-left:4pt;
+	height:15pt;
+	font: bolder 9pt Arial, Verdana, Helvetica, sans-serif;
+	color:#000066
+	}
+
+.menu a {
+	font: bolder 9pt Arial, Verdana, Helvetica, sans-serif;
+	text-decoration:none
+	}
+
+.menu a:hover {
+	font: bolder 9pt Arial, Verdana, Helvetica, sans-serif;
+	color:#ff6600;
+	text-decoration:none
+	}
+
+.nomenu {
+	background:#ffffff;
+	padding-left:4pt;
+	height:15pt;
+	font: normal 9pt Arial, Verdana, Helvetica, sans-serif;
+	font-style:italic;
+	color:#000066
+	}
+
+.tnum {
+	text-align:right;
+	padding-right:2pt
+	}
+
+.tMenu {
+	background:#000066;
+	text-align:center;
+	font:bolder 10pt Arial,Helvetica,sans-serif,Verdana;
+	color:#ffffff
+	}
+	
+.tTable {
+	background:#000066;
+	text-align:center;
+	font:bolder 8pt Arial,Helvetica,sans-serif,Verdana;
+	color:#fff
+	}
+
+.tleft, .tcenter, .tright {
+	background:#c0c0c0;
+	border-bottom:1px solid #e4e4e4;
+	padding:0 3px;
+	font-size:9pt;
+	}
+
+.tcenter {text-align:center}
+
+.tright {text-align:right}
+
+.tcampo {
+	border:1px solid #e4e4e4;
+	padding:0 3pt;
+	text-align:right;
+	font-size:9pt;
+	font-weight:bold;
+	color:#006666;
+	height:16pt
+	}
+
+.valores {
+	padding-right:3pt;
+	text-align:right
+	}
+
+.dados {
+	padding-left:3pt;
+	background:#e4e4e4;
+	font-size:9pt;
+	font-weight:bold
+	}
+
+.total {
+	text-align:right;
+	padding-right:2pt;
+	background:#e4e4e4;
+	font-size:11pt;
+	font-weight:bold
+	}
+	
+#bar {
+	background:#c0c0c0;
+	font: bolder 9pt Arial, Helvetica, Sans-Serif, Tahoma, Verdana;
+	padding:0 2px;
+	color:#ff6600;
+	}
+
+#bar a {
+	font: bolder 9pt Arial, Helvetica, Sans-Serif, Tahoma, Verdana;
+	padding:0 2px;
+	color:#000066;
+	}
+	
+#bar a:hover {
+	font: bolder 8pt Arial, Helvetica, Sans-Serif, Tahoma, Verdana;
+	padding:0 2px;
+	color:#ff6600;
+	}
+
+
+
+.visivel {display:inline}	
+.invisivel {display:none}

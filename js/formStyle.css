@@ -1,0 +1,39 @@
+input{
+	font:bolder 9pt Arial, Helvetica, Sans-Serif, Tahoma, Verdana;
+	padding:0 4px;
+	}
+
+.tNumber {
+	font:bolder 9pt Arial, Helvetica, Sans-Serif, Tahoma, Verdana;
+	text-align:right;padding:2px
+	}
+
+.tString {
+	font:bolder 9pt Arial, Helvetica, Sans-Serif, Tahoma, Verdana;
+	text-align:left;
+	padding:2px
+	}
+
+.tDate {
+	font:bolder 9pt Arial, Helvetica, Sans-Serif, Tahoma, Verdana;
+	text-align:center;
+	padding:2px
+	}
+
+.tCnpjf {
+	font:bolder 9pt Arial, Helvetica, Sans-Serif, Tahoma, Verdana;
+	text-align:center;padding:2px
+	}
+
+.tLabel {
+	font:bolder 9pt Arial, Helvetica, Sans-Serif, Tahoma, Verdana;
+	color:#808080;
+	text-align:right;
+	padding:2px;
+	}
+
+.tButton {
+	font-size:9pt;
+	font-weight:bolder;
+	cursor:pointer
+	}

@@ -1,0 +1,51 @@
+<style>
+	.download{font-size:13px}
+	.download .icone{width:20px;text-align:center}
+	.download .border{border:solid 1px #ddd}
+	.download a{text-decoration:none;font-weight:normal}
+	.download a:hover{text-decoration:underline;font-weight:normal;color:#f60}
+</style>
+<table class="download" border="0" cellpadding="4" cellspacing="4" width="100%">
+	<tr>
+		<td class="icone">
+			<img src="<?=$this->baseUrl?>/public/styles/seta.jpg" border="0" />
+		</td>
+		<td>
+			<b>Clique nos arquivos abaixo</b>
+		</td>
+	</tr>
+	<tr>
+		<td colspan="2"><hr size="1" /></td>
+	</tr>
+	<?				
+		$extValida=array('jpg','jpeg','gif','png','xls','doc','pdf','htm','html');
+
+		$dh = dir("$this->folder/");
+		$counter=0;
+		while ($entry = $dh->read()) {					
+			$fname = $entry;
+			if (strlen($fname) > 4) {
+				$tipo = explode('.', $fname);
+				$ext=strtolower($tipo[1]);
+				$found=false;
+				for($x=0; $x < count($extValida); $x++){
+					if ($ext==$extValida[$x]) $found=true;
+					} 
+				if ($found) {
+					$counter++;
+					$temp = explode('.', $fname);
+					$ext = strtolower($temp[1]);
+					if($ext == 'pdf') $icone = "pdf.gif";
+					elseif(stristr($ext, 'htm')) $icone = "html.jpg";
+					elseif($ext == 'jpg' || $ext == 'jpeg') $icone = "jpg.png";
+
+					echo sprintf("<tr><td class='icone border'><img src='%s/$icone' border='0' align='absMiddle'/></td>
+						<td class='border'><a href='%s/informativos/f/%s' target='_down' />%s</a></td></tr>",
+						$this->baseImg, $this->links, $fname, str_replace('_',' ', str_replace('-',' ', $temp[0])));
+					}
+				}
+		}
+		if(!$counter) echo"<tr><td style='text-align:center' colspan='2'>Nenhum arquivo disponível para download até o momento.</td></tr>";	?>
+		</td>
+	</tr>
+</table>

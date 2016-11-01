@@ -1,0 +1,340 @@
+<script language="javascript">
+	$(document).ready(function() {
+		$nome = $('#nome');
+		$cpf = $('#cpf');
+		$rg = $('#rg');
+		$crf = $('#crf');
+		$naturalidade = $('#naturalidade');
+		$dataNcto = $('#dataNcto');
+		$ender = $('#ender');
+		$num = $('#num');
+		$compl = $('#compl');
+		$cep = $('#cep');
+		$bairro = $('#bairro');
+		$cidade = $('#cidade');
+		$uf = $('#uf');
+		$pais = $('#pais');
+		$email = $('#email');
+		$profissao = $('#profissao');
+		$formacao = $('#formacao');
+		$hfone1 = $('#hfone1');
+		$hfone2 = $('#hfone2');
+		$hfax = $('#hfax');
+		$fone = $('#fone');		
+		$cel = $('#cel');		
+		$senha = $('#senha');
+		$confirme = $('#confirme');		
+		$btSend = $('#btSend');
+		
+		$cpf.mask('999.999.999-99',{placeholder:'_'});
+		$cep.mask('99999-999',{placeholder:'_'});
+		$('.data').mask('99/99/9999',{placeholder:'_'});
+		$('.fone').mask('(99) 9999-9999',{placeholder:'_'});
+		
+		$('.numeric').keypress(function(event){if (event.charCode&&(event.charCode<48||event.charCode>57)){alert('somente numeros por favor!');event.preventDefault();}});		
+
+		$profissao.change(function(){$formacao.val($('#profissao').val())});
+
+		$nome.focus();		
+
+
+		$btSend.click(function() {
+			if($nome.val()==''){alert("O campo 'Nome' é obrigatório!");$nome.focus();return false;}
+			if($cpf.val()=='' || !$cpf.val().validCPF()){alert("Informe corretamente 'CPF'!");$cpf.focus();return false;}			
+			if($dataNcto.val()==''||!$dataNcto.val().validDate()){alert("Digite corretamente a 'Data de Nascimento'!");$dataNcto.focus();return false;}
+			if($naturalidade.val()==''){alert("O campo 'Naturalidade' é obrigatório!\nDigite a cidade/estado");$naturalidade.focus();return false;}
+			if($cep.val()==''){alert("Digite corretamente o 'CEP'!");$cep.focus();return false;}
+			if($ender.val()==''){alert("O campo 'Endereço' é obrigatório!");$ender.focus();return false;}
+			if($num.val()==''){alert("O campo 'Número' é obrigatório!");$num.focus();return false;}
+			if($bairro.val()==''){alert("O campo 'Bairro' é obrigatório!");$bairro.focus();return false;}
+			if($cidade.val()==''){alert("O campo 'Cidade' é obrigatório!");$cidade.focus();return false;}
+			if($uf.val()==''){alert("O campo 'Estado' é obrigatório!");$uf.focus();return false;}
+			if($pais.val().trim()==''){alert("O campo 'País' é obrigatório!");$pais.focus();return false;}
+			if($email.val()==''||!$email.val().validEmail()){alert("Digite corretamente o 'E-mail'!");$email.focus();return false;}
+			if ($fone.val()==''){alert("Informe o DDD e o 'Telefone Residencial'!");$fone.focus();return false;}
+			if ($cel.val()==''){alert("Informe o DDD e o 'Telefone Celular'!");$cel.focus();return false;}			
+			
+			if($formacao.val()==''){alert("O campo 'Formação' é obrigatório!");$formacao.focus();return false;}
+			if($profissao.val()!='EST. GRADUAÇÃO: FARMÁCIA'){
+				if($crf.val()==''){alert("O 'CRF' é obrigatório p/ profissionais!");$crf.focus();return false;}
+				if ($hfone1.val()==''){alert("O 'DDD' e o telefone obrigatório p/ profissionais");$hfone1.focus();return false}
+				}
+			
+			if($senha.val()==''){alert("O campo 'Senha' é obrigatório!");$senha.focus();return false;}
+			if($senha.val()!=$confirme.val()){alert("As duas senhas devem ser iguais!");$confirme.focus();return false;}
+			$('#myForm').submit();
+			})
+			
+		//if ($('#msg').val()!='') alert($('#msg').val());
+		})
+</script>
+
+
+	
+
+<style>
+	.tbCadastro{font:9pt Arial, Helvetica, Sans-Serif, Tahoma, Verdana}
+	.tbCadastro td{background:#fff;border-bottom:solid 1px #fffffe;border-right:solid 1px #fffffe;padding:1px 4px}
+	.tbCadastro .label{text-align:right;color:#808080;font-weight:bolder; white-space:nowrap}
+	.tbCadastro b{color:#066}
+	.tbCadastro p{font-size:9pt}
+	
+	#nome, #ender, #bairro, #cidade, #email, #pais, #instituicao{width:360px}
+	#cpf, #rg{width:110px;text-align:center}
+	#crf,#cep, #num{width:80px;text-align:center}
+	#dataNcto{width:100px;text-align:center}		
+	#compl, #naturalidade{width:200px;}
+	.fone {width:102px;text-align:center}
+	#profissao, #uf{font-size:9pt;text-align:left;width:200px}
+	#senha, #confirme {width:90px;text-align:center}
+	
+
+	#btSend, #getAddress{cursor:pointer}
+	.redspan {color:#f00;font-size:8pt;padding:0 4px;font-weight:bolder}
+	.blackspan {color:#000;font-size:8pt}
+	.label{font-size:8pt;font-weight:normal}
+	.numeric{text-align:center}
+	.warning{margin-left:10px;font-style:italic;color:#a4a4a4}
+</style>
+
+
+<p align="center" style="margin:4px 0;font-size:13px">Campos com <span class='redspan'>* </span> são obrigatórios</p> 
+
+<fieldset style="padding:10px">
+	<legend style="padding:0 10px">Cadastro</legend>	
+	<form name="myForm" action="" method="POST"
+		<input type="hidden" id="msg" value="<?=$this->message?>"/>
+		<table class="tbCadastro" cellSpacing="1" cellPadding="2" border="0" style="background:#ddd;width:100%">
+			<caption class="caption">Dados Pessoais</caption>
+			<tr>
+				<td class="label">* Nome Completo:</td>
+				<td>
+					<input type="text" class="text upper" maxlength="60" id="nome" name="nome" value="<?=$_POST['nome']?>" />
+				</td	
+			</tr>
+			<tr>					
+				<td class="label">* CPF:</td>
+				<td><input class="text numeric" type="text" maxlength="18" id="cpf" name="cpf" value="<?=$_POST['cpf']?>" /></td>
+			</tr>
+			<tr>
+				<td class="label">RG:</td>
+				<td><input class="text" type="text" maxlength="20" id="rg" name="rg" value="<?=$_POST['rg']?>" /></td>
+			</tr>
+			<tr>
+				<td class="label">* Endereço:</td>
+				<td>
+					<input type="text" class="text upper" maxlength="100" name="ender" id="ender" value="<?=$_POST['ender']?>" />
+				</td>
+			</tr>
+			<tr>
+				<td class="label">* Núm.:</td>
+				<td>
+					<input type="text" class="text numeric" maxlength="8" style="width:50px" name="num" id="num" value="<?=$_POST['num']?>" />
+					<span class="warning">Somente números)</span>
+				</td>
+			</tr>
+			<tr>	
+				<td class="label">Compl.:</td>
+				<td>
+					<input type="text" class="text upper" maxlength="20" style="width:100px" name="compl" id="compl" value="<?=$_POST['compl']?>" />
+					<span class="warning">Apto, Sala, Conj., etc...</span>
+				</td>
+			</tr>
+			<tr>
+				<td class="label">* Bairro:</td>
+				<td>
+					<input type="text" maxlength="50" class="text upper" name="bairro" id="bairro" value="<?=$_POST['bairro']?>" />
+				</td>
+			</tr>
+			<tr>
+				<td class="label">* Cidade:</td>
+				<td><input class="text" type="text upper" maxlength="50" id="cidade" name="cidade" value="<?=$_POST['cidade']?>" /></td>
+			</tr>
+			<tr>
+				<td class="label">* Estado:</td>
+				<td>
+					<select name="uf" id="uf" size="1" class="text">
+						<option selected value="">Selecione</option><?
+						foreach($this->estados as $rs):
+							$selected=($_POST['uf']==$rs->sigla)?" selected":'';
+							echo"<option $selected value='$rs->sigla'>$rs->estado</option>";
+						endforeach;	?>
+					</select>
+				</td>
+			</tr>
+			<tr>
+				<td class="label">* CEP:</td>
+				<td><input class="text" type="text" maxlength="9" style="width:80px" id="cep" name="cep" value="<?=$_POST['cep']?>" /></td>
+			</tr>
+			<tr>
+				<td class="label">* País:</td>
+				<td><input type="text" class="text upper" maxlength="80" id="pais" name="pais" value="<?=$_POST['pais']?>" /></td>
+			</tr>
+			<tr>
+				<td class="label">* E-mail:</td>
+				<td><input type="text" class="text lower" maxlength="100" id="email" name="email" value="<?=$_POST['email']?>" /></td>
+			</tr>
+			<tr>
+				<td class="label">* Fone Residencial:</td>
+				<td>
+					<input type="text" class="text fone" id="fone" name="fone" maxlength="12" value="<?=$_POST['fone']?>" />
+					<span class="warning">99 9999-9999</span>
+				</td>
+			</tr>
+			<tr>
+				<td class="label">* Celular:</td> 
+				<td>
+					<input type="text" class="text fone" id="fone2" name="fone2" maxlength="12" value="<?=$_POST['fone2']?>" />
+					<span class="warning">99 9999-9999</span>	
+				</td>
+			</tr>
+			<tr>
+				<td class="label" width="150">* Data de Nascimento:</td>
+				<td>
+					<input type="text" class="data" maxlength="10" name="dataNcto" id="dataNcto" value="<?=$_POST['dataNcto']?>" />&nbsp;&nbsp; 
+					<span class="warning">99/99/9999</span>		
+				</td>
+			</tr>	
+			<tr>
+				<td class="label">* Sexo:</td>
+				<td> 
+					<input <?=($_POST['sexo']==1)?'checked':''?> type="radio" id="masc" name="sexo" value="1" />&nbsp;Masculino
+					&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+					<input <?=($_POST['sexo']==0)?'checked':''?> type="radio" id="fem" name="sexo" value="0" />&nbsp;Feminino							
+				</td>
+			</tr>	
+			<tr>
+				<td class="label">C. R. F.:</td>
+				<td><input class="text" type="text" maxlength="20" id="crf" name="crf" value="<?=$_POST['crf']?>" /></td>
+			</tr>	
+			<tr>
+				<td class="label">* Natural de:</td>
+				<td>
+					<input type="text" class="text upper" maxlength="50" name="naturalidade" id="naturalidade" 
+						value="<?=$_POST['naturalidade']?>"/>
+				</td>
+			</tr>
+		</table>
+
+		<br />	
+
+		<table class="tbCadastro" cellSpacing="1" cellPadding="2" border="0" style="background:#ddd;width:100%">
+			<caption class="caption">Dados Profissionais</caption>
+			<tr>
+				<td class="label" width="150">* Selecione sua Formação:</td>
+				<td>
+					<select id="profissao" size="1">
+						<option value="">Selecione</option>
+						<option <?= ($_POST['formacao'] == 'FARMACÊUTICO GRADUADO')?' selected':''?> value="FARMACÊUTICO GRADUADO">&nbsp;&nbsp;FARMACÊUTICO GRADUADO</option>
+						<option <?= ($_POST['formacao'] == 'FARMACÊUTICO PÓS-GRADUADO')?' selected':''?> value='FARMACÊUTICO PÓS-GRADUADO'>&nbsp;&nbsp;FARMACÊUTICO PÓS-GRADUADO</option>
+						<option <?= ($_POST['formacao'] == 'EST. GRADUAÇÃO: FARMÁCIA')?' selected':''?> value="EST. GRADUAÇÃO: FARMÁCIA">&nbsp;&nbsp;ESTUDANTE DE GRADUAÇÃO</option>
+					</select>				
+				</td>
+			</tr>
+			<tr>
+				<td class="label">Digite se não estiver na lista:</td>
+				<td>
+					<input type="text" class="text upper" maxlength="50" name="formacao" id="formacao" 
+						value="<?=$_POST['formacao']?>"/>
+				</td>
+			</tr>
+			<tr>
+				<td colspan="2" align="center">
+					<table cellSpacing="0" cellPadding="0" border="0">
+						<caption><b>Marque nas caixas abaixo suas áreas de atuação</b></caption>
+						<tr><?
+						$count=0;
+						foreach($this->atuacao as $rs):
+							$count++;
+							$checked = ($rs->status) ? 'checked' : '';	
+							echo"<td style='font-size:9pt;background:#F8F6D9'>
+								<input type='checkbox' $checked class='checkbox' name='atuacao[]' value='$rs->id'><small>$rs->descricao</small></td>";
+							if ($count%3==0) echo "</tr><tr>";								
+						endforeach;	?>
+					</table>
+				</td>
+			</tr>
+		</table>
+		
+		<br />	
+
+
+		<table class="tbCadastro" cellSpacing="1" cellPadding="2" border="0" style="background:#ddd;width:100%">
+			<caption class="caption">Dados Comerciais</caption>
+			<tr>
+				<td class="label">Nome da Instituição:</td>
+				<td><input type="text" class="text" maxlength="100" id="instituicao" name="instituicao" value="<?=$_POST['instituicao']?>"/></td>
+			</tr>
+			<tr>
+				<td class="label">Telefone #1 :</td>
+				<td>
+					<input type="text" class="text fone" id="hfone1" name="hfone1" maxlength="14" value="<?=$_POST['hfone1']?>"/>
+					<span class="label">Ramal:</span>
+					<input type="text" class="text numeric" style="width:40px" id="hramal1" name="hramal1" maxlength="4" value="<?=$_POST['hramal1']?>"/>
+					<span class="redspan">Obrigatório para profissionais</span>
+				</td>
+			</tr>
+			<tr>
+				<td class="label">Telefone #2:</td>
+				<td colspan="3">
+					<input type="text" class="text fone" id="hfone2" name="hfone2" maxlength="14" value="<?=$_POST['hfone2']?>"/>
+					<span class="label">Ramal:</span>
+					<input type="text" class="text numeric" style="width:40px" id="hramal2" name="hramal2" maxlength="4" value="<?=$_POST['hramal2']?>"/>
+				</td>
+			</tr>
+			<tr>
+				<td class="label">Fax:</td>
+				<td>
+					<input type="text" class="text fone" id="hfax" name="hfax" maxlength="14" value="<?=$_POST['hfax']?>"/>
+					<span class="label">Ramal:</span>
+					<input type="text" class="text numeric" style="width:40px" id="hramal3" name="hramal3" maxlength="4" value="<?=$_POST['hramal3']?>"/>
+				</td>
+			</tr>
+		</table>
+		
+		<br />
+		<br />
+			
+		<table class="tbCadastro" cellSpacing="1" cellPadding="2" border="0" style="background:#ddd;width:100%"><?
+			if((int)$this->user->idCadastro==0) : ?>
+				<tr>
+					<td style="text-align:center" colspan="2" style="background:#efefef">
+						Crie uma senha para o seu próximo acesso! 
+					</td>
+				</tr>
+				<tr>
+					<td class="label">* Senha:</td>
+					<td>
+						<input class="text" type="password" maxlength="10" name="senha" id="senha" value="<?=$_POST['senha']?>"/>
+						<span class="warning"> <b>Máximo 10 dígitos (letras e números)</span>
+					</td>
+				</tr>
+				<tr>
+					<td class="label">* Confirme:</td>
+					<td>
+						<input class="text" type="password" maxlength="10" name="confirme" id="confirme" value="<?=$_POST['confirme']?>"/>
+						<span class="warning"> <b>Máximo 10 dígitos (letras e números)</span>
+					</td>
+				</tr>
+				<tr>
+					<td colSpan="2" style="text-align:center;background:#F8F6D9;padding:4px">
+						<b>Declaro que estou ciente que informações falsas importam em responsabilidade 
+						criminal nos termos do artigo 299<br />do codigo penal brasileiro e que que devo pagar 
+						o valor mencionado acima para ativar a minha inscrição e ter direito<br /> 
+						 aos benefícios concedidos somente aos associados ativos.</b>
+					</td>
+				</tr><?
+			endif; ?>
+			<tr>
+				<td colSpan="2" style="text-align:center;height:40px">
+					<input type="submit" id="btSend" name="btSend" value="<?=($this->idCadastro > 0)?'Atualizar meus dados':'Enviar meus dados'?>"/></td>
+			</tr>
+			<tr>
+				<td colspan="2"><?php
+				if($this->boleto)
+					echo"<p align='center' style='font-size:11pt'>$this->boleto</p>"; ?>				
+				</td>
+			</tr>
+		</table>
+	</form>
+</fieldset>

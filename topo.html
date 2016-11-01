@@ -1,0 +1,162 @@
+<?
+$pages=array();
+$pages[10]='home.html';
+$pages[11]='conheca.html';
+$pages[12]='diretoria.html';
+$pages[13]='agenda.php';
+$pages[14]='estatuto.html';
+$pages[15]='localizacao.html';
+$pages[16]='parceiros.html';
+$pages[17]='galeria.php';
+$pages[18]='resolucao542.html';
+$pages[20]='eventos.php';
+$pages[30]='noticias.php';
+$pages[31]='amf2009.html';
+$pages[40]='agenciamento.php';
+$pages[50]='cursos.php';
+$pages[51]='amfJulho2009.html';
+$pages[60]='forum.php';
+$pages[61]='guestbook.php';
+$pages[70]='links.php';
+$pages[71]='links.php';
+$pages[72]='legislacao.php';
+$pages[73]='genericos.php';
+$pages[80]='usuarios.php';
+$pages[83]='downloads.php';
+$pages[85]='contato.php';
+$pages[86]='mailing.php';
+$pages[87]='indique.php';
+$pages[90]='amfLogin.php';
+$pages[21]='incompany.php';
+
+//session_start();
+if ($_GET['lnk']==0) {
+	unset($_SESSION['admAmf']);
+	$_GET['lnk']=10;
+	}
+
+include 'includes/funcoesUteis.php';
+//debug($_GET);
+
+$pg=isset($_GET['lnk']) ? $_GET['lnk'] : 10;
+//echo "pg=$pg";
+?>
+<html>
+    <head>
+<script language="JavaScript">
+<!--
+
+	{
+		hoje = new Date()
+		dia = hoje.getDate()
+		wDay = hoje.getDay()
+		mes = hoje.getMonth()
+		ano = hoje.getYear()
+
+		if (ano < 2000)    // Y2K Fix, Isaac Powell
+			ano = ano + 1900;
+
+//			ano = eval(ano-2000);
+
+//			if (ano < 10)
+//				ano = "0" + ano
+
+		if (dia < 10)
+			dia = "0" + dia
+		dia +=' ';
+
+		function CriaArray (n) {
+			this.length = n }
+			wDays = new CriaArray(7)
+			wDays[0]='Domingo, '
+         wDays[1]='Segunda, '
+         wDays[2]='Terça, '
+         wDays[3]='Quarta, '
+         wDays[4]='Quinta, '
+         wDays[5]='Sexta, '
+         wDays[6]='Sábado, '
+
+			NomeMes = new CriaArray(12)
+
+			NomeMes[0] = "de Janeiro de"
+			NomeMes[1] = "de Fevereiro de"
+			NomeMes[2] = "de Março de"
+			NomeMes[3] = "de Abril de"
+			NomeMes[4] = "de Maio de"
+			NomeMes[5] = "de Junho de"
+			NomeMes[6] = "de Julho de"
+			NomeMes[7] = "de Agosto de"
+			NomeMes[8] = "de Setembro de"
+			NomeMes[9] = "de Outubro de"
+			NomeMes[10] = "de Novembro de"
+			NomeMes[11] = "de Dezembro de"
+		}
+
+
+		//******* funcoes para o relogio
+
+		function greeting() {
+			var today = new Date();
+			var hrs=today.getHours();
+			var hello;
+			if (hrs < 12) hello="Bom Dia, seja bem vindo !&nbsp;&nbsp;";
+			else if (hrs <=18) hello="Boa Tarde, seja bem vindo !&nbsp;&nbsp;";
+			else hello="Boa Noite, seja bem vindo !&nbsp;&nbsp;";
+
+			hello +="&nbsp;&nbsp;"
+         wDays[wDay]+='&nbsp;&nbsp;';
+         NomeMes[mes]+=' ';
+			document.getElementById('today').innerHTML=wDays[wDay]+dia+NomeMes[mes]+ano;
+			}
+
+		var timerID=null;
+		var timerRunning=false;
+		var id,pause=0,position=0;
+
+		function stopclock()	{
+			if(timerRunning)
+				clearTimeout(timerID);
+			timerRunning=false;
+			}
+
+	function showtime()	{
+		var now=new Date();
+		var hours=now.getHours();
+
+		if (hours < 10)
+			hours ='0'+hours;
+
+		var minutes=now.getMinutes();
+		if (minutes < 10)
+			minutes ='0'+minutes;
+
+		var seconds=now.getSeconds();
+		if (seconds < 10)
+			seconds ='0'+seconds;
+
+		var timeValue=hours+':'+minutes+':'+seconds;
+		document.getElementById('watch').innerHTML=timeValue;
+		timerID=setTimeout("showtime()",1000);
+		timerRunning=true;
+		}
+
+	function startclock()	{
+		stopclock();
+		showtime();
+		}
+//-->
+</script>
+
+	<table width=774 border=0 cellpadding=0 cellspacing=0>
+	<tr>
+		<td rowspan=2><a href="index.php">
+			<img src="images/topo2_01.png" width=486 height=80 alt="Homepage" border="0"></a></td>
+		<td><a href="?lnk=50&st=0">
+			<img src="images/topo2_02.png" width=288 height=55 alt="Cursos AMF" border="0"></a></td>
+	</tr>
+	<tr>
+		<td style="text-align:center; color:#ffffff; width:288px; height: 25px; font-weight:normal;background:url(images/topo2_03.png)">
+			<span id="today" ><script>greeting()</script></span>
+			<span id="watch"><script>showtime()</script></span></td>
+	</tr>
+</table>

@@ -1,0 +1,66 @@
+<?php
+if ($this->user->status < 0)
+	$status = "<b>INATIVO</b> - Entre em contato com a nossa <a href='mailto:atendimento@sbrafh.org.br'><b>Secretaria</b></a>.";
+elseif (date('Y-m-d') > $this->user->validade)
+	$status = "<b>VENCIDA</b> - <a href='$this->links/gerarboleto/'><b style='color:#f90;font-size:20px'>CLIQUE AQUI</b></a> para gerar o boleto.";
+else
+	$status = sprintf("<b>ATIVO - Sua inscrição vence em <b>%s</b>", $this->fc->Ymd2dmY($this->user->validade));
+?>
+
+
+
+<style>
+	#tbHistorico{margin-top:10px;margin-right:10px;width:100%}
+	#tbHistorico td{font-size:9pt}
+	#tbHistorico caption{background:#066;font:16pt bolder Verdana, Tahoma, Arial, Helvetica, Sans-Serif;color:#fff}
+	#tbHistorico th{font-weight:normal;letter-spacing:0;background:#E2FADE;color:#066;padding:4px;border:solid 1px #60c660}
+	#tbHistorico td{padding:4px;border:solid 1px #60c660}
+	b{font-weight:bolder}
+	.msgErr{background:#f00;color:#fff;font-weight:bolder;text-align:center}
+</style>
+
+
+<table width='100%' border='0' cellpadding='2' cellspacing='2'/>
+	<caption class="caption">Renovação de Inscrição</caption>
+</table>
+
+<hr size="1">
+
+
+<p align="justify" style="font-size:10pt">
+	Antes de renovar sua inscrição, verifique no link 'Atualizar meu Cadastro' e confira seus dados. 
+	Corrija o que achar necessário e após gravar as alterações clique em Histórico de pagamento. O valor para 
+	renovação é de <b>R$ <?=number_format($this->taxaAnuidade,2,',','.')?> para FARMACÊUTICOS PROFISSIONAIS</b> ou 
+	<b>R$ <?=number_format($this->taxaAnuidade/2,2,',','.')?>, para EST. GRADUAÇÃO: FARMÁCIA.</b>
+</p> 
+<p align="justify">
+	<b style='color:#f00'><u>EST. PÓS-GRADUAÇÃO: FARMÁCIA já são formados portanto, devem pagar como FARMACÊUTICOS 
+	PROFISSIONAIS.</u></b>
+</p>
+	
+<p>
+	<b style="color:red">Para EST. GRADUAÇÃO: FARMÁCIA é necessário o envio de cópia de documento de comprovação da matrícula para 
+	<u style="color:red">atendimento@sbrafh.org.br</u>.</b>
+</p>
+
+<pre>
+Nome&nbsp;: <?=$this->user->nome?>
+<br />Email: <?=$this->user->email?>
+<br />Fone&nbsp;: <?=$this->user->fone?>
+<br />Cel &nbsp;: <?=$this->user->fone2?>
+<br />Inscrição Nº&nbsp;&nbsp;: <?=sprintf("%06d", $this->user->idCadastro)?>
+<br /><b>Validade</b>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;: <b><?=$this->fc->Ymd2dmY($this->user->validade)?></b>
+Situação&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;: <?=$status?>
+
+<br />
+Obs.: <b>Acontece às vezes do banco não informar o número do boleto pago.</b> Quando isso acontece, 
+não temos como saber de quem foi o pagamento efetuado. Caso tenha pago sua anuidade e sua situação 
+apareça como <b>VENCIDA</b> ou <b>INATIVO</b>, envie uma cópia do BOLETO PAGO para o atendimento 
+(atendimento@sbrafh.org.br) para que possamos localizar e dar baixa no seu pagamento regulalizando 
+a sua situação.
+</pre>
+<br />
+<?php
+if($this->boleto)
+	echo"<p align='center' style='font-size:11pt'>$this->boleto</p>";
+?>

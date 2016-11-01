@@ -1,0 +1,72 @@
+<style>
+	.palestras table{font-size:12px}
+	.palestras table th{background:#114567;color:#fff;text-align:center}
+	.palestras table .label{font-size:12px;color:#000}
+	.palestras table td{font-size:12px;color:#606060}
+	.palestras table a{font-size:12px;color:#000;text-decoration:none}
+	.palestras table a:hover{font-size:12px;color:#f60;text-decoration:underline}
+	.palestras select{font-size:12px}
+</style>
+<style>
+	.list{font-size:12px;width:100%}
+	.list caption{background:#369;color:#fff;font-size:16px;padding:2px}
+	.list caption a{color:#fff;text-decoration:none}
+	.list caption a:hover{text-decoration:underline;color:red}
+	.list th{background:#E0E4F9;color:#006;font-size:11px;font-weight:normal}
+	.list th a{color:#fff;text-decoration:none}
+	.list th a:hover{text-decoration:underline;color:yellow}
+	.list td a{color:#369;text-decoration:none;padding:2px;font-weight:bolder}
+	.list td a:hover{text-decoration:underline;color:#f60}
+</style>
+
+<form action="<?=$this->links?>/inscricoes" style="margin:0" method="POST" name="comboBusca"/>
+	<input type="hidden" name="cpf" value="">
+	<table class="palestras" border="0" cellpadding="1" cellspacing="1" width="100%">
+		<tr>
+			<td style="text-align:center;background:#95B6D2">Cursos: 
+				<select name="idCurso" id="idCursos" size="1">
+					<option value="">Início: Título do curso</option><?
+					foreach($this->combo as $row):
+						$titulo = (strlen($row->titulo)>80)?substr($row->titulo,0,80)." ..." : $row->titulo;
+						$selected = ($this->idCurso == $row->idCurso)?'selected':'';
+						$inicio = $this->fc->Ymd2dmY($row->inicio);
+						echo "<option $selected value='$row->idCurso'>$inicio: $row->titulo</option>";
+					endforeach;	?>
+				</select>
+				<input type="submit" name="btSearch" id="btSearch" value="OK" class="button"/>
+			</td>
+		</tr>
+		<tr>
+			<td style="text-align:center">
+				Os Registros serão mostrados em ordem alfabética de nomes. Clique na <b style="color:#c40000">Inscrição</b> para abrir o registro
+			</td>
+		</tr>
+	</table>
+</form>
+
+<table class="list" border="0" cellspacing="1" cellpadding="1" width="100%">
+	<tr>
+		<th>Data</th>							  
+		<th>Inscr.</th>
+		<th>CPF do Aluno</th>
+		<th>Nome do Aluno</th>										
+		<th>Status</th>
+	</tr><?	
+	$counter = 0;
+	foreach($this->dbtable as $row) :
+		$bg = ($counter%2==0) ? '#dddddd' : '#ffffff'; 		
+		echo"
+		<tr align='center' bgcolor='$bg'>
+			<td align='center' width='80'>".$this->fc->Ymd2dmy($row->data)."</td>
+			<td align='center' width='60'><a href='$this->links/inscricoes/curso/$this->idCurso/id/$row->idAlunoCursos'>".
+				sprintf('%06d',$row->idAlunoCursos)."</a></td>
+			<td align='center' nowrap>".$this->fc->formatCPF($row->cpf)."</td>
+			<td align='left'>$row->nome</td>						
+			<td align='center'>$row->status</td>
+		</tr>";
+		$counter ++;
+	endforeach; ?>
+	<tr>
+		<td colspan="5" align="center"><br />Total de Alunos: <b><?=count($this->dbtable)?></b></td>
+	</tr>
+</table>

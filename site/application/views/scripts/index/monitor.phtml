@@ -1,0 +1,74 @@
+<style>
+	#tcc{margin-top:10px;margin-right:10px;width:100%;font-size:13px}
+	#tcc p{font-size:13px;text-align:justify;margin-bottom:8px;margin-left:8px;margin-right:8px}
+	#tcc p.titulo{font-size:15px;font-weight:bolder;color:#14b7cd;text-align:center}
+	#tcc ol li{font-size:13px;margin-bottom:8px}
+</style>
+
+<div id="tcc">
+
+	<p class="titulo">
+		SELEÇÃO DE MONITORES PARA O CURSO DE ATENÇÃO FARMACÊUTICA E FARMÁCIA CLÍNICA 2014 DA ASSOCIAÇÃO MINEIRA DE FARMACÊUTICOS – AMF
+	</p>
+	
+	<p align="justify">
+		<b>PERÍODO DE INSCRIÇÃO:-</b> Durante o período de 10 de março a 10 de abril de 2014, 
+			estarão abertas as inscrições para Monitoria do Curso de <b>Atenção Farmacêutica e Farmácia  Clínica</b> da AMF.
+	</p>
+
+	<p align="justify"><b>OBJETIVO:-</b> Facilitar o acesso a qualificação do profissional, tendo como contrapartida 
+		a colaboração do monitor no suporte operacional necessário para manter e aprimorar a qualidade do curso oferecido.
+	</p>
+	
+	<p align="justify"><b>NÚMERO DE VAGAS:-</b> Serão oferecidas 2  vagas . O curso  está sujeito à confirmação de sua data de início, 
+		podendo esta ser adiada, ou mesmo cancelada, em função de não ser atingido o número mínimo de inscritos para sua viabilização.
+	</p>
+	
+	<p align="justify"><b>BENEFÍCIOS PARA O MONITOR:-</b> Bolsa de estudo, com desconto de <b>25 a 50%</b>  do valor da mensalidade.</p>
+	
+	<p align="justify"><b>REQUISITOS PARA A PARTICIPAÇÃO DO PROCESSO:-</b> Apenas poderão participar os alunos que estiverem inscritos nesse curso, 
+		com a matrícula paga e todos os documentos enviados para AMF até <b>11 de abril de 2014</b>.
+	</p>
+	
+	
+	<script>
+		$(document).ready(function(){
+			$('#btSend').click(function(){		
+				if(!$('#concordo').is(':checked')){
+					alert('Por favor, marque a caixa que leu e concorda com o regulamento.');
+					return false;
+					}
+				if($('#userFile').val().trim()==''){alert("Por favor selecione o arquivo com seu currículo!");$('#userFile').focus();return false;}	
+				})
+			})
+	</script>
+	<form name="rematricula" id="rematricula" method="POST" action="" ENCTYPE="multipart/form-data">
+		<input type="hidden" name="id" value="<?=$this->curso->idAlunoCursos?>" />
+		<input type="hidden" name="idCadastro" value="<?=$this->curso->idAluno?>" />
+		<input type="hidden" name="idCurso" value="<?=$this->curso->idCurso?>" />
+		<pre style="margin-left:8px">Id Cadastro Nº	: <?=sprintf("%06d", $this->user->idCadastro)?>
+			<br />Cadastrado em	: <?=$this->fc->msql2dmY($this->user->dataReg, true)?>
+			<br />Nome		: <?=$this->user->nome?>
+			<br />Email		: <?=$this->user->email?>
+			<br />Fone		: <?=$this->user->fone?>
+			<br />Cel		: <?=$this->user->fone2?>
+			<br />Curso		: <?='ATENÇÃO FARMACÊUTICA E FARMÁCIA CLÍNICA'?>
+			<br />Matrícula	: R$ <?=number_format($this->matricula->valor, 2, ',','.')?>
+			<br />Pagamento	: <?=$this->fc->Ymd2dmY($this->matricula->pgto)?>
+		</pre><?
+		//$this->fc->debug($this->curso);
+		if($this->liberado){ ?>
+			<input type="checkbox" name="concordo" id="concordo">
+				Declaro que li o regulamento acima e estou de acordo com os termos apresentados e gostaria de 
+				me candidatar a um dos cargos de Monitor.
+			<p>Obrigatório o envio do currículo em word (*.doc, *.docx)</p>
+			<p>Currículo: <input type="file" name="userFile" id="userFile" value="" /></p>
+			<p style="text-align:center">
+				<input type="submit" name="btSend" id="btSend" value="<< Enviar >>" class="button" />
+			</p><?
+			}
+		else
+			echo"<p style='text-align:center'>$this->message</p>";
+		?>
+	</form>
+</div>

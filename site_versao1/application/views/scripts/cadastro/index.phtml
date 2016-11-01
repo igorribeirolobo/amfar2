@@ -1,0 +1,253 @@
+<style type="text/css">			
+	#cadastro{font-family:Arial, Helvetica, Sans-Serif, Tahoma, Verdana;font-size:12px}
+	#cadastro .label{text-align:right;padding:0 4px;font-size:12px;white-space:nowrap}
+	#cadastro td{padding:0 4px;font-size:12px}
+	#cadastro #cpf{text-align:center;width:132px}
+	#cadastro .fone{text-align:center;width:120px}
+	#cadastro #profissao{width:200px}
+	#cadastro .button{cursor:pointer}
+	#cadastro .button:hover{color:#f90}
+	#cadastro span{color:#94A1E2}
+	legend{padding:0 10px}
+</style>
+
+		<script language="javascript" type="text/javascript">
+			 $(document).ready(function(){			
+				
+				$('#cpf').mask(($('#tipo').val()=='0') ? '999.999.999-99' : '99.999.999/9999-99',{placeholder:'_'});
+				$('.fone').mask('(99) 9999-9999',{placeholder:'_'});
+				$('#cep').mask('99999-999',{placeholder:'_'});
+
+
+				$('#btSave').click(function(){				
+					if($('#nome').val().trim()==''){
+						alert('Este campo não pode ficar em branco!');
+						$('#nome').focus();
+						return false;
+						}						
+					if(!$('#cpf').val().validCPF()){
+						alert('Por favor digite corretamente seu CPF/CNPJ!');
+						$('#cpf').focus();
+						return false;
+						}
+					if($('#rg').val().trim()==''){
+						alert('Este campo não pode ficar em branco!');
+						$('#rg').focus();
+						return false;
+						}				
+					if($('#ender').val().trim()==''){
+						alert('Este campo não pode ficar em branco!');
+						$('#ender').focus();
+						return false;
+						}
+					if($('#num').val().trim()==''){
+						alert('Este campo não pode ficar em branco!');
+						$('#num').focus();
+						return false;
+						}
+					if($('#bairro').val().trim()==''){
+						alert('Este campo não pode ficar em branco!');
+						$('#bairro').focus();
+						return false;
+						}
+					if($('#cep').val().trim()==''){
+						alert('Este campo não pode ficar em branco!');
+						$('#cep').focus();
+						return false;
+						}
+					if($('#cidade').val().trim()==''){
+						alert('Este campo não pode ficar em branco!');
+						$('#cidade').focus();
+						return false;
+						}
+					if($('#uf').val().trim()==''){
+						alert('Este campo não pode ficar em branco!');
+						$('#uf').focus();
+						return false;
+						}			
+					if(!$('#mailto').val().validEmail()){
+						alert('Por favor digite corretamente seu email!');
+						$('#mailto').focus();
+						return false;
+						}
+					if($('#fone').val().trim()==''){
+						alert('Este campo não pode ficar em branco!');
+						$('#fone').focus();
+						return false;
+						}
+					if($('#fone2').val().trim()==''){
+						alert('Este campo não pode ficar em branco!');
+						$('#fone2').focus();
+						return false;
+						}
+					if($('#profissao').val().trim()==''){
+						alert('Este campo não pode ficar em branco!');
+						$('#profissao').focus();
+						return false;
+						}
+					if($('#senha').val().trim()==''){
+						alert('Este campo não pode ficar em branco!');
+						$('#senha').focus();
+						return false;
+						}
+					if($('#confirme').val().trim()==''){
+						alert('Este campo não pode ficar em branco!');
+						$('#confirme').focus();
+						return false;
+						}
+					if($('#senha').val()!=$('#confirme').val()){
+						alert('Senha e Confirme devem ser iguais!');
+						$('#confirme').focus();
+						return false;
+						}					
+					})
+					
+				<?=($this->user->idCadastro) ? "$('#rg').focus();" : "$('#nome').focus()";?>
+				
+				//if ($('#msg').val()!='' && $('#msg')!= undefined) alert($('#msg').val());
+				})
+
+		</script>
+
+
+<fieldset>
+	<legend>Ficha de Inscrição</legend>
+	<form name="cadastro" id="cadastro"  action="" method="POST">
+		<input type="hidden" id="msg" value="<?=$this->message?>" />
+		<input type="hidden" name="tipo" id="tipo" value="<?=$this->tc?>" />
+	
+		<table cellSpacing="1" cellPadding="1" width="100%" border="0">
+			<tr>
+				<td align=center colspan=4 height="18">Selecione: 
+					<input type="radio" name="tipo" value="0" <?=($this->tc==0) ? 'checked' : ''?>
+						onclick="window.location.href='<?=$this->links?>/index/tc/0'" /> <b>PESSOA FÍSICA</b>
+					<input type="radio" name="tipo" value="1" <?=($this->tc==1) ? 'checked' : ''?>
+						onclick="window.location.href='<?=$this->links?>/index/tc/1'" /> <b>EMPRESA</b>
+				</td>
+						 	
+				<tr>
+					<td class='label'><?=($this->tc)?'Empresa:' : 'Nome'?></td>
+					<td>
+						<input <?=($this->user->idCadastro) ? 'disabled' : ''?> maxlength='60' class='text upper' name='nome' id='nome' value='<?=$_POST['nome']?>' />
+					</td>
+				</tr>
+				<tr>
+					<td class='label'><?=($this->tc)?'CNPJ:' : 'CPF:'?></td>
+					<td><input <?=($this->user->idCadastro) ? 'disabled' : ''?> maxlength='18' class="text" id='cpf' name='cpf' value='<?=$_POST['cpf']?>'  /></td>
+				</tr>
+				
+				<tr>
+					<td class='label'><?=($this->tc) ? 'Inscrição Estadual:' : 'RG:'?></td>
+					<td><input maxlength='20' class="text" style='width:132px' id='rg' name='rg' value="<?=$_POST['rg']?>" /></td>
+				</tr>
+	
+				<tr>
+					<td class="label">Endereço:</td>
+					<td>
+						 <input maxlength="100" class="text upper" name="ender" id="ender" value="<?=$_POST['ender']?>" />
+					</td>
+				</tr>
+
+				<tr>
+					<td class="label">Número:</td>
+					<td>
+						 <input maxlength="6" class="text numeric" style="width:60px; text-align:center" name="num" id="num" value="<?=$_POST['num']?>" />
+						 <span>Digite somente números</span>
+					</td>
+				</tr>
+				
+				<tr>
+					<td class="label">Complemento:</td>
+					<td>
+						<input maxlength="30" class="text upper"  name="compl" style="width:100px; id="compl" value="<?=$_POST['compl']?>" />
+						<span>Ex.: Andar, Apto, Sala, Conj., etc...
+					</td>
+				</tr>
+				
+				<tr>
+					<td class="label">Bairro:</td>
+					<td>	
+						<input maxlength="50" class="text upper"  name="bairro" id="bairro" value="<?=$_POST['bairro']?>" />
+					</td>
+				</tr>
+				
+				<tr>		
+					<td class="label">CEP:</td>
+					<td>
+						<input maxlength="10" class="text" style="width:70px; text-align:center" id="cep" name="cep" value="<?=$_POST['cep']?>" /">
+					</td>
+				</tr>
+				
+				<tr>	
+					<td class="label">Cidade:</td>	
+					<td>
+						<input maxlength="50" class="text upper" name="cidade" id="cidade" value="<?=$_POST['cidade']?>" />
+					</td>
+				</tr>
+				
+					<tr>
+						<td class="label">Estado:</td>
+						<td>
+							<select name="uf" id="uf" size="1" class="text">						
+								<option value="">Selecione o Estado</option><?
+								foreach($this->estados as $rs):
+									$selected = ($_POST['uf']==$rs->uf) ? 'selected' : null;
+									echo"<option $selected value='$rs->uf'>$rs->estado</option>";
+								endforeach; ?>
+							</select>
+						</td>
+					</tr>
+	
+				<tr>
+					<td class="label">E-mail:</td>
+					<td>
+						<input maxlength="100" class="text lower" id="email" name="email" value="<?=$_POST['email']?>" />
+					</td>
+				</tr>
+	
+				<tr>
+					<td class="label">DDD/Fone:</td>
+					<td><input class="text fone" id="fone" name="fone" maxlength="30" value="<?=$_POST['fone']?>" />
+				</td>
+				
+				<tr>	
+					<td class='label'><?=($this->tc) ? 'DDD/Fax:' : 'DDD/Celular:'?></td>
+					<td><input name='fone2' id='fone2' class='text fone' maxlength='20' value="<?=$_POST['fone2']?>" />
+				</tr>
+				
+				<tr>
+					<td class='label'><?=($this->tc) ? 'Nome para Contato:' : 'Profissão:'?></td>
+					<td colspan=3><input name='profissao' id='profissao' class='text upper' maxlength='50' value="<?=$_POST['profissao']?>" />
+				</tr>
+					
+				<tr>
+					<td style="text-align:center" colspan="4" style="background:#efefef">
+						Crie uma senha para o seu próximo acesso! <b>Ex.: fulano0607</b>
+				</tr>
+				
+				<tr>
+					<td class="label">Senha:</td>
+					<td>
+						<input type="password" maxlength="10" class="text lower" style="width:120px" name="senha" id="senha" value="<?=$_POST['senha']?>" />
+					</td>
+				</tr>
+
+				<tr>
+					<td class="label">Confirme:</td>
+					<td>
+						<input type="password" maxlength="10" class="text lower" style="width:120px" name="confirme" name="confirme" value="<?=$_POST['confirme']?>" />
+					</td>
+				</tr>
+
+			<tr>
+				<td colSpan="2" style="text-align:center">
+					<input type="submit" id="btSave" name="btSave" value="<?=($this->user->idCadastro) ? 'Atualizar Cadastro' : 'Enviar Cadastro'?>" class="button" />
+					<?php
+					if($this->idCurso > 0):?>
+						<input type="submit" id="btContinue" name="btContinue" value="Continuar Inscrição" class="button" /><?
+					endif; ?>
+				</td>
+			</tr>
+		</table>
+	</form>
+</fieldset>

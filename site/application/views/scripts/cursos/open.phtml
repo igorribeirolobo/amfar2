@@ -1,0 +1,46 @@
+<style>
+	#cursos p .titulo {background:#599da1;color:#fff;font-size:14px;font-weight:bolder;padding:2px 10px}
+	#cursos p .descricao {text-align:left}
+	#cursos p .warning {background:#f60;color:#fff;font-size:14px;font-weight:bolder;padding:2px;text-align:center}
+	#cursos ul li{text-align:left}
+</style>
+
+<script>
+	$(document).ready(function(){
+		$('.sendlink').click(function(){
+			dialogModal("<?=$this->links?>/sendlink/id/"+this.id, "sendlink", 340, 470);
+			})
+		})
+</script>
+
+<?
+//$this->fc->debug($this->curso);
+//die();
+?>
+<div id="curso">	
+	<form name="cursos" id="cursos" method="POST" action="<?=$this->links?>/inscricao/id/<?=$this->curso->idCurso?>/">
+		<p class="titulo"><?=$this->curso->titulo?></p>
+
+		<p class="descricao"><?=$this->curso->descricao?></p>
+
+		
+		<p class="warning">"A AMF reserva-se o direito de cancelar os cursos,<br />caso não haja um número mínimo de participantes."</p>
+		
+		<p style="background:#def2f5; padding:4px;text-align:center;font-size:13px"><?
+		if($this->id == 163)	
+			echo "<a href='http://www.cmmg.edu.br/cursos/farmacia-clinica-e-farmacologia-aplicada-a-pratica-clinica/' target='out'>fazer incrição</a>";
+			elseif($this->id ==162){
+			}
+		else
+			echo"Aguarde";
+		//else
+		//	echo"<input type='submit' name='btInscrição' id='btInscricao' class='button' value=' Fazer minha inscrição ' />";
+		//echo"As inscrições devem ser feitas somente no site atual.<br /><a href='http://www.amfar.com.br' target='main'>Clique aqui</a>";
+			?>
+			<!--
+			<a href="#" id="<?=$this->curso->idCurso?>" class="sendlink"><span style="font-size:12px">Enviar link para amigos</span></a>
+			-->
+
+		</p>
+	</form>		
+</div>

@@ -1,0 +1,120 @@
+<?php
+$rs = $this->dbtable;
+//$this->fc->debug($this);
+$urlEdit = "$this->baseUrl/boletos/open/curso/$this->idCurso/inscricao/$this->id/id";
+$urlContrato = "$this->baseUrl/cursos/contrato/curso/$this->idCurso/id/$this->idInscricao";
+$urlContrato = "$this->baseUrl/cursos/contrato/curso/$this->idCurso/id/$this->idInscricao";
+$urlBoletos = "$this->baseUrl/boletos/print/curso/$this->idCurso/inscricao/$this->idInscricao";
+?>
+<script>
+	$(document).ready(function(){
+		$('.del').click(function(){
+			if(!confirm('Tem certeza que deseja excluir este registro?'))
+				return false;
+			if(!confirm('Uma vez excluído, não tem como recuperar este registro.\n\nConfirma a Exclusão?'))
+				return false;
+			return true;
+			})
+
+		$('.edit').click(function(){
+			//var formWin= window.open('','winForm',
+			//	'left=0, top=0, width=570,height=460,toolbar=no,location=no,directories=no,status=no,menubar=no,scrollbars=yes,resizable=no');
+			//formWin.focus();
+			dialogModal('<?=$this->baseUrl?>/boletos/open/id/' + this.id, 'boletos', 420, 500);
+			})
+
+
+		$('.contrato').click(function(){
+			var contratoWin= window.open('','winContrato');
+			contratoWin.focus();
+			})
+
+		if($('#msg').val().length>0) alert($('#msg').val());
+		})	
+</script>
+
+<style>
+	.list{font-size:12px;width:100%}
+	.list caption{background:#E0E4F9;color:#006;font-size:16px;padding:2px}
+	.list caption a{color:#006;text-decoration:none}
+	.list caption a:hover{text-decoration:underline;color:red}
+	.list th{background:#E0E4F9;color:#006;font-size:11px;font-weight:normal}
+	.list th a{color:#fff;text-decoration:none}
+	.list th a:hover{text-decoration:underline;color:yellow}
+	.list td a{color:#369;text-decoration:none;font-weight:bolder}
+	.list td a:hover{text-decoration:underline;color:#f60}
+</style>
+
+<input type="hidden" id="msg" value="<?=$this->message?>"/>
+
+<table class='list' cellpadding='2' cellspacing='2' border='0'>
+	<caption>
+		Detalhes da Inscrição
+		<span style="float:right"><a href="<?=$this->links?>/inscricoes/curso/<?=$this->idCurso?>">Voltar</a></span>					
+	</caption>
+	<tr>
+		<td colspan="7" class="pre"><?			
+			echo "<pre>";
+			echo sprintf("Id/Nome : <b>[%s] $rs->nome</b>", sprintf('%06d', $rs->idCadastro));
+			echo "<br/>CPF     : <b>".$this->fc->formatCPF($rs->cpf)."</b> - RG: <b>$rs->rg</b>";
+			echo "<br/>Ender.  : <b>$rs->ender, $rs->num $rs->compl</b>";
+			echo "<br/>Bairro  : <b>$rs->bairro</b>     CEP: <b>".$this->fc->formatCEP($rs->cep)."</b>";
+			echo "<br/>Cidade  : <b>$rs->cidade</b>    UF: <b>$rs->uf</b>";
+			echo "<br/>Fone    : <b>$rs->fone</b>     -    Fone 2: <b>$rs->fone2</b>";
+			echo "<br/>Email   : <b>$rs->email</b>";
+			echo "<br/>Prof.   : <b>$rs->profissao</b>";
+			echo "<br/>";
+			echo sprintf("<br/>Id Insc.: <b>%s</b> efetuada em <b>%s</b>", sprintf('%06d', $this->id), $this->fc->Ymd2dmY($rs->data));
+			echo sprintf("<br/>Id/Curso: <b>[%s] $rs->titulo</b>	<a href='$this->links/contrato/uid/$rs->idCadastro/id/$this->id/' target='_contrato'><b><u>Ver Contrato</u></b></a>", sprintf('%03d', $this->idCurso));
+			echo "<br/>Início  : <b>".$this->fc->Ymd2dmy($rs->inicio)."</b> com  Carga Horária de <b>$rs->cargaHoraria</b> horas";
+			echo "<br/>Valor   : <b>R$ ". number_format($rs->valorCurso,2,',','.')."</b> em <b>".
+				sprintf('%02d',$rs->parcelas)."</b> parcela(s) de R$ <b>".number_format($rs->valorParcelas,2,',','.')."</b>";
+			?>
+		</td>
+	</tr>
+</table>
+
+<table class='list' cellpadding='2' cellspacing='2' border='0'>
+	<caption>Boletos da Inscrição</caption>
+	<tr align='center'>
+		<th>Id</th>
+		<th>Emissao</th>
+		<th>NumDoc</th>				
+		<th>Vcto</th>
+		<th nowrap>Valor R$</th>			
+		<th>Pgto</th>
+		<th colspan="3">Opções</th>
+	</tr>
+	<tbody><?			
+ 	$count = 0;
+ 	if(!$this->boletos)
+ 		echo"<tr bgcolor='#dddddd'><td colspan='7' align='center'><b>Nenhum Registro Localizado</td></tr>";
+ 	else{
+		foreach($this->boletos as $rs) :
+			$count++;
+			$bg= ($count%2==0) ? '#dddddd' : '#ffffff';					
+			echo sprintf("
+			<tr align='center' bgcolor='$bg'>
+				<td><a href='#' id='$rs->idFinanceiro' class='edit' alt='Alterar este registro' title='Alterar este registro'>" . sprintf('%06d', $rs->idFinanceiro) . "</a></td>
+				<td>%s</a></td>
+				<td>$rs->numDoc</td>
+				<td>%s</td>
+				<td>%s</td>			
+				<td>%s</td>
+				<td><a href='$this->links/inscricoes/curso/$this->idCurso/id/$this->id/del/$rs->idFinanceiro' class='del'>
+					<img src='$this->baseImg/del.gif' alt='Excluir este registro' title='Excluir este registro' border='0'/></a>
+				</td>
+				<td><a href='http://www.amfar.com.br/boletos/boleto.php?id=$rs->idFinanceiro' 
+					alt='Imprimir este boleto' title='Imprimir este boleto' target='_boletos'> 
+					<img src='$this->baseImg/printer.png' border='0' align='absMiddle'  style='margin:0 10px'/></a>
+				</td>
+				<td><img src='$this->baseImg/email.gif' border='0' align='absMiddle' style='cursor:pointer'
+						alt='Enviar boleto por e-mail' title='Enviar boleto por e-mail' class='email'
+						onclick=\"dialogModal('$this->baseUrl/boletos/enviarboleto/id/$rs->idFinanceiro', 'boletos', '400', '500')\" />
+				</td>
+			</tr>",
+			$this->fc->Ymd2dmY($rs->dataLct), $this->fc->Ymd2dmY($rs->vcto), number_format($rs->total,2,',','.'), $this->fc->Ymd2dmY($rs->pgto));
+		endforeach;
+		} ?>
+	</tbody>
+</table>

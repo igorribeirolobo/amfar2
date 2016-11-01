@@ -1,0 +1,393 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<HTML>
+	<HEAD>
+		<TITLE>CARTÃO DE BOAS FESTAS</TITLE>
+		<META http-equiv=Content-Language content=pt-br>
+		<META content="MSHTML 6.00.2900.3429" name=GENERATOR>
+		<META content=FrontPage.Editor.Document name=ProgId>
+		<META http-equiv=Content-Type content="text/html; charset=windows-1252">
+		<bgsound src="http://www.amfar.com.br/cartaodenatal_arquivos/109102.mid" loop="0">
+	</HEAD>
+	
+	<BODY bgcolor="#43728D" style="overflow:hidden">
+		<SCRIPT language=JavaScript1.2>
+		<!--
+			var trailLength = 1;    
+			var path = "http://www.amfar.com.br/cartaodenatal_arquivos/feliz_ano_novo_mini.gif";		
+			var isIE = false, isNav = false, range = "all.", style = ".style", i, d = 0;
+			var topPix = ".pixelTop", leftPix = ".pixelLeft", images, storage;
+			
+			if (document.layers) {
+				isNav = true, range = "layers.", style = "", topPix = ".top", leftPix = ".left";
+				}
+			else if (document.all) {
+				isIE = true;
+			}
+		
+		function initTrail() {
+			images = new Array();
+			for (i = 0; i < parseInt(trailLength); i++) {
+				images[i] = new Image();
+				images[i].src = path;
+				}
+			
+			storage = new Array(); 
+			for (i = 0; i < images.length*3; i++) {
+				storage[i] = 0;
+			}
+		
+			for (i = 0; i < images.length; i++) { // make divs for IE and layers for Navigator
+				(isIE) ? document.write('<div id="obj' + i + '" style="position: absolute; z-Index: 100; height: 0; width: 0"><img src="' + images[i].src + '"></div>') : document.write('<layer name="obj' + i + '" width="0" height="0" z-index="100"><img src="' + images[i].src + '"></layer>');
+				}
+			trail();
+			}
+		
+		function trail() {
+			for (i = 0; i < images.length; i++) {
+				eval("document." + range + "obj" + i + style + topPix + "=" + storage[d]);
+				eval("document." + range + "obj" + i + style + leftPix + "=" + storage[d+1]);
+				d = d+2;
+				}
+			for (i = storage.length; i >= 2; i--) {;
+				storage[i] = storage[i-2];
+				}
+			
+			d = 0;
+			clearTimeout(timer);
+			var timer = setTimeout("trail()", 10);
+			}
+		
+		function processEvent(e) { 
+			if (isIE) {
+				storage[0] = window.event.y+document.body.scrollTop+5;
+				storage[1] = window.event.x+document.body.scrollLeft-1;
+				}
+			else {
+				storage[0] = e.pageY+12;
+				storage[1] = e.pageX+12;
+		 		}
+			}
+		
+		if (isNav) {
+			document.captureEvents(Event.MOUSEMOVE);
+			}
+		
+		if (isIE || isNav) {
+			initTrail();
+			document.onmousemove = processEvent;
+			}
+		// -->
+		</SCRIPT>
+		
+		<CENTER>		
+			<TABLE id=AutoNumber1 style="BORDER-COLLAPSE: collapse" borderColor=#111111 cellSpacing=0 cellPadding=0 width="40%" border=0
+				style="margin-top:25px; border: #fdfac1 15px ridge">
+				<TBODY>
+					<TR>
+						<TD width="100%">
+							<TABLE cellSpacing=0 cellPadding=0 border=0>
+								<TBODY>
+									<TR>
+										<TD colSpan=3>
+											<IMG height=320 src="cartaodenatal_arquivos/natal2009.gif" width=520 border=0>
+										</TD>
+									</TR>
+								</TBODY>
+							</TABLE>
+						</TD>
+					</TR>
+				</TBODY>
+			</TABLE>
+		</CENTER>
+
+<P align=left><!--webbot bot="HTMLMarkup" startspan -->
+<SCRIPT language=JavaScript1.2> 
+var imagem="http://www.amfar.com.br/cartaodenatal_arquivos/feliz_ano_novo_mini.gif"
+if (document.layers)
+{document.write("<LAYER NAME='animacao' LEFT=10 TOP=10><img src='"+imagem+"' ></LAYER>")}
+else if (document.all){document.write("<div id='animacao' style='position:absolute;top:10px;left:10px;width:17px;height:22px;z-index:50'><img src='"+imagem+"'></div>")} 
+ 
+conta=-1; 
+move=1;
+function curva(){
+abc=new Array(0,1,1,1,2,3,4,0,6,-1,-1,-1,-2,-3,-4,0,-6)
+for (i=0; i < abc.length; i++)
+{var C=Math.round(Math.random()*[i])}
+iniciar=abc[C];
+setTimeout('curva()',1900);
+return iniciar;
+}
+ypos=10;
+xpos=10;
+movimento = 60;
+function moveR(){
+caminho=movimento+=iniciar;
+y = 4*Math.sin(caminho*Math.PI/180);
+x = 6*Math.cos(caminho*Math.PI/180);
+if (document.layers){
+ypos+=y;
+xpos+=x;
+document.animacao.top=ypos+window.pageYOffset;
+document.animacao.left=xpos+window.pageXOffset;
+}
+else if (document.all){
+ypos+=y;
+xpos+=x;
+document.all.animacao.style.top=ypos+document.body.scrollTop;
+document.all.animacao.style.left=xpos+document.body.scrollLeft;
+}
+T=setTimeout('moveR()',50);
+}
+function edges(){
+if (document.layers){
+if (document.animacao.left >= window.innerWidth-40+window.pageXOffset)movimento=Math.round(Math.random()*45+157.5);
+if (document.animacao.top >= window.innerHeight-30+window.pageYOffset)movimento=Math.round(Math.random()*45-112.5);
+if (document.animacao.top <= 2+window.pageYOffset) movimento = Math.round(Math.random()*45+67.5);//OK!
+if (document.animacao.left <= 2+window.pageXOffset) movimento = Math.round(Math.random()*45-22.5);//OK!
+}
+else if (document.all)
+{
+if (document.all.animacao.style.pixelLeft >= document.body.offsetWidth-45+document.body.scrollLeft)movimento=Math.round(Math.random()*45+157.5);
+if (document.all.animacao.style.pixelTop >= document.body.offsetHeight-35+document.body.scrollTop)movimento=Math.round(Math.random()*45-112.5);
+if (document.all.animacao.style.pixelTop <= 2+document.body.scrollTop) movimento = Math.round(Math.random()*45+67.5);//OK!
+if (document.all.animacao.style.pixelLeft <= 2+document.body.scrollLeft) movimento = Math.round(Math.random()*45-22.5);//OK!
+}
+setTimeout('edges()',100);
+}
+function efeito(){
+curva();
+moveR();// onUnload="opener.gO()"
+edges();
+}
+if (document.all||document.layers)
+efeito()
+</SCRIPT>
+<!--webbot bot="HTMLMarkup" endspan --><!--webbot bot="HTMLMarkup" startspan -->
+<SCRIPT language=JavaScript>
+<!--
+Image0 = new Image();
+Image0.src = "http://www.amfar.com.br/cartaodenatal_arquivos/feliz_ano_novo_mini.gif";
+Amount = 20; 
+Ymouse = -50;
+Xmouse = -50;
+Ypos = new Array();
+Xpos = new Array();
+Speed = new Array();
+rate = new Array();
+grow = new Array();
+Step = new Array();
+Cstep = new Array();
+nsSize = new Array();
+ns = (document.layers)?1:0;
+(document.layers)?window.captureEvents(Event.MOUSEMOVE):0;
+function Mouse(evnt) {
+Ymouse=(document.layers)?evnt.pageY-20:event.y-20;
+Xmouse=(document.layers)?evnt.pageX:event.x;
+}
+(document.layers)?window.onMouseMove=Mouse:document.onmousemove=Mouse;
+for (i = 0; i < Amount; i++) {
+Ypos[i] = Ymouse;
+Xpos[i] = Xmouse;
+Speed[i] = Math.random()*4+1;
+Cstep[i] = 0;
+Step[i] = Math.random()*0.1+0.05;
+grow[i] = 8;
+nsSize[i] = Math.random()*15+5;
+rate[i] = Math.random()*0.5+0.1;
+}
+if (ns) {
+for (i = 0; i < Amount; i++) {
+document.write("<LAYER NAME='sn"+i+"' LEFT=0 TOP=0><img src="+Image0.src+" name='N' width="+nsSize[i]+" height="+nsSize[i]+"></LAYER>");
+   }
+}
+else {
+document.write('<div style="position:absolute;top:0px;left:0px"><div style="position:relative">');
+for (i = 0; i < Amount; i++) {
+document.write('<img id="si" src="'+Image0.src+'" style="position:absolute;top:0px;left:0px;filter:alpha(opacity=90)">');
+}
+document.write('</div></div>');
+}
+function MouseBubbles() {
+var hscrll = (document.layers)?window.pageYOffset:document.body.scrollTop;
+var wscrll = (document.layers)?window.pageXOffset:document.body.scrollLeft;
+for (i = 0; i < Amount; i++){
+sy = Speed[i] * Math.sin(270 * Math.PI / 180);
+sx = Speed[i] * Math.cos(Cstep[i] * 4);
+Ypos[i] += sy;
+Xpos[i] += sx; 
+if (Ypos[i] < -40) {
+Ypos[i] = Ymouse;
+Xpos[i] = Xmouse;
+Speed[i] = Math.random() * 6 + 4;
+grow[i] = 8;
+nsSize[i] = Math.random() * 15 + 5;
+}
+if (ns) {
+document.layers['sn'+i].left = Xpos[i] + wscrll;
+document.layers['sn'+i].top = Ypos[i] + hscrll;
+}
+else {
+si[i].style.pixelLeft = Xpos[i] + wscrll;
+si[i].style.pixelTop = Ypos[i] + hscrll;
+si[i].style.width = grow[i];
+si[i].style.height = grow[i]; 
+}
+grow[i] += rate[i]; 
+Cstep[i] += Step[i];
+if (grow[i] > 24) grow[i] = 25;
+}
+setTimeout('MouseBubbles()', 10);
+}
+MouseBubbles();
+//-->
+</SCRIPT>
+<!--webbot bot="HTMLMarkup" endspan --><!--webbot bot="HTMLMarkup" startspan -->
+<SCRIPT language=JavaScript1.3> 
+
+if (window.Event) 
+document.captureEvents(Event.MOUSEUP); 
+
+function nocontextmenu() 
+{ 
+event.cancelBubble = true 
+event.returnValue = false; 
+
+return false; 
+} 
+
+function norightclick(e) 
+{ 
+if (window.Event) 
+{ 
+if (e.which == 2 || e.which == 3) 
+return false; 
+} 
+else 
+if (event.button == 2 || event.button == 3) 
+{ 
+event.cancelBubble = true 
+event.returnValue = false; 
+return false; 
+} 
+
+} 
+if (document.layers) { 
+document.captureEvents(Event.MOUSEDOWN); 
+} 
+document.oncontextmenu = nocontextmenu; 
+document.onmousedown = norightclick; 
+document.onmouseup = norightclick; 
+//--> 
+</SCRIPT>
+
+<!--webbot bot="HTMLMarkup" endspan --><!--webbot bot="HTMLMarkup" startspan -->
+<P align=right><!--webbot bot="HTMLMarkup" startspan -->
+<P><FONT color=#00ff00><!--webbot bot="HTMLMarkup" startspan -->
+<P><!--webbot bot="HTMLMarkup" startspan -->
+<META content=capsilva name=Author>
+<META content="Microsoft FrontPage 4.0" name=GENERATOR>
+<META>
+<CENTER>
+<DIV align=center>
+<TABLE cols=1 borderColorDark= borderColorLight= 
+background=http://www.amfar.com.br/cartaodenatal_arquivos/caminhandocomosol.com.htm border=1>
+  <SCRIPT language=JavaScript1.2>
+
+
+
+
+<!-- Begin
+var no =20; // snow number
+var speed = 9; // smaller number moves the snow faster
+var snowflake = "http://www.amfar.com.br/cartaodenatal_arquivos/feliz_ano_novo_mini.gif";
+
+var ns4up = (document.layers) ? 1 : 0; // browser sniffer
+var ie4up = (document.all) ? 1 : 0;
+var dx, xp, yp; // coordinate and position variables
+var am, stx, sty; // amplitude and step variables
+var i, doc_width = 800, doc_height = 600;
+if (ns4up) {
+doc_width = self.innerWidth;
+doc_height = self.innerHeight;
+} else if (ie4up) {
+doc_width = document.body.clientWidth;
+doc_height = document.body.clientHeight;
+}
+dx = new Array();
+xp = new Array();
+yp = new Array();
+am = new Array();
+stx = new Array();
+sty = new Array();
+for (i = 0; i < no; ++ i) { 
+dx[i] = 0; // set coordinate variables
+xp[i] = Math.random()*(doc_width-50); // set position variables
+yp[i] = Math.random()*doc_height;
+am[i] = Math.random()*20; // set amplitude variables
+stx[i] = 0.02 + Math.random()/10; // set step variables
+sty[i] = 0.7 + Math.random(); // set step variables
+if (ns4up) { // set layers
+if (i == 0) {
+document.write("<layer name=\"dot"+ i +"\" left=\"15\" ");
+document.write("top=\"15\" visibility=\"show\"><img src=\"");
+document.write(snowflake + "\" border=\"0\"></layer>");
+} else {
+document.write("<layer name=\"dot"+ i +"\" left=\"15\" ");
+document.write("top=\"15\" visibility=\"show\"><img src=\"");
+document.write(snowflake + "\" border=\"0\"></layer>");
+}
+} else if (ie4up) {
+if (i == 0) {
+document.write("<div id=\"dot"+ i +"\" style=\"POSITION: ");
+document.write("absolute; Z-INDEX: "+ i +"; VISIBILITY: ");
+document.write("visible; TOP: 15px; LEFT: 15px;\"><img src=\"");
+document.write(snowflake + "\" border=\"0\"></div>");
+} else {
+document.write("<div id=\"dot"+ i +"\" style=\"POSITION: ");
+document.write("absolute; Z-INDEX: "+ i +"; VISIBILITY: ");
+document.write("visible; TOP: 15px; LEFT: 15px;\"><img src=\"");
+document.write(snowflake + "\" border=\"0\"></div>");
+}
+}
+}
+function snowNS() { // Netscape main animation function
+for (i = 0; i < no; ++ i) { // iterate for every dot
+yp[i] += sty[i];
+if (yp[i] > doc_height-50) {
+xp[i] = Math.random()*(doc_width-am[i]-30);
+yp[i] = 0;
+stx[i] = 0.02 + Math.random()/10;
+sty[i] = 0.7 + Math.random();
+doc_width = self.innerWidth;
+doc_height = self.innerHeight;
+}
+dx[i] += stx[i];
+document.layers["dot"+i].top = yp[i];
+document.layers["dot"+i].left = xp[i] + am[i]*Math.sin(dx[i]);
+}
+setTimeout("snowNS()", speed);
+}
+function snowIE() { // IE main animation function
+for (i = 0; i < no; ++ i) { // iterate for every dot
+yp[i] += sty[i];
+if (yp[i] > doc_height-50) {
+xp[i] = Math.random()*(doc_width-am[i]-30);
+yp[i] = 0;
+stx[i] = 0.02 + Math.random()/10;
+sty[i] = 0.7 + Math.random();
+doc_width = document.body.clientWidth;
+doc_height = document.body.clientHeight;
+}
+dx[i] += stx[i];
+document.all["dot"+i].style.pixelTop = yp[i];
+document.all["dot"+i].style.pixelLeft = xp[i] + am[i]*Math.sin(dx[i]);
+}
+setTimeout("snowIE()", speed);
+}
+if (ns4up) {
+snowNS();
+} else if (ie4up) {
+snowIE();
+}
+// End -->
+</SCRIPT>

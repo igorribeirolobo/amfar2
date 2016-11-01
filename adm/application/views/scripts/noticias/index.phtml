@@ -1,0 +1,65 @@
+<style>
+	.noticias{font-size:12px;color:#000;text-align:justify;padding:4px 0;border-bottom:solid 1px silver}
+	.noticias th{text-align:center;background:#369;color:#fff}
+	.noticias img{text-align:center}
+	.noticias .titulo{font-size:14px}
+	.noticias .subtitulo{font-style:italic;color:#a4a4a4}
+	.noticias .opcoes{float:right;margin-top:10px}
+	.noticias .opcoes a{font-weight:bolder;text-decoration:none;background:#ddd;padding:4px;color:#f00}
+	.noticias .opcoes a:hover{color:#f90;text-decoration:underline}
+</style>
+<script language="javascript">
+	$(document).ready(function() {
+		$('.del').click(function(){
+			if(!confirm("Tem certeza que deseja excluir esta notícia?\n\nConfirme a exclusão.\n\n")) return false;
+			})
+		})
+</script>
+
+<table class="noticias" border="0" cellpadding="4" cellspacing="2" width="100%">
+	<caption class="caption"><span style="float:right;font-size:14px">
+		<a href="#" onclick="dialogModal('<?=$this->links?>/open/id/0', 'news', '600', '900')">Inserir Registro</a></span>
+	</caption>
+	<thead>
+		<tr>
+			 <th>Data</th>
+			 <th>Foto</th>
+			 <th>Título/SubTítulo</th>
+		</tr>
+	</thead>
+   <tbody> 
+		<tr><?
+			if (!count($this->paginator))	
+				echo"<tr><td class='empty' colspan='2'>Nenhum registro localizado!</td></tr>";
+			else {
+				$counter=0;
+				foreach($this->paginator as $rs):
+					$counter++;
+					//$this->fc->debug($rs);
+					$rs->link = trim($rs->link);
+					$edit = "<a href='#' onclick=\"dialogModal('$this->links/open/id/$rs->idNoticia', 'news', '600', '900')\">Alterar</a>";
+					if(empty($rs->link) || stristr($rs->link,'.phtml'))
+						$preview = "<a href='/site/index/noticias/id/$rs->idNoticia' target='_preview'>Preview</a>";
+					else
+						$preview = "<a href='/site/public/$rs->link' target='_preview'>Preview</a>";
+					
+					$del = "<a href='$this->links/index/del/$rs->idNoticia' class='del'>Excluir</a>";
+					
+					$thumb = (!empty($rs->thumb)) ?"<img src='/site/public/news/thumbs/$rs->thumb' border='0' width='75' >" : null;
+					//$this->fc->debug($rs);
+					$bg = ($counter % 2 == 0) ? '#D2FABA' : '#ffffff';
+					echo "
+					<tr bgcolor='$bg' class='center'>
+						<td valign='top'>$rs->datareg</td>
+						<td>$thumb</td>
+						<td class='left'>
+							<span class='titulo'>$rs->titulo,</span><br />
+							<span class='subtitulo'>$rs->subTitulo</span><br />
+							<span class='opcoes'>$edit&nbsp;&nbsp;$preview&nbsp;&nbsp;$del</span>
+						</td>
+					</tr>";
+				endforeach;
+				}	?>
+	</tbody>
+</table>
+<?php echo $this->paginationControl($this->paginator, 'Sliding', 'paginator.phtml'); ?>

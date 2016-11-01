@@ -1,0 +1,131 @@
+<style>
+	#tbBoleto td{padding:2px;font-size:13px}
+	#tbBoleto .label{text-align:right}
+	#tbBoleto .valor{text-align:right;width:100px}
+	#tbBoleto .data{text-align:center;width:100px}
+	#tbBoleto .text{width:100%}
+</style>
+<link type="text/css" href="<?=jsLib?>/themes/base/ui.all.css" rel="stylesheet" />
+<script type="text/javascript" src="<?=jsLib?>/ui/ui.datepicker.js"></script>
+<script type="text/javascript" src="<?=jsLib?>/ui/ui.core.js"></script>
+<script language="javascript">
+	$(document).ready(function(){
+			$('.data').datepicker({  
+			dateFormat: 'dd/mm/yy',  
+			dayNames:['Domingo','Segunda','Terça','Quarta','Quinta','Sexta','Sábado','Domingo'],  
+			dayNamesMin:['D','S','T','Q','Q','S','S','D'],  
+			dayNamesShort:['Dom','Seg','Ter','Qua','Qui','Sex','Sáb','Dom'],  
+			monthNames:['Janeiro','Fevereiro','Março','Abril','Maio','Junho','Julho','Agosto','Setembro','Outubro','Novembro','Dezembro'],  
+			monthNamesShort:['Jan','Fev','Mar','Abr','Mai','Jun','Jul','Ago','Set','Out','Nov','Dez'],  
+			nextText:'Próximo',prevText: 'Anterior'
+			})			
+		})
+</script>
+
+<form name="boleto" method="POST" action="">
+
+	<table id="tbBoleto" border="0" cellspacing="2" cellpadding="2" width="100%">
+		<tr bgcolor="#E0E4F9">
+			<td colspan="2"><b>DADOS DO SACADO</td>
+		</tr><?
+		if($this->boleto->sacado){ ?>
+		<tr>
+			<td class="label">Sacado:</td>
+			<td><b><?=$this->boleto->nome?></td>
+		</tr>
+
+		<tr>
+			<td class="label">CPF:</td>
+			<td><b><?=$this->fc->formatCPf($this->boleto->cpf)?></td>
+		</tr>
+
+		<tr>
+			<td class="label" valign="top">Endereço:</td>
+			<td><b>
+				<?=$this->boleto->ender?>, <?=$this->boleto->num?>&nbsp;&nbsp;<?=$this->boleto->compl?><br />
+				<?=$this->boleto->bairro?><br />
+				<?=$this->boleto->cep?>&nbsp;&nbsp;<?=$this->boleto->cidade?> / <?=$this->boleto->uf?></b>
+			</td>
+		</tr>
+
+
+
+
+		<tr>
+			<td class="label">Sacado:</td>
+			<td><b><?=$this->boleto->nome?></td>
+		</tr>
+
+		<tr>
+			<td class="label">CPF:</td>
+			<td><b><?=$this->fc->formatCPf($this->boleto->cpf)?></td>
+		</tr>
+
+		<tr>
+			<td class="label" valign="top">Endereço:</td>
+			<td><b>
+				<?=$this->boleto->ender?>, <?=$this->boleto->num?>&nbsp;&nbsp;<?=$this->boleto->compl?><br />
+				<?=$this->boleto->bairro?><br />
+				<?=$this->boleto->cep?>&nbsp;&nbsp;<?=$this->boleto->cidade?> / <?=$this->boleto->uf?></b>
+			</td>
+		</tr>
+
+
+		<tr bgcolor="#E0E4F9">
+			<td class="tcenter" colspan="2"><b>DADOS DO BOLETO</td>
+		</tr>
+
+		<tr>
+			<td class="label">Emissão:</td>
+			<td><?=$this->fc->Ymd2dmY($this->boleto->dataLct)?></td>
+		</tr>
+		<tr>
+			<td class="label">Num. Doc:</td>
+			<td><?=$this->boleto->numDoc?></td>
+		</tr>
+		<tr>
+			<td class="label">Histórico:</td>
+			<td>
+				<input class="text" type="text" name="historico" id="historico" maxlength="50" value="<?=$this->boleto->historico?>" />
+			</td>
+		</tr>
+		<tr>
+			<td class="label">Valor do Boleto:</td>
+			<td>
+				<input class="valor" type="text" name="valor" id="valor" maxlength="12" value="<?=number_format($this->boleto->valor,2,',','.')?>" />
+				<span>Use vírgula como ponto decimal</span>
+			</td>
+		</tr>
+		<tr>
+			<td class="label">Acréscimo:</td>
+			<td>
+				<input class="valor" type="text" name="acrescimo" id="acrescimo" maxlength="12" value="<?=number_format($this->boleto->acrescimo,2,',','.')?>" />
+				<span>Use vírgula como ponto decimal</span>
+			</td>
+		</tr>
+		<tr>
+			<td class="label">Valor Total:</td>
+			<td>
+				<input class="valor" type="text" name="total" id="vtotalalor" maxlength="12" value="<?=number_format($this->boleto->total,2,',','.')?>" />
+				<span>Use vírgula como ponto decimal</span>
+			</td>
+		</tr>
+		<tr>
+			<td class="label">Vencimento:</td>
+			<td><input class="data" type="text" name="vcto" id="vcto" maxlength="10" value="<?=$this->fc->Ymd2dmY($this->boleto->vcto)?>" /></td>
+		</tr>
+		<tr>
+			<td class="label">Pagamento:</td>
+			<td>
+				<input class="data" type="text" name="pgto" id="pgto" maxlength="10" value="<?=$this->fc->Ymd2dmY($this->boleto->pgto)?>" />
+			</td>					
+		</tr>
+		<tr bgcolor="#E0E4F9">
+			<td></td>
+			<td align="center">
+				<input type="submit" name="btGravar" value=" Enviar " class="button" />
+			</td>
+		</tr>
+	</table>
+
+</form>

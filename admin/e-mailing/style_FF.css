@@ -1,0 +1,321 @@
+body {
+	margin:0 auto;
+	padding:0;
+	background:#e4e4e4;
+	font: 9pt Arial, Verdana, Sans-Serif;
+	text-align:center
+	}
+
+td, input, select, textarea {
+	margin-left:4px;
+	margin-top:4px;
+	background:#e4e4e4;
+	font: 9pt Arial, Verdana, Sans-Serif;
+	
+	}
+	
+
+#tudo {
+	margin:0 auto;
+	width:780px;
+	border:2px solid #c0c0c0;
+	padding:2px;
+	text-align:center
+	}
+
+p {
+	margin:0;
+	font: 8pt Arial, Helvetica, sans-serif, Verdana, Tahoma;
+	color: #808080
+	}
+	
+td {
+	background:#fff;
+	padding:0 2px}
+	
+a {
+	font: 8pt Arial, Helvetica, Sans-serif, Verdana, Tahoma;
+	text-decoration:none
+	}
+	
+a:hover {
+	font-weight:bold;
+	color:#004f6d;
+	text-decoration:underline
+	}
+
+
+.page, .tools {
+	text-align:center;
+	font: bolder 18pt Arial, Helvetica, Sans-Serif, Verdana, Tahoma;
+	color:#808080;
+	border:0;
+	background:#efefef
+	}
+	
+
+
+.tfield {
+	text-align:center;
+	font: bolder 8pt Arial, Helvetica, Sans-Serif, Verdana, Tahoma;
+	color:#60c659;
+	background:#004f6d;
+	height:24px
+	}
+	
+.tfield a{
+	font: bolder 8pt Arial, Helvetica, Sans-Serif, Verdana, Tahoma;
+	color:#60c659;
+	text-decoration:underline
+	}
+
+.tfield a:hover{
+	color:#fff;
+	}
+
+.tdata {	
+	text-align:center;
+	font: bolder 8pt Arial, Helvetica, Sans-Serif, Verdana, Tahoma;
+	color:#004f6d;
+	background:#60c659
+	}
+	
+.but {
+	border:1px solid #fff;
+	background:#004d6f;
+	color:#fff;
+	font: bolder 8pt Arial, Verdana, Sans-Serif;
+	cursor:pointer }
+
+.tInput, .data {
+	border:0;
+	background-color:#fefefe;
+	padding-left:4pt;
+	font-size:8pt;
+	font-weight:bold;
+	color:#808080}
+	
+.tFile {
+	border:1px solid #60c659;
+	background:#fefefe;
+	padding-left:4pt;
+	font-size:8pt;
+	width:250px;
+	color:#808080}
+
+
+.data {
+	text-align:center;
+	padding:0 0px;
+	color:#000}
+
+.erro{
+	font-weight:bolder;
+	font-size:10pt;
+	color:#fff;
+	background:#c40000;
+	text-align:center;
+	border:0
+	}
+	
+.ok{
+	font-weight:bolder;
+	font-size:10pt;
+	color:#fff;
+	background:#60c659;
+	text-align:center;
+	border:0
+	}
+
+
+form {
+	margin:0;
+	padding:0 }
+
+pre {
+	margin:0px;
+	padding:0px;
+	white-space: pre-wrap; /* css-3 */
+	white-space: -moz-pre-wrap; /* Mozilla, since 1999 */
+	word-wrap: break-word; /* Internet Explorer 5.5+ */ }
+	
+#toolBar {
+	float:left;
+	margin:2px 0;
+	background:#004f6d;
+	color:#ffffef;
+	padding-bottom:2px;
+	border-bottom:1px solid #fff}
+	
+#cmbToolbars {
+	visibility: visible;
+	margin-right:8px
+	}
+ 
+#cmbOpenFile {margin-right:8px}
+
+
+#mailForm td{
+	padding:1px 4px;
+	border-bottom:1px solid #60c659;
+	border-left:1px solid #60c659
+	}
+	
+#mailList td{
+	font: 8pt Arial, Helvetica, sans-serif, tahoma, verdana;
+	padding:0 4px;
+	color:#606060
+	}
+
+.label {
+	font: bolder 9pt Arial, Helvetica, sans-serif, tahoma, verdana;
+	color:#004f6d;
+	text-align:right;
+	padding:0 4px
+	}
+
+
+#linkId{
+	font: bolder 8pt Arial, Helvetica, Sans-Serif, Verdana, Tahoma;
+	color:#004f6d;
+	background:#eee;
+	padding:0 2px;
+	border:1px solid #fff;	
+	text-align:center
+	}
+
+#linkId a{
+	font: bolder 8pt Arial, Helvetica, Sans-Serif, Verdana, Tahoma;
+	color:#004f6d;
+	text-decoration:none;
+	padding:0
+	}
+	
+#linkId a:hover{
+	color:#004f6d;
+	border-bottom:1px solid #c40000
+	}
+	
+#nameFile {
+	width:567px;
+	padding:0 4px
+	}
+
+#bodymail {
+	width:567px;
+	height:250px;
+	font-size:9pt;
+	padding:0 4px
+	}
+
+#rodape {
+	border-top:1px solid #808080;
+	height:20px;
+	padding-top:2px;
+	margin-top:2px;	
+	text-align:center;
+	background:#60c659
+	}
+	
+#nextId, #lastId, #currId, #amount, #mailText, #categ {
+	margin:1 0;
+	width:40px;
+	font: bolder 8pt Arial, Helvetica, Sans-Serif, Verdana, Tahoma;
+	text-align:center;
+	padding:0px 0 0 0;
+	border:1px solid #808080
+	}
+	
+#amount{width:30px}
+	
+#mailText{width:180px}
+
+#categ{
+	width:250px;
+	text-align:left;
+	padding:1 4px}
+	
+.azul{color:#004d6f}
+
+.folders {
+	margin-top:2px;
+	background:#eeeee4 url(images/opFolder.gif) no-repeat 3px 3px;
+	padding:10px 0 2px 30px;
+	height:23px;
+	border-bottom:1px solid #efefef
+	}
+
+.delFiles a{
+	background:url(images/set_pTrans.gif) no-repeat 0px 3px;
+	padding:0 10px;
+	color:#808080;
+	font-weight:bolder;
+	}
+	
+.delFiles a:hover{
+	background:url(images/set_p.gif) no-repeat 0px 5px;
+	padding:0 10px;
+	color:#60c659;
+	font-weight:bolder
+	}
+	
+#lnkHome {
+	text-align:center;
+	background:url(images/fundoLinkHome.png) no-repeat;
+	padding:10px;
+	width:120px;
+	height:110px;
+	}
+	
+#lnkHome a:{
+	width:60px;
+	height:55px;
+	text-align:center;
+	background:url(images/linkHomeOut.png) no-repeat;
+	}
+
+#lnkHome a:hover{
+	width:60px;
+	height:55px;
+	text-align:center;
+	background:url(images/linkHomeOver.png) no-repeat 7px -1px;
+	}
+	
+#lnkHome img{
+	margin:2px 10px}
+
+
+#titulo {
+	text-align:left;
+	font: bolder 9pt Arial, Helvetica, sans-serif, Verdana, Tahoma;
+	color:#fff;
+	background:#eeeee4 url(images/title_bg.jpg) repeat-x;
+	height:22px;
+	padding-left:4px;
+	}
+	
+#msgErr {
+	font: bolder 9pt Arial, Helvetica, sans-serif, Verdana, Tahoma;
+	background:#c40000;
+	color:#ffffef;
+	width:auto;
+	height:auto;
+	text-align:center;
+	padding:2px 4px;
+	}
+	
+#msgOk {
+	font: bolder 9pt Arial, Helvetica, sans-serif, Verdana, Tahoma;
+	background:#60c659;
+	color:#ffffef;
+	width:auto;
+	height:auto;
+	text-align:center;
+	padding:2px 4px;
+	}
+	
+#tableSend td {
+	border-bottom:1px solid #808080;
+	border-right:1px solid #808080;
+	}
+	

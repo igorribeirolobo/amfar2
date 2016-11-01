@@ -1,0 +1,31 @@
+<style>
+	.agenda{font-size:12px}
+	.agenda th{font-weight:bolder;color:#fff;background:#369}
+	.agenda .center{text-align:center}
+</style>
+
+<table class="agenda" border="0" cellpadding="4" cellspacing="2" width="100%">
+	<tr>
+		 <th>Data</th>
+		 <th>Assunto</th>
+	</tr>
+	</tr><?
+		if (!count($this->paginator))	
+			echo"<tr><td class='empty' colspan='2'>Nenhum registro localizado!</td></tr>";
+		else {
+			$counter=0;
+			foreach($this->paginator as $rs):
+				$counter++;
+				//$this->fc->debug($rs);
+				//$bg = ($counter % 2 == 0) ? '#D2FABA' : '#ffffff';
+				echo "<tr>
+					<td vAlign='top'>$rs->fdata</td>
+					<td>$rs->descricao</td>
+				</tr>";
+			endforeach;
+			}	?>
+   <tr> 
+		<th colspan="2">Total de <?=count($this->paginator)?> Registros:</th> 
+	</tr> 
+</table>
+<?php echo $this->paginationControl($this->paginator, 'Sliding', 'paginator.phtml'); ?>

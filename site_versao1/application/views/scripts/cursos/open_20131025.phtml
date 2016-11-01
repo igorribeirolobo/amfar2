@@ -1,0 +1,38 @@
+<style>
+	#curso p.titulo {background:#369;color:#fff;font-size:14px;font-weight:bolder;padding:2px 10px}
+	#curso p.warning {background:#f60;color:#fff;font-size:14px;font-weight:bolder;padding:2px;text-align:center}
+</style>
+
+<script>
+	$(document).ready(function(){
+		$('.sendlink').click(function(){
+			dialogModal("<?=$this->links?>/sendlink/id/"+this.id, "sendlink", 340, 470);
+			})
+		})
+</script>
+
+<?
+//$this->fc->debug($this->curso);
+//die();
+?>
+<div id="curso">	
+	<form name="cursos" id="cursos" method="POST" action="<?=$this->links?>/inscricao/id/<?=$this->curso->idCurso?>/">
+		<p class="titulo"><?=$this->curso->titulo?></p>
+		<center>	
+			<p class="descricao"><?=$this->curso->descricao?></p>
+		</center>
+		
+		<p class="warning">"A AMF reserva-se o direito de cancelar os cursos,<br />caso não haja um número mínimo de participantes."</p>
+		
+		<p style="background:#efefef; border:1px solid #c0c0c0; padding:4px;text-align:center"><?
+			if($this->id < 152)	
+				echo "Aguarde o início das Inscrições ";
+			else
+				echo"<input type='submit' name='btInscrição' id='btInscricao' class='button' value=' Fazer minha inscrição ' />";
+			?>
+	
+			<img style="margin: 0 10px" src="<?=$this->baseImg?>/email.gif" border="0" align="absMiddle">
+				<a href="#" id="<?=$this->curso->idCurso?>" class="sendlink">Enviar link para amigos</a>
+		</p>
+	</form>		
+</div>

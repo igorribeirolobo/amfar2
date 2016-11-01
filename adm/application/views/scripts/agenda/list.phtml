@@ -1,0 +1,51 @@
+<script>
+	$(document).ready(function(){
+		$('.del').click(function(){
+			if(!confirm('Tem certeza que deseja excluir este registro?\n\nUma vez excluído, não tem como recuperar este registro.\n\nConfirma a Exclusão?'))
+				return false;
+			return true;
+			})
+		})	
+</script>
+<style>
+	.list{font-size:12px;width:100%}
+	.list caption{background:#599da1;color:#fff;font-size:16px;padding:2px}
+	.list caption a{color:#fff;text-decoration:none}
+	.list caption a:hover{text-decoration:underline;color:red}
+	.list th{background:#def2f5;color:#599da1;font-size:11px;font-weight:normal}
+	.list th a{color:#fff;text-decoration:none}
+	.list th a:hover{text-decoration:underline;color:yellow}
+	.list td a{color:#058;text-decoration:none;font-weight:bolder}
+	.list td a:hover{text-decoration:underline;color:#599da1}
+</style>
+
+<table class='list' cellpadding='2' cellspacing='4' border='0'>
+	<caption>
+		Agenda da Diretoria <small>(Clique na data para alterar)</small>
+		<span style="float:right"><a href="<?=$this->baseUrl?>/agenda/add">Novo Registro</a></span>
+	</caption>
+	<thead>
+		<tr>
+			<th>Data</th>
+			<th>Descrição</th>
+			<th></th>
+		</tr>
+	</thead>
+	<tbody><?
+	$count = 0;			
+	foreach($this->paginator as $rs):
+		$count++;
+		$bg = ($count%2==0) ? '#dddddd' : '#ffffff';
+		$data = $this->fc->Ymd2dmY($rs->data);
+		echo"
+		<tr align='center' bgcolor='$bg'>
+			<td width='50'><a href='$this->baseEdit/$rs->id'>$data</a></td>
+			<td align='left'>".str_replace("\r\n","<br />", $rs->descricao)."</td>
+			<td width='30'><a href='$this->baseDel/$rs->id' class='del'>
+				<img src='$this->baseImg/del.gif' alt='Excluir' border='0'/></a></td>
+		</tr>";
+	endforeach;
+	?>
+	</tbody>
+</table>
+<?php echo $this->paginationControl($this->paginator, 'Sliding', 'paginator.phtml'); ?>

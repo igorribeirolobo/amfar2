@@ -1,0 +1,46 @@
+<script language="javascript">
+	$(document).ready(function() {
+		$('#btSave').click(function(){
+			if($('#pwd').val()==''){alert('Por favor digite sua senha!');$('#pwd').focus();return false;}
+			if($('#pwd').val( != $('#confirm').val()){alert("Campo 'Senha' e 'Confirme' deve ser iguais!");$('#pwd').focus();return false;}
+			})
+		})
+</script>
+<style>
+	.login{}
+	.login th{text-align:right;padding:0 4px;font-weight:normal;font-size:12px}
+	.login .senha{width:90px;text-align:center}
+</style>
+
+<center>
+	<div style="width:350px;padding:20px 0">	
+		<fieldset>
+			<legend>&nbsp;&nbsp;Alteração de Senha&nbsp;&nbsp;</legend>
+			<form id="myForm" method="POST" action="" style="margin:0">
+				<input type="hidden" id="msg" value="<?=$this->message?>"/>
+				<table class="login" cellpadding="4" cellspacing="4" border="0" width="100%" style="background:#D2FABA;">
+					<tr>
+						<td colspan="2" style="text-align:center">
+							<img src="<?=$this->baseUrl?>/public/images/Login.gif" border="0"/><br />
+						</td>
+					</tr>
+					<tr>
+						<td colspan="2"><hr size="1" color="#000000" style="margin:0"></td>
+					</tr>
+					<tr>
+						<th>Senha:</th>
+						<td><input class="text senha" type="password" name="pwd" id="pwd" maxlength="10" value=""/></td>
+					</tr>
+					<tr>
+						<th>Confirme:</th>
+						<td><input class="text senha" type="password" name="confirm" id="confirm" maxlength="10" value=""/></td>
+					</tr>
+					<tr>
+						<td colspan="2" style="text-align:center">
+							<input class='button' type='submit' name='btSave' id='btSave' value='Gravar Nova Senha' /></td>
+					</tr>
+				</table>
+			</form>	
+		</fieldset>
+	</div>
+</center>

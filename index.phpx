@@ -1,0 +1,112 @@
+<?
+	include("global.php");
+/*
+function insertMailing($nome, $uf, $mail){
+	$nome=trim($nome);
+	$uf=trim($uf);
+	$email=trim($email);
+	$host='mysql01.amfar.com.br';	// host ou ip do mysql
+	$userDB='amfar';	// login do mysql
+	$pwdDB='amf10web20';	// senha do mysql
+	$dataBase='amfar';	// base de dados
+	mysql_connect($host, $userDB, $pwdDB);
+	mysql_select_db($dataBase);
+	@mysql_query("INSERT INTO mailing SET nome='$nome', email='$email', dataReg=NOW()");	
+	}
+*/
+?>
+
+<html>
+   <head>
+	  <meta http-equiv="Content-Language" content="pt-br">
+	  <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
+	  <META NAME="robots" CONTENT="All">
+	  <title>AMF ASSOCIAÇÃO MINEIRA DE FARMACÊUTICOS</title>
+	  <link rel="stylesheet" href="css/style.css" type="text/css">
+	  <script type="text/javascript" src="http://www.amfar.com.br/js/ajax.js"></script>
+	   <script type="text/javascript" src="js/jquery-1.3.2.js"></script>
+   </head>
+
+   <body topmargin="4" leftmargin="0" style="background: url('http://www.amfar.com.br/css/background.png')">
+      <div id="dvTudo">
+         <div id="dvTopo"><? include("topo.html") ?></div>
+         <div id="dvMenu" style="margin:2px 0">
+            <script type='text/javascript' src='js/menuProg.js'></script>
+            <script type='text/javascript' src='js/menuTree.js'></script>					 
+			</div>
+			
+			<table cellpadding="0" cellspacing="0" border="0">
+				<tr>
+					<td valign="top" style="width:560px">
+						<?include $pages[$pg]?>
+					</td>
+					<td valign="top">	
+						<style>
+							#banners{font:8pt Arial,  helvetica, sans-serif, tahoma, verdana;color: #000;}							
+							#banners a{text-decoration:none;color:#006;}								
+							#banners a:hover{color:#f60text-decoration:underline;}				
+						</style>          
+						<table id="banners" cellpadding=1 cellspacing=1 border=0 width="210">
+							<tr>
+								<td align="center">
+									<img src="images/titDestaques.png">
+								</td>
+							</tr>
+							<?
+							if (date('Ymd')< '20101111') { ?>
+							<tr>
+								<td align="center">
+									<a href="http://www.newtonpaiva.br" target="_blank">
+										<img src="images/newtonpaiva.jpg" border="0"/><br />
+										11 e 12 de Novembro de 2010</a>
+									<hr size="1">
+								</td>
+							</tr><?
+							} ?>
+							<tr><!--
+								<td align='center'>
+									<a class=dst href="javascript:abrir('noticias.php?idNoticia=63')">
+										<img src='http://www.amfar.com.br/mini.php?img=http://www.amfar.com.br/images/guiaSbrafh.gif&wh=200' border='0'/></a>
+									<hr size='1'>
+								</td>
+								-->
+								<td align='center'>
+										<img src='=images/bnNewton.gif' border='0'/>
+									<hr size='1'>
+								</td>
+							</tr>
+							<tr>
+								<td align="center">
+									<a href="?lnk=86">
+									 <img  src="images/mailing2.png" border=0><br />
+									 Faça parte do nosso mailing e fique<br />informado sobre novos cursos</a>
+								</td>
+							</tr>
+							<tr>
+								<td align="center">
+									<a class=dst href="javascript:abrir('noticias.php?idNoticia=67')">
+									 <img src="http://www.amfar.com.br/noticias/esjus.jpg" border=0 width="200"/></a>
+								</td>
+							</tr>
+							<tr>
+								<td align="center">
+									<a class=dst href="http://www.sbrafh.org.br/congresso/" target="_blank">
+									 <img src="http://www.amfar.com.br/images/congressoSbrafh.jpg" border=0 width="200"/></a>
+								</td>
+							</tr>
+						</table>
+					</td>
+				</tr>
+			</table>
+			<table cellpadding="0" cellspacing="0" border="0" style='display:none'>
+				<tr>
+					<td><img src="images/homeBottom_01.jpg" border="0"/></td>
+					<td><img src="images/homeBottom_02.jpg" border="0"/></td>
+					<td><img src="images/homeBottom_03.jpg" border="0"/></td>
+				</tr>
+			</table>
+			<? include("includes/rodape.html") ?>
+		</div>
+   </body>
+</html>
+<script>startclock()</script>

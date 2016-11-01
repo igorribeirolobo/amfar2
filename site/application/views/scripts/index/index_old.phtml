@@ -1,0 +1,78 @@
+<style>
+	#home{width:100%;margin:10px 0;font-size:12px;color:#888;}
+	#home .destaque{font-size:16pt;color:#f90;font-weight:bolder}
+	#home .destaque span{background:#F6DEBB;padding:0 8px}
+	.noticias{text-align:justify;padding:4px 0;border-bottom:solid 1px silver}
+	#home .news{font-size:12px;color:#888;text-align:justify;padding:4px 10px;border-bottom:solid 1px silver}
+	#home .iconews{width:100px}
+</style>
+<table cellpadding="0" cellspacing="0" border="0" width="100%">
+	<tr>
+		<td valign="top" align="center" style="padding-bottom:12px">
+			<? echo $this->render('banner.phtml');?>
+		</td>
+	</tr>
+	<tr>
+		<td align="center" style="font-size:14px;background:#f00;color:#fff;display:none">
+			<b>A T E N Ç Ã O !!!<br />
+			Este site está em construção, portanto nenhuma inscrição efetuada durante<br /> 
+			esse período será considerada e será removida do sistema assim que o<br /> 
+			mesmo entrar em produção.<br /><br />			
+			Algumas informações podem estar desatualizadas ou incorretas.<br /><br />
+			Previsão para início das inscrições dos cursos: Fevereiro ou Março/2013</b>
+		</td>
+	</tr>
+</table>
+
+<!-- divulgação dos destques -->
+<table id="home" cellpadding="0" cellspacing="0" border="0" width="100%">
+	<tr>
+		<td class="destaque"><span>destaques</span></td>
+	</tr>
+	<tr>
+		<td></td>
+	</tr>
+</table>
+
+<!-- divulgação dos noticias -->
+<table id="home" cellpadding="0" cellspacing="0" border="0" width="100%">
+	<tr>
+		<td style="padding-bottom:8px">
+			<span class="destaque" colspan="2"><span>notícias</span></span>
+		</td>
+	</tr><?
+	foreach($this->noticias as $rs):
+		echo"<tr><td style='padding:8px 0;border-bottom:solid 1px silver'>";
+		if($rs->thumb)
+			echo "<img class='iconews' src='$this->baseUrl/public/news/thumbs/$rs->thumb' border='0' /></td>";
+		
+		if(stristr($rs->link, 'http'))
+			echo"&nbsp;</td><td class='news'><a href='$rs->link' target='_news'>$rs->strdata: $rs->titulo</a><br />$rs->subTitulo</td></tr>";
+		elseif(stristr($rs->url, 'pdf'))	
+			echo"&nbsp;</td><td class='news'><a href='$this->baseUrl/public/news/$rs->url' target='_news'>$rs->strdata: $rs->titulo</a><br />$rs->subTitulo</td></tr>";
+		else
+			echo"&nbsp;</td><td class='news'><a href='$this->baseUrl/noticias/preview/id/$rs->idNoticia/' target='_news'>$rs->strdata: $rs->titulo</a><br />$rs->subTitulo</td></tr>";
+	endforeach; ?>
+	<tr>
+		<td valign="top" colspan="2">					
+			<p style="text-align:right"><a href="<?=$this->baseUrl?>/noticias/">Mais Notícias</a></p>
+		</td>
+	</tr>
+</table>
+
+
+<!-- divulgação dos agenda -->
+<table id="home" cellpadding="0" cellspacing="0" border="0" width="100%">
+	<tr>
+		<td style="padding-bottom:8px">
+			<span class="destaque"><span>agenda anual de eventos</span></span>
+		</td>
+	</tr>
+	<tr>
+		<td style="padding-bottom:8px"><?
+			foreach($this->eventos as $rs):
+				echo"<p class='news'>$rs->strdata: $rs->titulo</a></p>";
+			endforeach; ?>
+		</td>
+	</tr>
+</table>

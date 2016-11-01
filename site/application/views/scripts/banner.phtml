@@ -1,0 +1,26 @@
+<script type="text/javascript" src="<?=$this->baseUrl?>/public/banner/swfobject.js"></script>
+
+<div id="banner_container" style="text-align:center;padding:0;margin:0">
+	<div id="banner_div">Please download the latest version of Flash Player.</div>
+	<script type="text/javascript">
+		<!--//
+		var flashvars = {
+			xmlUrl: "<?=$this->baseUrl?>/public/banner/banner.xml"	//Use to change XML filename or location
+			};
+		
+		var params = {
+			scale: "noscale",
+			menu: "false",
+			bgcolor: "#FFFFFF",
+			vmode: "transparent"
+			};
+		var attributes = {
+			id: "banner_swf",
+			name: "banner_swf"
+			};                    
+		swfobject.embedSWF("<?=$this->baseUrl?>/public/banner/banner.swf", 
+			"banner_div", "632", "145", "9.0.0", "<?=$this->baseUrl?>/public/banner/expressInstall.swf", 
+				flashvars, params, attributes);
+		//-->
+	</script>				
+</div>

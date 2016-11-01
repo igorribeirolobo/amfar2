@@ -1,0 +1,54 @@
+<META HTTP-EQUIV="Content-Type" CONTENT="text/html; charset=iso-8859-1">
+<html>
+ <head> 
+  <title>Formulário para envio de mensagens através da Função mail() do Php</title>
+ </head>
+ <body>
+  <form action="mail.php" method="post">
+   <table width="40%" border="1">
+    <tr> 
+     <td>
+      <p><center><b>Formulário para envio de e-mails através da Função mail() do Php</b></center></p>
+      <b>Remetente</b><br>
+      Nome:<br>
+      <input name="nomeremetente" type="text" size="100" value="amfar.com.br" >
+      <br>
+      E-mail(*):<br>
+      <input name="emailremetente" type="text" size="100" value="webmaster@amfar.com.br">
+      <br><br>
+      <strong>Destinat&aacute;rio</strong><br>
+      E-mail:<br>
+      <input name="emaildestinatario" type="text" id="emaildestinatario" size="100">
+      Com Cópia(cc):<br>
+      <input name="comcopia" type="text" id="comcopia" size="100">
+      <br>
+      Com Cópia Oculta(cco):<br>
+      <input name="comcopiaoculta" type="text" id="comcopiaoculta" size="100">
+      Assunto:<br>
+      <input name="assunto" type="text" id="assunto" size="100" value="Teste LocaWeb amfar.com.br">
+      <br>
+      Mensagem:<br>
+      <textarea name="mensagem" cols="75" rows="5" id="textarea">Teste LocaWeb amfar.com.br</textarea> 
+      <br>
+      <input type="submit" name="Submit" value="Enviar">
+      <input type="reset" name="limpar" value="Limpar">
+     </td>
+    </tr>
+    <tr>
+     <td>
+    <b> Veja também: </b>
+    <br>
+    <a href="http://www.php.net/manual/pt_BR/function.mail.php" target="new"> http://www.php.net/manual/pt_BR/function.mail.php </a>
+    <br>
+    <a href="http://site.locaweb.com.br/suporte/Faq/faq.asp?arp=0&faq=936&CodigoCategoria=4753" target="new"> Funç&#259;o para Envio de Mensagens mail();</a>
+    <br>
+    <a href="mail.zip" title="Baixar arquivo de exemplo">Baixar arquivo de exemplo</a>
+    <img src="bellboy2.gif" width="137" height="135" align="right">
+    <br><br>
+    <b>*Atenção:</b> Use sempre como endereço de remetente o e-mail de um domínio hospedado na LocaWeb, caso contrário a mensagem enviada poderá ser consiedeara pelo destinatário como sendo um possível spam.
+    </td>
+    </tr>
+   </table>
+  </form>
+ </body>
+</html>

@@ -1,0 +1,151 @@
+/* CSS Document */
+body {
+	margin:0;
+	padding:0
+	}
+
+B, b, STRONG, strong {font-weight:bolder}
+
+td {font: 9pt Arial, Helvetica, sans-serif, tahoma, verdana}
+
+P, p {
+	font: 9pt Arial, Helvetica, sans-serif, tahoma, verdana;
+	margin-top:12px;
+	}
+
+#header {				
+	width:100%;
+	background:url(title_bg.jpg) repeat-x;
+	height:24px;
+	padding:2px 4px;
+	}
+
+#titPage {
+	float:left;
+	font: bolder 12pt Arial, Helvetica, sans-serif, tahoma, verdana;
+	color:#ffffef;
+	}
+
+#news {
+	margin:4px;
+	height:auto;
+	text-align:justify;
+	background:#ffffff;
+	padding:2px 8px;
+	border:1px solid #c0c0c0
+	}
+
+
+#newsTitle {
+	font: bolder 12pt Arial, Helvetica, Verdana, Tahoma, sans-serif;	
+	color:#ff6600;
+	text-align:left;
+	}
+
+#newsEye {
+	font: 10pt Arial, Helvetica, Verdana, Tahoma, sans-serif;
+	font-style:italic;
+	color:#808080;
+	}
+
+#newsDate{
+	background:#e0e0e0;
+	color:#808080;
+	font-weight:bolder;
+	font-size:8pt;
+	text-align:right;
+	padding:0 4px 0 0;
+	}
+
+#newsExtras {
+	float:right;
+	padding:10px;
+	width: 240px;
+	padding-top:0;
+	padding-right:0;
+	text-align:right
+	}
+
+.newsPhotographer {
+	display:block;
+	font: 8pt Arial, Helvetica, sans-serif, tahoma, verdana;
+	padding-left:10px;
+	text-align:right;	
+	background:#ffffff;
+	}
+
+.newsLegenda{
+	display:block;
+	font: 8pt Arial, Helvetica, sans-serif, tahoma, verdana;
+	text-align:justify;
+	padding-left:10px;
+	padding-right:0;
+	background:#ffffff
+	}
+
+.newsPhoto {
+	border:1px solid #808080;
+	}
+
+#newsOptions {
+	font: 8pt Arial, Helvetica, sans-serif, tahoma, verdana;
+	margin-top:10px;
+	background:#efefef;
+	border-top:1px solid #e0e0e0;
+	padding:10px;
+	text-align:right;
+	border-bottom:1px dashed #808080;
+	}				
+
+#newsOptions a{
+	text-decoration:none;
+	color:#ff6600
+	}
+
+.creditos {
+	font: 8pt Arial, Helvetica, sans-serif, tahoma, verdana;
+	color:#606060;
+	text-align:left;
+	margin-top:0px
+	}
+
+.subtitulo {
+	font: 12pt Arial, Helvetica, sans-serif, tahoma, verdana;
+	color:#606060;
+	text-align:left;
+	font-weight:bolder;
+	margin:10px 0
+	}
+
+#envie, #enviado {
+	position:absolute;
+	top:65px;
+	left:150px;
+	z-index:1;
+	background:#fff;
+	border:3px inset gold;
+	padding:0px
+	}
+.visivel { display:inline; }	
+.invisivel { display:none;	}
+
+.label {
+	font: 8pt Arial, Helvetica, Verdana, Tahoma, sans-serif;
+	text-align:right;
+	padding:4px
+	}
+
+#btSend {
+	font: 8pt Arial, Helvetica, Verdana, Tahoma, sans-serif;
+	text-align:center;
+	cursor:pointer;
+	}
+
+#titulos {
+	width:372px;
+	background:url(title_bg.jpg) repeat-x;
+	height:20px;
+	padding:2px 0px 0 8px;
+	font: bolder 10pt Arial, Helvetica, Verdana, Tahoma, sans-serif;
+	color:#fff;
+	}

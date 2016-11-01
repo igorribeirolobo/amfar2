@@ -1,0 +1,151 @@
+
+<?
+/*
+if ($_POST['btContato']) {
+
+	include 'global.php';
+	include 'mail/htmlMimeMail.php';
+
+	$nome=trim($_POST['nome']);
+	$email=trim($_POST['email']);
+	$fone=trim($_POST['fone']);
+	$assunto=trim($_POST['assunto']);
+	$mensagem=trim($_POST['mensagem']);
+	
+	mssql_query("insert into contato(nome, fone, email, assunto, mensagem, dataReg) values('$nome', '$fone', '$email', '$assunto', '$mensagem', getdate())");
+	
+	insertMailing($nome, '',$email);
+	
+	//@mssql_query("INSERT INTO mailing(nome, email, dataReg, status) values('$nome', '$email', getdate(),0)");
+
+	$eBody="		
+		<table cellSpacing=2 cellPadding=2 width=100% border=0>
+			<tr>
+				<td align=right class=boxBorder>Nome:</td>
+				<td class=boxBorder><b>$nome</b></td>
+			</tr>
+			<tr>
+				<td align=right class=boxBorder>E-mail:</td>
+				<td class=boxBorder><b>$email</b></td>
+			</tr>
+			<tr>
+				<td align=right class=boxBorder>DDD/Fone:</td>
+				<td class=boxBorder><b>$fone</b></td>
+			</tr>
+			<tr>
+				<td align=right class=boxBorder>Assunto:</td>
+				<td class=boxBorder><b>$assunto</b></td>
+			</tr>
+			<tr>
+				<td align=right class=boxBorder>Mensagem:</td>
+				<td class=boxBorder>$mensagem</td>
+			</tr>
+		</table>";
+	// function sendMail($mto, $mnf, $mmf, $ms, $mtb,$tit)
+	$mailsend = sendMail($eContato, $nome, $email, 'AMF/Contato', $eBody,'Contato');
+	
+	echo"<br/>
+		<table border=0 width=70% align=center style='margin: 20px 0; border:1px solid #c0c0c0'>
+			<tr>
+				<td align=center>
+					<img border=0 src=$urlSite/images/contato.jpg>
+					<p style='text-align:center'>
+						Caro(a) <b>$nome</b></font>,<br><br>
+						Seu E-mail foi enviado com sucesso.</b><br>
+
+						<b>Obrigado por utilizar nossos servi&ccedil;os!</b><br><br>
+						Se ficou satisfeito, indique-nos para seus amigos.
+					</p>
+				</td>
+			</tr>
+		</table>";
+	}
+	
+else {
+*/
+?>
+<style>
+	#fcontato{}
+	#fcontato td{padding:0 4px}
+	#fcontato .label{text-align:right;color:#808080}
+</style>
+<script>
+	$(document).ready(function(){
+		$('.fone').mask('(99) 9999-9999',{placeholder:'_'});
+		
+		$('#btSend').click(function(){
+			if($('#nome').val().trim()==''){
+				alert("Por favor, preencha o campo 'Nome'\n\n");
+				$('#nome').focus();
+				return false;
+				}
+			if($('#email').val().trim()==''){
+				alert("Por favor, preencha o campo 'E-mail'\n\n");
+				$('#email').focus();
+				return false;
+				}
+			if(!$('#email').val().validEmail()){
+				alert("Por favor, preencha o campo 'E-mail'\n\n");
+				$('#email').focus();
+				return false;
+				}
+			if($('#fone').val().trim()==''){
+				alert("Por favor, preencha o campo 'Telefone'\n\n");
+				$('#fone').focus();
+				return false;
+				}
+			if($('#assunto').val().trim()==''){
+				alert("Por favor, preencha o campo 'Assunto'\n\n");
+				$('#assunto').focus();
+				return false;
+				}
+			if($('#mensagem').val().trim()==''){
+				alert("Por favor, preencha o campo 'Mensagem'\n\n");
+				$('#mensagem').focus();
+				return false;
+				}
+			})
+		})
+</script>		
+<form name="fcontato" id="fcontato" action="" method="POST">
+	<div align="center">	
+		<p style="padding:0 4px" align="center">
+			A <b class="blue">AMFAR</b> está a sua disposição para o esclarecimento de dúvidas sobre a instituição,<br /> 
+			nossos serviços, cursos, congressos, convênios e outros.<br /><br />
+			Preencha o formulário abaixo ou se preferir ligue <b>31 3291-6242</b> ou escreva para:<br />
+			<b>AMF - Associação Mineira de Farmacêuticos<br />
+			Av. do Contorno, 9215 - Sl 502 - Ed. Humberto Martins Vieira<br />
+			Prado - 30110-130 - Belo Horizonte/MG
+		</p>
+		<input type="hidden" name="process" value="0"/>
+		<table cellSpacing="1" cellPadding="1" width="70%" border="0" align="center">
+			<tr>
+				<td class="label">Nome:</td>
+				<td>
+					<input type="text" class="text upper" id="nome" name="nome" maxLength="40" value="<?=$_POST['nome']?>" /></td>
+			</tr>
+			<tr>
+				<td class="label">E-mail:</td>
+				<td><input type="text" class="text lower" id="email" name="email" value="<?=$_POST['email']?>" /></td>
+			</tr>
+			<tr>
+				<td class="label">DDD/Fone:</td>
+				<td><input type="text" class="text fone" id="fone" name="fone" value="<?=$_POST['fone']?>" /></td>
+			</tr>
+			<tr>
+				<td class="label">Assunto:</td>
+				<td><input type="text" class="text upper" name="assunto" id="assunto" value="<?=$_POST['assunto']?>" ></td>
+			</tr>
+			<tr>
+				<td class="label">Mensagem:</td>
+				<td><textarea name="mensagem" id="mensagem" rows="5" cols="40" class="text"></textarea></td>
+			</tr>
+			<tr bgcolor="#E0E4F9" align="center">
+				<td></td>
+				<td>
+					<input type="submit" class="button" id="btSend" name="btSend" value="Enviar" />
+				</td>
+			</tr>
+		</table>
+	</div>	
+</form>

@@ -1,0 +1,114 @@
+@font-face{font-family:Georgia; src:url(http://www.amfar.com.br/site/public/fonts/georgia.ttf)}
+@font-face{font-family:Georgia Italic BT; src:url(http://www.amfar.com.br/site/public/fonts/georgiai.ttf)}
+@font-face{font-family:Georgia Bold; src:url(http://www.amfar.com.br/site/public/fonts/georgiab.ttf)}
+@font-face{font-family:Georgia Bold Italic BT; src:url(http://www.amfar.com.br/site/public/fonts/georgiaz.ttf)}
+
+
+body {
+	margin:0;
+	font-family:Arial, Helvetica, Sans-Serif, Tahoma, Verdana;
+	font-size:12px;
+	overflow-y:scroll;
+	color:#808080
+	}
+.wellcome{
+	background:#def2f5;
+	padding:4px;
+	color:#808080;
+	text-align:center;
+	font-size:12px
+	}
+
+.bgturquesa{background:#14b7cd}
+
+
+
+input[type='submit'], input[type='button'], input[type='file']{
+	padding: 6px 16px;
+	font-family:Arial, Helvetica, Sans-Serif, Verdana, Tahoma;
+	font-size: 12px;
+	color: #ffffff;
+	font-weight: 400;
+	cursor: pointer;
+	border: none;
+	width: auto;
+	border-radius: 4px;
+	-moz-border-radius: 4px;
+	-webkit-border-radius: 4px;
+	background-color: #14b7cd;
+	}
+
+input[type='submit']:hover, input[type='button']:hover, input[type='file']:hover {
+	/*background:#ff9900;*/
+	background-color: #ff9900;
+	}
+
+.text{
+	padding:2px;
+	width:340px;
+	border-top:solid 1px #ABADB3;
+	border-right:solid 1px #DBDFE6;
+	border-bottom:solid 1px #E3E9EF;
+	border-left:solid 1px #E2E3EA
+	}
+
+.titulo{
+	color:#14b7cd;
+	font-weight:bolder;
+	font-size:12px;
+	/*text-decoration:underline;*/
+	text-transform:uppercase;
+	text-align:left;
+	padding:4px 2px;
+	border-bottom:solid 1px #14b7cd;
+	}
+	
+.cursos{
+	text-align:center;
+	font-size:13px;	
+	color:#a4a4a4;
+	padding:8px 0;
+	border-bottom:solid 1px #e4e4e4;
+	}
+
+
+.cursos a{
+	font-size:12px;
+	color:#808080;
+	text-decoration:none;
+	font-weight:bolder;
+	}
+
+.cursos a:hover{
+	color:#14b7cd;
+	text-decoration:none;
+	}
+	
+.cursos div{
+	font-size:12px;
+	text-align:center;
+	}
+
+	
+#rodape{
+	background:url('rodape.jpg') repeat-x;
+	padding:0;
+	font-size:12px;
+	font-weight:normal;
+	margin:20px 0;
+	}
+#rodape td{}
+
+
+#rodape .parceiros{text-align:center;padding:0}
+#rodape .parceiros ul{float:left;margin:0;padding:0}
+#rodape .parceiros li{;margin:0;list-style:none;;display:inline;text-align:center;border:solid 0px blue;background:transparent;padding:2px}
+#rodape .parceiros img{width:75px;vertical-align:middle}
+	
+
+#rodape .redes{width:120px}
+#rodape .redes ul{width:100px;float:left;margin:0;padding:0}
+#rodape .redes li{width:100px;margin:0;list-style:none;text-align:left}
+#rodape .redes li a{text-decoration:none}
+#rodape .redes li a:hover{text-decoration:underline}
+#rodape .redes img{width:18px;vertical-align:middle;margin:4px 0}

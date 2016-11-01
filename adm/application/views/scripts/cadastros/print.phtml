@@ -1,0 +1,167 @@
+<?php
+$rs = $this->cadastro;
+$rs->nascimento = $this->fc->Ymd2dmY($rs->nascimento);
+if($rs->status < 0) $rs->status = 'Bloqueado';
+elseif($rs->status == 0) $rs->status =  'INATIVO';
+elseif($rs->status == 1) $rs->status =  'ATIVO';
+elseif($rs->status == 2) $rs->status =  'ISENTO';
+elseif($rs->status == 3) $rs->status =  'DIRETORIA';
+$rs->sexo = ($rs->sexo==1)?'Masculino':'Feminino';
+$rs->datareg = $this->fc->Ymd2dmY($rs->datareg, true);
+$rs->atualizado = $this->fc->Ymd2dmY($rs->atualizado, true);
+$rs->validade = $this->fc->Ymd2dmY($rs->validade);
+?>
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+	<head>
+		<meta http-equiv="Content-Type" content="text/html;charset=ISO-8859-1" />
+		<title>SOBRAFO - Sociedade Brasileira de Farmacêuticos em Oncologia</title>
+		<style>
+			body{font-family:Arial, Helvetica, Sans-Serif, Tahoma, Verdana;}
+			#tbCadastro {width:100%}
+			#tbCadastro th{font-weight:normal;font-size:12px;padding:4px;background:#e4e4e4;color:#808080;text-align:left}
+			#tbCadastro td{font-weight:normal;font-size:12px;padding:4px;border:solid 1px silver}
+			#tbCadastro .label{text-align:right;background:#efefef;padding:2px;color:#808080;width:100px}
+			#tbCadastro caption{font-size:12pt;font-weight:bolder;text-align:left;padding:2px 10px}	
+		</style>
+	</head>
+	
+	<body>							
+		<table id='tbCadastro' cellpadding='1' cellspacing='1' border='0' width='100%'>
+			<caption>ADM - Cadastro de Associado</caption>
+			<tr>
+				<th colspan='2'>DADOS PESSOAIS:</th>
+			</tr>
+			<tr>
+				<td class='label'>Nome:</td>
+				<td><?=$rs->nome?></td>
+			</tr>
+			<tr>
+				<td class='label'>Sexo:</td>
+				<td><?=$rs->sexo ?></td>
+			</tr>
+			<tr>
+				<td class='label'>Data de Nasc.:</td>
+				<td><?=$rs->nascimento?></td>
+			</tr>
+			<tr>
+				<td class='label'>C.P.F.:</td>
+				<td><?=$rs->cpf?></td>
+			</tr>
+			<tr>
+				<td class='label'>Endereço:</td>
+				<td><?=$rs->endereco?>, <?=$rs->numero?> <?=$rs->compl?></td>
+			</tr>
+			<tr>
+				<td class='label'>Bairro:</td>
+				<td><?=$rs->bairro?></td>
+			</tr>
+			<tr>
+				<td class='label'>Cidade:</td>
+				<td><?=$rs->cidade?></td>
+			</tr>
+			<tr>
+				<td class='label'>Estado:</td>
+				<td><?=$rs->uf?></td>
+			</tr>
+			<tr>
+				<td class='label'>CEP:</td>
+				<td><?=$rs->cep?></td>
+			</tr>
+			<tr>
+				<td class='label'>Fone Fixo:</td>
+				<td><?=$rs->telefone?></td>
+			</tr>
+			<tr>
+				<td class='label'>Celular:</td>
+				<td><?=$rs->celular?></td>
+			</tr>
+			<tr>
+				<td class='label'>E-mail:</td>
+				<td><?=$rs->email?></td>
+			</tr>
+			<tr>
+				<td class='label'>Form. Prof.:</td>
+				<td><?=$rs->formacao?></td>
+			</tr>
+			<tr>
+				<td class='label'>C.R.F.:</td>
+				<td><?=$rs->crf?></td>
+			</tr>
+			<tr>
+				<td class='label'>Especialidade:</td>
+				<td><?=$rs->especialidade?></td>
+			</tr>
+			<tr>
+				<th colspan='2'>DADOS COMERCIAIS:</th>
+			<tr>
+			<tr>
+				<td class='label'>Instituição:</td>
+				<td><?=$rs->instituicao?></td>
+			<tr>
+			<tr>
+				<td class='label'>Endereço:</td>
+				<td><?=$rs->enderComercial?>, <?=$rs->numComercial?> <?=$rs->complComercial?></td>
+			<tr>
+			<tr>
+				<td class='label'>Bairro:</td>
+				<td><?=$rs->bairroComercial?></td>
+			<tr>
+			<tr>
+				<td class='label'>Cidade:</td>
+				<td><?=$rs->cidadeComercial?></td>
+			<tr>
+			<tr>
+				<td class='label'>Estado:</td>
+				<td><?=$rs->ufComercial?></td>
+			<tr>
+			<tr>
+				<td class='label'>CEP:</td>
+				<td><?=$rs->cepComercial?></td>
+			<tr>
+			<tr>
+				<td class='label'>Telefone(s):</td>
+				<td><?=$rs->telefoneComercial?></td>
+			<tr>
+			<tr>
+				<td class='label'>Fax:</td>
+				<td><?=$rs->fax?></td>
+			<tr>
+			<tr>
+				<td class='label'>E-mail:</td>
+				<td><?=$rs->emailComercial?></td>
+			<tr>
+			<tr>
+				<th colspan='2'>DADOS ADMINISTRATIVOS:</th>
+			<tr>
+			<tr>
+				<td class='label'>Cadastrado em:</td>
+				<td><?=$rs->datareg?></td>
+			<tr>
+			<tr>
+				<td class='label'>Atualizado em:</td>
+				<td><?=$rs->atualizado?></td>
+			<tr>
+			<tr>
+				<td class='label'>Matrícula Nr.:</td>
+				<td><?=$rs->matricula?></td>
+			<tr>
+			<tr>
+				<td class='label'>Válidade até:</td>
+				<td><?=$rs->validade?></td>
+			<tr>
+			<tr>
+				<td class='label'>Status:</td>
+				<td><?=$rs->status?></td>
+			<tr>
+			<tr>
+				<td class='label'>Observações</td>
+				<td><?=$rs->observacoes?></td>
+			</tr>
+		</table>
+	</body>
+</html>
+
+<script type="text/javascript">
+	//document.write("<?=$htmlDoc?>");
+	window.print();
+</script>

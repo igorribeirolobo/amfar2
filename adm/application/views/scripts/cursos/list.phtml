@@ -1,0 +1,61 @@
+<style>
+	.list{font-size:12px;width:100%}
+	.list caption{background:#599da1;color:#fff;font-size:16px;padding:2px}
+	.list caption a{color:#fff;text-decoration:none}
+	.list caption a:hover{text-decoration:underline;color:red}
+	.list th{background:#def2f5;color:#599da1;font-size:11px;font-weight:normal}
+	.list th a{color:#fff;text-decoration:none}
+	.list th a:hover{text-decoration:underline;color:yellow}
+	.list td a{color:#808080;text-decoration:none;font-weight:bolder}
+	.list td a:hover{text-decoration:underline;color:#808080}
+</style>
+
+<script>
+	$(document).ready(function(){
+		$('.del').click(function(){
+			if(!confirm('Tem certeza que deseja excluir este registro?\n\nUma vez excluído, não tem como recuperar este registro.\n\nConfirma a Exclusão?'))
+				return false;
+			return true;
+			})
+		})	
+</script>
+<table class='list' cellpadding='2' cellspacing='2' border='0'>
+	<caption>Agenda de Cursos (Clique no título)
+		<span style="float:right"><a href="<?=$this->links?>/open/id/0/">Novo Registro</a></span>
+	</caption>
+	<thead>
+		<tr>
+			<th>Início</th>
+			<th>Título</th>
+			<th>Valor R$</th>
+			<th>Parc</th>
+			<th>Status</th>
+			<th></th>
+		</tr>
+	</thead>
+	<tfoot>
+		<tr>
+			<td colspan="8">Localizado <?=count($this->paginator)?> Registro(s)</td>
+		</tr>
+	<tbody><?
+	$count = 0;			
+	foreach($this->paginator as $rs):
+		$count++;
+		$bg = ($count%2==0) ? '#dddddd' : '#ffffff';
+		$inicio = $this->fc->Ymd2dmY($rs->inicio);
+		$ativo = ($rs->ativo)?'Ativo':'Inativo';
+		echo"
+		<tr bgcolor='$bg'>
+			<td width='60'>$inicio</td>
+			<td align='left'><a href='$this->links/open/id/$rs->idCurso'>$rs->titulo</a></td>
+			<td align='right' width='60'>". number_format($rs->valor, 2, ',','.') ."</td>
+			<td align='center'>$rs->parcelas</td>
+			<td align='center'>$ativo</td>
+			<td align='center'><a href='$this->links/list/del/$rs->idCurso' class='del'>
+				<img src='$this->baseImg/del.gif' alt='Excluir' border='0'/></a></td>
+		</tr>";
+	endforeach;
+	?>
+	</tbody>
+</table>
+<?php echo $this->paginationControl($this->paginator, 'Sliding', 'paginator.phtml'); ?>

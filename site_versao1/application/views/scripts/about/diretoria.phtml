@@ -1,0 +1,70 @@
+<style>
+	#diretoria {font-size:12px}
+	#diretoria caption{background:#D9E7F8;font-size:16px;font-weight:bolder}
+	#diretoria td{padding:10px 0;border-bottom:solid 1px silver}
+	#diretoria img{vertical-align:top;margin-right:20px;text-align:left}
+</style>
+	<table id="diretoria" cellSpacing="0" cellPadding="0" width="100%" align="center" border="0">
+		<caption>Diretoria Atual - Gestão 2013-2014</caption>
+		<tr>
+			<?$rs = $this->fc->dbReader($this->db, "SELECT * FROm cadastro WHERE idCadastro=997");?>
+			<td valign="top"><?=($rs->foto) ? "<img border='0' src='$this->baseUrl/public/diretoria/$rs->foto' alt='' width='120'>" : '&nbsp;'?></td>
+			<td style="padding-left:24px">				
+				<b><?=$rs->nome?></b><br />
+				<?=$rs->curriculo?>
+			</td>
+		</tr>
+		
+
+		<tr>
+			<?$rs = $this->fc->dbReader($this->db, "SELECT * FROm cadastro WHERE idCadastro=753");?>
+			<td valign="top"><?=($rs->foto) ? "<img border='0' src='$this->baseUrl/public/diretoria/$rs->foto' alt='' width='120'>" : '&nbsp;'?></td>
+			<td style="padding-left:24px">				
+				<b><?=$rs->nome?></b><br />
+				<?=$rs->curriculo?>
+			</td>
+		</tr>
+
+
+		<tr>
+			<?$rs = $this->fc->dbReader($this->db, "SELECT * FROm cadastro WHERE idCadastro=799");?>
+			<td valign="top"><?=($rs->foto) ? "<img border='0' src='$this->baseUrl/public/diretoria/$rs->foto' alt='' width='120'>" : '&nbsp;'?></td>
+			<td style="padding-left:24px">				
+				<b><?=$rs->nome?></b><br />
+				<?=$rs->curriculo?>
+			</td>
+		</tr>
+
+
+
+		<tr>
+			<?//$rs = $this->fc->dbReader($this->db, "SELECT * FROm cadastro WHERE idCadastro=1999");?>
+			<td valign="top"><?=($rs->foto) ? "<img border='0' src='$this->baseUrl/public/diretoria/$rs->foto' alt='' width='120'>" : '&nbsp;'?></td>
+			<td style="padding-left:24px">				
+				<b>NIVALDO CÉSAR JÚNIOR</b><br />
+				Vice-Diretor Administrativo
+			</td>
+		</tr>
+
+
+		<tr>
+			<? $rs = $this->fc->dbReader($this->db, "SELECT * FROm cadastro WHERE idCadastro=1174");?>
+			<td valign="top"><?=($rs->foto) ? "<img border='0' src='$this->baseUrl/public/diretoria/$rs->foto' alt='' width='120'>" : '&nbsp;'?></td>
+			<td style="padding-left:24px">				
+				<b><?=$rs->nome?></b><br />
+				<?=$rs->curriculo?>
+			</td>
+		</tr>
+
+
+
+		<tr>
+			<?$rs = $this->fc->dbReader($this->db, "SELECT * FROm cadastro WHERE idCadastro=1998");?>
+			<td valign="top"><?=($rs->foto) ? "<img border='0' src='$this->baseUrl/public/diretoria/$rs->foto' alt='' width='120'>" : '&nbsp;'?></td>
+			<td style="padding-left:24px">				
+				<b><?=$rs->nome?></b><br />
+				<?=$rs->curriculo?>
+			</td>
+		</tr>
+
+	</table>

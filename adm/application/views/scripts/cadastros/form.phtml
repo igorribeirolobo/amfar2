@@ -1,0 +1,236 @@
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+	<head>
+		<title>AMF - Associação Mineira de Farmacêuticos</title>
+		<meta http-equiv="content-type" content="text/html; charset=iso-8859-1">
+		<link rel="stylesheet" type="text/css" media="screen" href="<?=$this->baseUrl?>/public/styles/style.css" />	
+		<script type="text/javascript" type="text/javascript" src="<?=jsLib?>/jquery-1.3.2.js"></script>
+		<script type="text/javascript" type="text/javascript" src="<?=jsLib?>/prototypes.js"></script>
+		<script type="text/javascript" type="text/javascript" src="<?=jsLib?>/jquery.maskedinput-1.2.2.min.js"></script>
+		<script type="text/javascript" type="text/javascript" src="<?=jsLib?>/jquery.limit-1.0.source.js"></script>
+		<link id="lnkRelShortCutIcon" rel="shortcut icon" href="<?=$this->baseImg?>/favicon.png" />
+		<link type="text/css" href="<?=jsLib?>/themes/base/ui.all.css" rel="stylesheet" />
+		<script type="text/javascript" src="<?=jsLib?>/ui/ui.datepicker.js"></script>
+		<script type="text/javascript" src="<?=jsLib?>/ui/ui.core.js"></script>
+		<script type="text/javascript">
+		$(document).ready(function(){
+			if ($.browser.msie) {
+				}
+			else {
+				$('fieldset').css('border-width','1px');
+				$('fieldset').css('border-color','#369');
+				$('fieldset').css('-moz-border-radius','10px');
+				$('fieldset').css('-webkit-border-radius','10px');
+				$('fieldset').css('border-radius','10px');
+				}
+			/* aplicando as máscaras */
+			$(".fone").mask("99 9999-9999");
+			$(".cep").mask("99999-999");
+			$(".data").mask("99/99/9999");
+			//$(".rg").mask("99.999.999-*");
+			$(".cpf").mask("999.999.999-99");
+			$(".matricula").mask("999.999-aa");
+		
+		
+			$('.data').datepicker({  
+				dateFormat: 'dd/mm/yy',  
+				dayNames:['Domingo','Segunda','Terça','Quarta','Quinta','Sexta','Sábado','Domingo'],  
+				dayNamesMin:['D','S','T','Q','Q','S','S','D'],  
+				dayNamesShort:['Dom','Seg','Ter','Qua','Qui','Sex','Sáb','Dom'],  
+				monthNames:['Janeiro','Fevereiro','Março','Abril','Maio','Junho','Julho','Agosto','Setembro','Outubro','Novembro','Dezembro'],  
+				monthNamesShort:['Jan','Fev','Mar','Abr','Mai','Jun','Jul','Ago','Set','Out','Nov','Dez'],  
+				nextText:'Próximo',prevText: 'Anterior'
+				});	
+		
+			$('.text').focus(function(){$(this).css('background','#E3EEF7')}).blur(function(){$(this).css('background','#fff')})
+			$('.upper').keyup(function(){$(this).val($(this).val().upper())})
+			$('#nome').focus();
+			$('.numeric').keypress(function(event){if(event.charCode&&(event.charCode<48||event.charCode>57)){
+				alert('Digite somente numeros por favor!');event.preventDefault();}});
+			
+			$('#btSendLink').click(function(){$('#f-car').attr('action','<?=$this->baseAct?>/send/id/<?=$_POST['idCadastro']?>')})
+		
+			$("#btSend").click(function(){
+				if ($('#nome').val()==''){alert("Preencha o campo 'Nome'");$('#nome').focus();return false;}
+				if ($('#nascimento').val()==''){alert("Preencha o campo 'Data de Nascimento'");$('#nascimento').focus();return false;}
+				if (!$('#nascimento').val().validDate()){alert("Preencha corretamente o campo 'Data de Nascimento'");$('#nascimento').focus();return false;}
+				if ($('#cpf').val()==''){alert("Preencha o campo 'CPF'");$('#cpf').focus();return false;}
+				if (!$('#cpf').val().validCPF()){alert("Preencha corretamente o campo 'CPF'");$('#cpf').focus();return false;}
+				if ($('#rg').val()==''){alert("Preencha o campo 'RG'");$('#rg').focus();return false;}
+				if ($('#endereco').val()==''){alert("Preencha o campo 'Endereço'");$('#endereco').focus();return false;}
+				if ($('#bairro').val()==''){alert("Preencha o campo 'Bairro'");$('#bairro').focus();return false;}
+				if ($('#cidade').val()==''){alert("Preencha o campo 'Cidade'");$('#cidade').focus();return false;}
+				if ($('#uf').val()==''){alert("Selecione o 'Estado'");$('#uf').focus();return false;}
+				if ($('#cep').val()==''){alert("Preencha o campo 'CEP'");$('#cep').focus();return false;}
+				if ($('#telefone').val()==''&&$('#celular').val()==''){alert("Preencha o campo 'Telefone ou Celular'");$('#telefone').focus();return false;}
+				
+				if ($('#email').val()==''){alert("Preencha o campo 'E-mail'");$('#email').focus();return false;}
+				if ($('#senha').val()==''){alert("Preencha o 'Senha'");$('#senha').focus();return false;}
+				});
+		
+		
+				$('.edit').click(function(){
+					var formWin= window.open('','winForm',
+						'left=0, top=0, width=570,height=460,toolbar=no,location=no,directories=no,status=no,menubar=no,scrollbars=yes,resizable=no');
+					formWin.focus();
+					})
+					
+				$('#nome').focus();
+	
+	
+				if ($('#msg').val()!='' && $('#msg')!= undefined) alert($('#msg').val());
+				});
+		</script>
+	</head>
+	
+	<body>
+		<fieldset>
+			<legend>Cadastro</legend>
+			<form action="<?=$this->links?>/save/id/<?=$_POST['idCadastro']?>" method="post" id="f-cad" name="f-cad">
+				<input type="hidden" id="msg" value="<?=$this->message?>" />
+					
+				<div id="toPrint">		
+					<style>
+						#tbCadastro{background:#BED1D9;font-size:12px}
+						#tbCadastro .label{text-align:right;padding: 0 2px}
+						#tbCadastro td{white-space:nowrap;border:solid 1px white}
+						#tbCadastro caption{font-size:12pt;font-weight:bolder;text-align:left;padding:2px 10px}	
+						#tbCadastro .text{border:solid 1px #369;width:360px}
+						#tbCadastro .cep{width:120px;text-align:center}
+						#tbCadastro .cpf{width:120px;text-align:center}
+						#tbCadastro .data{width:120px;text-align:center}
+						#tbCadastro .crf{width:120px;text-align:center}
+						#tbCadastro .rg{width:120px;text-align:center}
+						#tbCadastro .num{width:60px;text-align:center}
+						#tbCadastro .compl{width:120px;text-align:center}
+						#tbCadastro #profissao{width:180px;text-align:center}
+						#tbCadastro .password{width:120px;text-align:center}
+						#tbCadastro .fone{width:120px;text-align:center}
+						#tbCadastro .uf{width:140px;text-align:left}
+						#tbCadastro .center{text-align:center}
+						#tbCadastro .divRight{float:right}
+					</style>
+					<center>					
+						<table id="tbCadastro" cellpadding="1" cellspacing="1" border="0">
+							<tr>
+								<td colspan="2" style="background:#E0E4F9;font-weight:bolder;font-size:12pt;padding:4px">Dados Pessoais:</td>
+							</tr>
+							<tr>
+								<td class="label">Nome Completo:</td>
+								<td><input type="text" class="text upper" name="nome" id="nome" maxlength="60" value="<?=$_POST['nome']?>"/></td>
+							</tr>
+							<tr>
+								<td class="label">C.P.F.:</td>
+								<td>
+									<input type="text" class="text cpf center" name="cpf" id="cpf" size="14" value="<?=$_POST['cpf']?>" />
+									<span class="label divRight">R.G.: 
+										<input type="text" class="text rg center" name="rg" id="rg" size="14" value="<?=$_POST['rg']?>" />
+									</span>
+								</td>
+							</tr>
+							<tr>
+								<td class="label">Endereço (Rua, Av., Pça, Al.):</td>
+								<td><input type="text" class="text upper" name="endereco" id="endereco" maxlength="60" value="<?=$_POST['ender']?>" /></td>
+							</tr>
+							<tr>
+								<td class="label">Número:</td>
+								<td>
+									<input type="text" class="text numeric num" name="num" id="num" value="<?=$_POST['num']?>" />
+									<span class="label divRight">Compl. (andar, Apto, sala): 
+										<input type="text" class="text upper compl" name="compl" id="compl" maxlength="30" maxlength="30" value="<?=$_POST['compl']?>"/>
+									</span>
+								</td>
+							</tr>
+							<tr>
+								<td class="label">Bairro:</td>
+								<td>
+									<input type="text" class="text upper" name="bairro" id="bairro" maxlength="50" value="<?=$_POST['bairro']?>" />
+								</td>
+							</tr>
+							<tr>
+								<td class="label">Cidade:</td>
+								<td><input type="text" class="text upper" name="cidade"  id="cidade" maxlength="50" value="<?=$_POST['cidade']?>" /></td>
+							</tr> 
+							<tr>
+								<td class="label">Estado:</td>
+								<td>
+									<select name="uf" id="uf" size="1" style="font-size:9pt" class="text uf">
+										<option value=''>Selecione</option>
+										<?
+										foreach($this->estados as $rs):
+											$selected = ($_POST['uf'] == $rs->uf) ? 'selected':'';
+											echo"<option $selected value='$rs->uf'>$rs->uf - $rs->estado</option>\r\n";
+										endforeach;
+										?>
+									</select>
+									<span class="label divRight">CEP: 
+										<input type="text" class="text cep" name="cep" id="cep" size="9" value="<?=$_POST['cep']?>" />
+									</span>
+								</td>
+							</tr>
+							<tr>
+								<td class="label">Telefone Fixo:</td>
+								<td>
+									<input type="text" class="text fone" name="fone"  id="fone" maxlength="12" value="<?=$_POST['fone']?>" />
+									<span class="label divRight">Telefone #2: 
+										<input type="text" class="text fone" name="fone2" id="fone2" maxlength="12" value="<?=$_POST['fone2']?>" />
+									</span>
+								</td>
+							</tr>
+							<tr>
+								<td class="label">E-mail:</td>
+								<td><input type="text" class="text" name="email" id="email" maxlength="80" value="<?=$_POST['email']?>" /></td>
+							</tr>
+							<tr>
+								<td class="label" nowrap>Profissão:</td>
+								<td>
+									<input type="text" class="text upper" name="profissao" id="profissao" value="<?=$_POST['profissao']?>" />
+									<span class="label divRight">Senha: 
+										<input type="text" class="text password" name="senha"  id="senha" maxlength="10" value="<?=$_POST['senha']?>" />
+									</span>
+								</td>
+							</tr>
+				
+							<tr>
+								<td colspan="2" style="background:#E0E4F9;font-weight:bolder;font-size:12pt;padding:4px">Dados Administrativos:</td>
+							</tr>
+							<tr>
+								<td class="label">Cadastrado em:</td>
+								<td>
+									<input disabled type="text" class="text data"  value="<?=$this->fc->Ymd2dmY($_POST['datareg'], true)?>" />
+									<span class="label divRight">Atualizado em: 
+										<input disabled type="text" class="text data"  value="<?=$this->fc->Ymd2dmY($_POST['atualizado'], true)?>" />
+									</span>
+								</td>
+							</tr>
+							<tr>
+								<td class="label">Válidade até:</td>
+								<td><input type="text" class="text data" name="validade" id="validade" value="<?=$this->fc->Ymd2dmY($_POST['validade'])?>" /></td>
+							</tr>
+							<tr>
+								<td class="label">Status do Cadastro:</td>
+								<td>
+									<!-- <input <?=($_POST['status'] < 0) ? 'checked':''?> type="radio" name="status" value="-1">Bloqueado&nbsp;&nbsp; -->
+									<input <?=($_POST['status'] == 0) ? 'checked':''?> type="radio" name="status" value="0">Inativo&nbsp;
+									<input <?=($_POST['status'] == 1) ? 'checked':''?> type="radio" name="status" value="1">Ativo&nbsp
+									<input <?=($_POST['status'] == 2) ? 'checked':''?> type="radio" name="status" value="2">Isento&nbsp;
+									<input <?=($_POST['status'] == 3) ? 'checked':''?> type="radio" name="status" value="3">Diretoria&nbsp
+									<input <?=($_POST['status'] == 4) ? 'checked':''?> type="radio" name="status" value="4">Fornecedor
+								</td>
+							</tr>
+							<tr>
+								<td class="label">Observações:</td>
+								<td>
+									<textarea class="text" id="comentarios" name="comentarios" style="width:100%;height:75px"><?=$_POST['comentarios']?></textarea>
+								</td>
+							</tr>
+						</table>
+					</div>
+					<hr size="2" color="silver">
+					<div style="float:left;text-align:center;background:#a4a4a4;width:100%">
+						<input type="submit" class="button" name="enviar" id="btSend" value="Atualizar Cadastro" />
+					</div>
+				</center>	
+			</form>
+		</fieldset>
+	</body>
+</html>

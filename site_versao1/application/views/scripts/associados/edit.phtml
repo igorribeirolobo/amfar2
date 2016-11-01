@@ -1,0 +1,25 @@
+<style>
+	.new p{font-size:13px;line-height:150%;text-indent:50px;margin:6px 0}
+	.new p.title{background:#FAD9D8;margin:4px 0;padding:2px;font-size:16px;color:#f00;text-indent:10px;}
+</style>
+
+<table width='100%' border='0' cellpadding='2' cellspacing='2'/>
+	<caption class="caption">Cadastro de Associados</caption>
+</table>
+
+<hr size="1">
+
+<div class="new">
+	<p>Por favor, atualize seus dados para que possamos contactá-lo quando necessário.</p>
+	<p>Caso sua inscrição esteja na época de renovação ou ainda não tenha pago a taxa de anuidade, será gerado um boleto no valor de 
+		<b>R$ <?=number_format($this->taxaAnuidade,2,',','.')?></b> para FARMACÊUTICOS PROFISSIONAIS ou 
+		<b>R$ <?=number_format($this->taxaAnuidade/2,2,',','.')?></b>, para ESTUDANTES DE GRADUAÇÃO - FARMÁCIA.
+	</p>
+	<p>Caso você seja <b>ESTUDANTES DE GRADUAÇÃO - FARMÁCIA</b> é necessário o envio de cópia de documento de comprovação da matrícula para 
+		<a href="mailto:atendimento@sbrafh.org.br">atendimento@sbrafh.org.br</a>, em até 72h da efetivação do cadastro. 
+		A não apresentação da comprovação solicitada, incorre na suspensão temporária de acesso as áreas restritas do site, findando a suspensão 
+		quando do recebimento dos comprovantes.
+	</p>
+	<br />
+</div>
+<?php echo $this->render('associados/cadastro.phtml') ?>

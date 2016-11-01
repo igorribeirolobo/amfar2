@@ -1,0 +1,82 @@
+<?php
+$situacao = array(
+	'A' => array('20140210' => 450.0, '20140310' => 470.0, 'apos' => 490.0),
+	'B' => array('20140210' => 390.0, '20140310' => 430.0, 'apos' => 460.0),
+	'C' => array('20140210' => 370.0, '20140310' => 400.0, 'apos' => 440.0),
+	)
+
+?>
+
+<style>
+	#cursos {width:100%; margin-top:0; border:0; background:#fff;font-size:12px}
+	#cursos td {border-bottom:1px solid #c0c0c0}
+	#cursos p{padding-left:14px;margin:4px 0;font-size:9pt;color:#006;text-align:justify}
+	#cursos ol{margin-top:0;text-align:left;color:#000;font-weight:normal;font-size:12px}
+	#cursos .bgyellow{background:yellow}
+	#cursos .bgred{background:red}
+	#cursos table{border-collapse:collapse;border-color:black;}
+	#cursos table caption{background:#599da1;color:#fff}
+	#cursos td{padding:2px 8px;font-size:12px}
+	#cursos .label{text-align:right;font-size:12px}
+	#cursos table td table{border-collapse:collapse;border-color:black;}
+	#cursos table td table th{background:#599da1;color:#fff;font-size:12px}
+	#cursos table td table caption{background:#599da1;color:#fff}
+	#cursos tdtd table{padding:2px 8px;font-size:12px}
+</style>
+
+<script>
+	$(document).ready(function(){
+		//$('#btConfirm').attr('disabled', ($('#concordo').is(':checked')||$('#idCurso')==152) ? false : true);
+		$('#concordo').click(function(){
+			$('#btConfirm').attr('disabled', ($(this).is(':checked')) ? false : true);
+			})
+		$('#concordo').change(function(){
+			$('#btConfirm').attr('disabled', ($(this).is(':checked')) ? false : true);
+			})
+		})
+</script>
+
+<form name="cursos" id="cursos" action="" method="POST">
+	<input type="hidden" id="msg" value="<?=$this->message?>" />
+	<input type="hidden" id="idCurso" value="<?=$this->id?>" />
+	<center>
+		<table cellpadding="1" cellspacing="1" border="1" width="100%">
+			<caption>Dados do Aluno(a)</caption>
+			<tr>
+				<td class="label">Nome:</td>
+				<td><b><?=$this->curso->nome?></b></td>
+			</tr>
+			<tr>
+				<td class="label">CPF:</td>
+				<td><b><?=$this->fc->formatCPF($this->curso->cpf)?></b></td>
+			</tr>
+			<tr>
+				<td class="label">RG:</td>
+				<td><b><?=$this->curso->rg?></b></td>
+			</tr>
+			<tr>
+				<td class="label">Curso:</td>
+				<td><b><?=$this->curso->titulo?></b></td>
+			</tr>
+			<tr>
+				<td class="label">Início:</td>
+				<td><b><?=$this->fc->Ymd2dmY($this->curso->inicio)?></b></td>
+			</tr>			<tr>
+				<td class="label" nowrap>Valor Total:</td>
+				<td><b>R$ <?=number_format($this->curso->valor,2,',','.')?></b></td>
+			</tr>
+			<tr>
+				<td class="label">Parcelas:</td>
+				<td><b><?=$this->curso->parcelas?> X R$ <?=number_format($this->curso->valor/$this->curso->parcelas,2,',','.')?></b></td>
+			</tr>
+		</table>
+	</center>
+	<p style="text-align:center"><input <?=$disabled?> type="submit"  name="btConfirm" id="btConfirm" value="Confirmar Inscrição" class="button" /></p>
+</form>
+<?
+if($this->idBoleto):
+	echo"<p align='center' style='font-size:12px'><b>Utilize o link abaixo para imprimir o boleto referente à primeira parcela.<br /><br />
+		<a href='http://www.amfar.com.br/boletos/boleto.php?id={$this->idBoleto}' target='_boleto'>
+			http://www.amfar.com.br/boletos/boleto.php?id={$this->idBoleto}</a></p>";
+	endif;
+?>

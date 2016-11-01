@@ -1,0 +1,97 @@
+<style>
+	#tbHistorico{margin-top:10px;margin-right:10px;width:100%}
+	#tbHistorico td{font-size:9pt}
+	#tbHistorico caption{background:#066;font:16pt bolder Verdana, Tahoma, Arial, Helvetica, Sans-Serif;color:#fff}
+	#tbHistorico th{font-weight:normal;letter-spacing:0;background:#E2FADE;color:#066;padding:4px;border:solid 1px #60c660}
+	#tbHistorico td{padding:4px;border:solid 1px #60c660}
+	b{font-weight:bolder}
+	.msgErr{background:#f00;color:#fff;font-weight:bolder;text-align:center}
+</style>
+
+<table width='100%' border='0' cellpadding='2' cellspacing='2'/>
+	<caption class="caption">Histórico de Pagamentos</caption>
+</table>
+
+<hr size="1">
+
+<?php
+if ($this->user->status < 0)
+	$status = "<b>CANCELADO</b> - Entre em contato com a nossa <a href='mailto:atendimento@sbrafh.org.br'><b>Secretaria</b></a>.";
+elseif ($this->user->status == 0)
+	$status = "<b>INATIVO</b> - Caso já tenha pago a anuidade, entre em contato com a nossa <a href='mailto:atendimento@sbrafh.org.br'><b>Secretaria</b></a>.";
+elseif (date('Y.m.d') > $this->validade)
+	$status = "<b>VENCIDA</b> - $this->dataVal Clique no link Renovar minha Inscrição ao lado
+		para gerar o Boleto da renovação da sua Inscrição.";
+elseif($this->validade <= $this->datalim)
+	$status = "<b>A VENCER EM $this->datalim $this->dataval</b> - Clique no link Renovar minha Inscrição ao lado
+	para gerar boleto de renovação da sua inscrição.";
+else 
+	$status = "<b>ATIVO - Nenhuma pendência de pagamento até o momento.</b>";
+?>
+
+
+<pre>
+Nome&nbsp;: <?=$this->user->nome?>
+<br />Email: <?=$this->user->email?>
+<br />Fone&nbsp;: <?=$this->user->fone?>
+<br />Cel &nbsp;: <?=$this->user->fone2?>
+<br />Inscrição Nº&nbsp;&nbsp;: <?=sprintf("%06d", $this->user->idCadastro)?>
+<br />Cadastrado em&nbsp;: <?=$this->datareg?>
+<br />Atualizado em&nbsp;: <?=$this->atualizado?>
+<br />Último Acesso&nbsp;: <?=$this->ultAcesso?>
+<br /><b>Validade</b>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;: <b><?=$this->dataval?></b>
+<br />Situação&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;: <?=$status?>
+<br />
+</pre>
+
+<p style="font-size:13px">As vezes o banco não informa o número do boleto pago e quando isso acontece, 
+não temos como saber de quem foi o pagamento. Caso tenha pago sua anuidade e sua situação 
+apareça como <b>VENCIDA</b> ou <b>INATIVO</b>, envie uma cópia do <b>BOLETO PAGO</b> para o atendimento 
+(atendimento@sbrafh.org.br) para que possamos localizar e dar baixa no seu pagamento regulalizando 
+a sua inscrição.</p>
+
+<table id='tbHistorico' cellpadding='2' cellspacing='2' border='0'>
+<caption>Histórico de Pagamentos</caption>
+<thead>
+	<tr align='center'>
+		<th>Vencimento</th>
+		<th>Histórico</th>
+		<th>Valor R$</th>			
+		<th>Pagamento</th>
+	</tr>
+</thead>
+
+
+<?php
+
+//$this->fc->debug($this->pgtos);
+if (!$this->pgtos)
+	echo "<tr><td colspan='4' class='msgErr'>Nenhum registro localizado em seu histórico de pagamentos</td></tr>";
+else {
+	foreach($this->pgtos as $rs):
+		//$this->fc->debug($rs);
+		if ($rs->datapgto=='01/01/1900' || $rs->datapgto=='') {
+			$rs->datapgto='00/00/0000';
+			$rs->datapgto="<a href='http://www.sbrafh.org.br/boletos/boleto.php?id=$rs->idFinanceiro' target='_blank'>
+				<b style='color:#f00'>00/00/0000</b></a>";
+			$pendente = true;
+			}
+			
+		echo"<tr align='center'>
+			<td>$rs->datavcto</td>
+			<td>$rs->historico</td>
+			<td>". number_format($rs->valor,2,',','.')."</td>			
+			<td>$rs->datapgto</td>
+		</tr>";
+	endforeach;
+	 
+	if ($pendente):
+		echo"<tr>
+			<td colspan='4' align='center'>
+				Existe(m) boleto(s) pendente de pagamento. Caso tenha pago, envie cópia do comprovante para baixarmos no sistema. 
+				Caso não tenha pago, clique na data de Pgto para re-imprimir o boleto com nova data de vencimento caso o mesmo esteja vencido.
+			</td>
+		</tr>";
+	endif;
+	} ?>
+</table>

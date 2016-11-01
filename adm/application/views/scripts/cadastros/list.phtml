@@ -1,0 +1,100 @@
+<style>
+	.list{font-size:12px;width:100%}
+	.list th{background:#599da1;color:#fff;font-size:11px;font-weight:normal}
+	.list th a{color:#fff;text-decoration:none}
+	.list th a:hover{text-decoration:underline;color:yellow}
+	.list td a{color:#058;text-decoration:none;font-weight:bolder}
+	.list td a:hover{text-decoration:underline;color:#599da1}
+</style>
+<script>
+	$(document).ready(function(){
+		$('.del').click(function(){
+			if(!confirm('Tem certeza que deseja excluir este registro?'))
+				return false;
+			if(!confirm('Uma vez excluído, não tem como recuperar este registro.\n\nConfirma a Exclusão?'))
+				return false;
+			return true;
+			})
+		$('.open').click(function(){
+			//dialogModal(url, nome, height, width)
+			dialogModal('<?=$this->links?>/open/id/'+this.id+'/', 'cadastro', 600, 600);
+			})
+
+		})	
+</script>
+<input type="hidden" id="msg" value="<?=$this->message?>"/>
+
+<table class='list' cellpadding='2' cellspacing='2' border='0'>
+	<caption style="background:#def2f5">
+		<div class="novo">
+			<form method="post" id="searchform" action="<?=$this->baseUrl?>/cadastros/list/1/st/<?=$this->st?>/ord/<?=$this->ord?>"
+				style="margin:0">
+				<input type="hidden" id="logged" value="<?=(int)$this->user->id?>">
+				<table cellpadding="0" cellspacing="0" border="0">
+					<tr>
+						<td>						
+							<input type="text" value="Buscar Cadastro" name="key" id="key"
+								style="border:solid 1px silver;width:180px"
+								onfocus="this.value=''" onblur="if(this.value=='') this.value='Buscar Cadastro'" />
+							<input type="submit" id="searchsubmit" name="searchsubmit" value=" Buscar " border="0" class="button" />
+						</td>
+						<td>
+							<small>Busca pelo CPF/CNPJ, nome ou parte do nome - <b>Clique no ID para abrir</b></small>
+						</td>
+					</tr>
+				</table>
+			</form>					
+		</div>
+	</caption>
+	<thead>
+		<tr>
+			<th><a href="<?=$this->urlNav?>/id">ID</a></th>
+			<th><a href="<?=$this->urlNav?>/nome">Nome</a></th>						
+			<th>Criado em</th>
+			<th><a href="<?=$this->urlNav?>/validade">Válido<br />Até</a></th>
+			<th>Ult. Acesso</th>
+			<th>Hist.</th>
+			<th>Del</th>
+		</tr>
+	</thead>
+	<tbody><?
+	$count = 0;			
+	foreach($this->paginator as $rs):
+		if(!empty($rs->nome)):
+			$count++;
+			$bg = ($count%2==0) ? '#dddddd' : '#ffffff';
+			$datareg = $this->fc->Ymd2dmY($rs->datareg);
+			$validade = $this->fc->Ymd2dmY($rs->validade);
+			$acesso = $this->fc->Ymd2dmY($rs->ultAcesso);
+			if($rs->status < 0)
+				$status = 'Bloqueado';
+			elseif($rs->status == 0)
+				$status = 'Inativo';
+			elseif($rs->status == 1)
+				$status = 'Ativo';
+			elseif($rs->status == 2)
+				$status = 'Isento';
+			elseif($rs->status == 3)
+				$status = 'Diretoria';
+			else
+				$status = 'Indefinido';
+			echo"
+			<tr bgcolor='$bg' align='center'>
+				<td><a href='#' class='open' id='$rs->idCadastro'>". sprintf("%04d",$rs->idCadastro) ."</a></td>
+				<td align='left'>$rs->nome</td>						
+				<td>$datareg</td>
+				<td>$validade</td>						
+				<td>$acesso</td>
+				<td><a href='$this->urlHst/id/$rs->idCadastro'>
+					<img src='$this->baseImg/hst.png' alt='Histórico' border='0'/></a>
+				</td>
+				<td><a href='$this->urlDel/id/$rs->idCadastro' class='del'>
+					<img src='$this->baseImg/del.gif' alt='Excluir' border='0'/></a>
+				</td>
+			</tr>";
+		endif;
+	endforeach;
+	?>
+	</tbody>
+</table>
+<?php echo $this->paginationControl($this->paginator, 'Sliding', 'paginator.phtml'); ?>

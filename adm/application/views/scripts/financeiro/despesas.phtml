@@ -1,0 +1,292 @@
+<link type="text/css" href="<?=jsLib?>/themes/base/ui.all.css" rel="stylesheet" />
+<script type="text/javascript" src="<?=jsLib?>/ui/ui.datepicker.js"></script>
+<script type="text/javascript" src="<?=jsLib?>/ui/ui.core.js"></script>
+<script type="text/javascript" src="<?=jsLib?>/jquery.maskMoney.js"></script>
+			
+<script>
+	$(document).ready(function(){
+		hoje = new Date()
+		dia = hoje.getDate()
+		if (dia < 10) dia='0'+dia;
+		mes = hoje.getMonth()+1;
+		if (mes < 10) mes='0'+mes;
+		ano = hoje.getFullYear();
+		var hoje = ano+mes+dia;
+		var valor = toFloat($('#valor').val());
+		var desconto = toFloat($('#desconto').val());
+		var acrescimo = toFloat($('#acrescimo').val());
+		var total = toFloat($('#total').val());
+
+		function toFloat(s){var t=s.replace('.','');t=t.replace(',','.');return parseFloat(t);}			
+		function calcula(){
+			total = eval(valor + acrescimo - desconto).toDecimal();
+			$('#total').val(total);
+			//alert('valor = ' + valor+' desconto='+desconto+' acrescimo='+acrescimo+' total='+total);
+			}
+
+						
+		$('.data').datepicker({  
+			dateFormat: 'dd/mm/yy',  
+			dayNames:['Domingo','Segunda','Terça','Quarta','Quinta','Sexta','Sábado','Domingo'],  
+			dayNamesMin:['D','S','T','Q','Q','S','S','D'],  
+			dayNamesShort:['Dom','Seg','Ter','Qua','Qui','Sex','Sáb','Dom'],  
+			monthNames:['Janeiro','Fevereiro','Março','Abril','Maio','Junho','Julho','Agosto','Setembro','Outubro','Novembro','Dezembro'],  
+			monthNamesShort:['Jan','Fev','Mar','Abr','Mai','Jun','Jul','Ago','Set','Out','Nov','Dez'],  
+			nextText:'Próximo',prevText: 'Anterior'
+			});
+		$('.data').mask('99/99/9999',{placeholder:'_'});
+		$('.valores').maskMoney({thousands:'.', decimal:','});			
+		
+		$('#valor').blur(function(){
+			valor = toFloat($('#valor').val());
+			calcula();
+			});
+			
+		$('#acrescimo').blur(function(){
+			if($('#acrescimo').val()=='') $('#acrescimo').val('0,00');
+			acrescimo = toFloat($('#acrescimo').val());
+			calcula();
+			});
+
+		$('#desconto').blur(function(){
+			if($('#desconto').val()=='') $('#desconto').val('0,00');
+			desconto = toFloat($('#desconto').val());
+			calcula();
+			});
+
+
+		$('#btSave').click(function(){
+			if($('#historico').val().trim()==''){
+				alert('Preencha o campo Histórico!\n\n');
+				$('#historico').focus();
+				return false;
+				}			
+			if($('#empresa').val().trim()==''){
+				alert('Preencha o campo Empresa!\n\n');
+				$('#empresa').focus();
+				return false;
+				}
+			if($('#tipoDoc').val()=='0' && $('#novoTipoDoc').val().trim()==''){
+				alert('Selecione o Tipo de Documento ou Preencha na caixa abaixo!\n\n');
+				$('#tipoDoc').focus();
+				return false;
+				}
+			if($('#numDoc').val()==''){
+				alert('Digite o número do Documento!\n\n');
+				$('#numDoc').focus();
+				return false;
+				}
+			if($('#vcto').val()==''){
+				alert('Selecione no calendário a Data de Vencimento!\n\n');
+				$('#vcto').focus();
+				return false;
+				}
+			if(toFloat($('#valor').val())==0){
+				alert('Digite o Valor do Documento!\n\n');
+				$('#valor').focus();
+				return false;
+				}
+			if(toFloat($('#total').val())==0){
+				alert('Digite o Total do Documento!\n\n');
+				$('#total').focus();
+				return false;
+				}
+			if($('#modulo').val()!='0' && $('#curso').val()==''){
+				alert('Selecione de qual Curso é esse registro!\n\n');
+				$('#curso').focus();
+				return false;
+				}
+			if($('#curso').val()!='' && $('#modulo').val()=='0'){
+				alert('Selecione de qual Módulo é esse registro ou desmarque o Curso selecionado!\n\n');
+				$('#modulo').focus();
+				return false;
+				}
+			if($('#emissao').val()!=''){
+				if($('#numCheque').val().trim()==''){
+					alert('Digite o Número do Cheque!\n\n');
+					$('#numCheque').focus();
+					return false;
+					}
+				if(toFloat($('#valorCheque').val())==0){
+					alert('Digite o Valor do Cheque!\n\n');
+					$('#valorCheque').focus();
+					return false;
+					}
+				if($('#nominal').val().trim()==''){
+					alert('Digite o Nome do Favorecido!\n\n');
+					$('#nominal').focus();
+					return false;				
+					}
+				}
+			if(!confirm("Verifique se todos os dados estão corretos e confirme.\n\n")) return false;
+			})
+			
+		$('#historico').focus();
+		})
+</script>		
+	
+<style>
+	body{font-size:13px}
+	form{background:#ffffff}
+	.form{font:12px Arial, Helvetica, Sans-Serif, Tahoma, Verdana;border-collapse:collapse;border-color:white;}
+	.form caption{font-size:16px;font-weight:bolder;background:#599da1;padding:4px;color:#fff}
+	.form th{background:#def2f5;padding:4px;text-align:center;color:#000}
+	.form .label{background:#def2f5;padding:4px;text-align:right;white-space:nowrap;color:#000;width:auto}
+	.form td{padding:2px;color:#000}
+	.form .button{cursor:pointer;font-weight:bolder}
+	.form .button:hover{color:#f60}
+	.form .data{width:100px;text-align:center}
+	.form #numDoc{width:100px;text-align:center}
+	.form #numCheque{width:100px;text-align:center}
+	.form .valores{width:100px;text-align:right}
+	.form .historico{}
+	.form select{font-size:12px}
+	.form .matricula{width:80px;text-align:center}
+	.form .left{text-align:left}
+	.text {width:340px;border:solid 1px #006;font-size:13px}
+	
+</style>
+		
+<form name="fDespesas" id="fDespesas" method="POST" action="<?=$this->baseUrl?>/financeiro/despesas/id/<?=$this->id?>/">
+	<input type="hidden" name="idForm" value="<?=$this->idForm?>" />					
+	<table class="form" cellpadding="0" cellspacing="0" border="0" width="100%">
+		<caption>Registro de Despesas</caption>
+	</table>
+	<center>	
+		<table class="form" cellpadding="0" cellspacing="0" border="1">
+			<tr>
+				<td class="label">Data do Lançamento:</td>
+				<td colspan="3"><?=($_POST['dataReg'])?> (Automático)</td>
+			</tr>
+			<tr>
+				<td class="label">Histórico</td>
+				<td colspan="3">
+					<input type="text" class="text" name="historico" id="historico" value="<?=$_POST['historico']?>"/>
+				</td>
+			</tr>
+			<tr>
+				<td class="label">Empresa:</td>
+				<td colspan="3">
+					<input type="text" class="text" name="empresa" id="empresa" value="<?=$_POST['empresa']?>"/>
+				</td>
+			</tr>
+			<tr>
+				<td class="label">Tipo Documento:</td>
+				<td colspan="3">
+					<select class="text" name="tipoDoc" id="tipoDoc" size="1">
+						<option value="0">Selecione o tipo de Docto.</option><?
+						foreach($this->tipoDoc as $rs):
+							$selected = ($_POST['tipoDoc']==$rs->id) ? 'selected' : '';
+							echo"\r\n<option $selected value='$rs->id'>$rs->tipo</option>";
+						endforeach; ?>
+					</select>					
+				</td>
+			</tr>
+			<tr>
+				<td class="label"><b>ou digite ao lado:</b></td>
+				<td colspan="3">
+					<input type="text" class="text" name="novoTipoDoc" id="novoTipoDoc" value="<?=$_POST['novoTipoDoc']?>"/>
+				</td>
+			</tr>
+			<tr>
+				<td class="label">Número do Documento:</td>
+				<td colspan="3">
+					<input type="text" class="text" name="numDoc" id="numDoc" value="<?=$_POST['numDoc']?>"/>
+				</td>
+			</tr>
+			<tr>
+				<td class="label">Data do Vencimento:</td>
+				<td><input type="text" class="text data" name="vcto" id="vcto" value="<?=$this->fc->Ymd2dmY($_POST['vcto'])?>"/></td>
+				<td class="label">Valor R$:</td>
+				<td>
+					<input type="text" class="text valores" name="valor" id="valor" value="<?=number_format($_POST['valor'], 2, ',','.')?>"/>					
+				</td>
+			</tr>
+			<tr>
+				<td class="label">Desconto R$:</td>
+				<td>
+					<input type="text" class="text valores" name="desconto" id="desconto" value="<?=number_format($_POST['desconto'], 2, ',','.')?>"/>					
+				</td>
+				<td class="label">Juros/Multa R$:</td>
+				<td>
+					<input type="text" class="text valores" name="acrescimo" id="acrescimo" value="<?=number_format($_POST['acrescimo'], 2, ',','.')?>"/>					
+				</td>
+			</tr>
+			<tr>
+				<td class="label">Data do Pagamento:</td>
+				<td><input type="text" class="text data" name="pgto" id="pgto" value="<?=$this->fc->Ymd2dmY($_POST['pgto'])?>"/></td>
+				<td class="label">Valor Pago R$:</td>
+				<td>
+					<input type="text" class="text valores" name="total" id="total" value="<?=number_format($_POST['total'], 2, ',','.')?>"/>					
+				</td>
+			</tr>
+			<tr>
+				<th colspan="4">DETALHAMENTO EM CASO DE CURSO</th>
+			</tr>
+			<tr>
+				<td class="label">Módulo:</td>
+				<td>
+					<select name="modulo" id="modulo" size="1" style="width:100px">
+						<option value='0'>---------------------</option><?
+						for($x = 1; $x < 16; $x++):
+							$selected = ((int)$_POST['modulo'] == $x) ? 'selected' : '';
+							echo"\r\n<option $selected value='$x'>Módulo $x</option>";
+						endfor; ?>						
+					</select>					
+				</td>
+				<td class="label">Origem:</td>
+				<td>
+					<select name="curso" id="curso" size="1" style="width:100px">
+						<option value=''>------------------</option>
+						<option <?=($_POST['curso']=='AMF')?'selected':''?> value='AMF'>AMF</option>
+						<option <?=($_POST['curso']=='VI FC')?'selected':''?> value='VI FC'>VI FC</option>
+						<option <?=($_POST['curso']=='VII FC')?'selected':''?> value='VII FC'>VII FC</option>
+						<option <?=($_POST['curso']=='VIII FC')?'selected':''?> value='VII FC'>VIII FC</option>
+						<option <?=($_POST['curso']=='I SP')?'selected':''?> value='I SP'>I SP</option>
+						<option <?=($_POST['curso']=='VI FH')?'selected':''?> value='VI FH'>VI FH</option>
+						<option <?=($_POST['curso']=='VII FH')?'selected':''?> value='VII FH'>VII FH</option>
+						<option <?=($_POST['curso']=='VIII FH')?'selected':''?> value='VII FH'>VIII FH</option>
+						<option <?=($_POST['curso']=='FVG-FUNED')?'selected':''?> value='FVG-FUNED'>FVG - FUNED</option>
+						<option <?=($_POST['curso']=='GR')?'selected':''?> value='GR'>GR</option>
+						<option <?=($_POST['curso']=='OPME')?'selected':''?> value='OPME'>OPME</option>
+						<option <?=($_POST['curso']=='OUTROS')?'selected':''?> value='OUTROS'>OUTROS</option>
+					</select>					
+				</td>
+			</tr>
+			<tr>
+				<th colspan="2">DADOS DO CHEQUE EMITIDO</th>
+				<td class="label">Data da Emissão:</td>
+				<td><input type="text" class="text data" name="emissao" id="emissao" value="<?=$this->fc->Ymd2dmY($_POST['emissao'])?>"/></td>
+			</tr>
+			<tr>
+				<td class="label">Número do Cheque:</td>
+				<td><input type="text" class="text numeric" name="numCheque" id="numCheque" value="<?=$_POST['numCheque']?>"/></td>
+				<td class="label">Valor do Cheque R$:</td>
+				<td>
+					<input type="text" class="text valores" name="valorCheque" id="valorCheque" value="<?=number_format($_POST['valorCheque'], 2, ',','.')?>"/>					
+				</td>
+			</tr>
+			<tr>
+				<td class="label">Nominal à:</td>
+				<td colspan="3">
+					<input type="text" class="text" name="nominal" id="nominal" value="<?=$_POST['nominal']?>"/>
+				</td>
+			</tr>
+			<tr>
+				<td class="label">Observações:</td>
+				<td colspan="3">
+					<input type="text" class="text" name="obs" id="obs" value="<?=$_POST['obs']?>"/>
+				</td>
+			</tr>
+			<tr>
+				<td colspan="4" style='text-align:center;padding:8px 0'>
+					<input type="submit" name="btSave" id="btSave" class="button" value="<?=($this->id >0) ? 'Atualizar Registro' : 'Gravar Registro'?>" /><?
+					if($this->view->id):?>
+						<input style="margin-left:30px" name="btNew" id="btNew" class="button" value="Novo Registro de Despesa" 
+							onclick="document.location.href='<?=$this->baseUrl?>/despesas/' ><?
+					endif; ?>
+				</td>
+			</tr>
+		</table>
+	</center>
+</form>

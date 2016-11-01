@@ -1,0 +1,104 @@
+        <html xmlns:o="urn:schemas-microsoft-com:office:office"
+               xmlns:x="urn:schemas-microsoft-com:office:excel"
+                xmlns="http://www.w3.org/TR/REC-html40">
+
+                <head>
+                <meta http-equiv=Content-Type content="text/html; charset=iso-8859-1">
+                <meta name=ProgId content=Excel.Sheet>
+                <!--[if gte mso 9]><xml>
+                 <o:DocumentProperties>
+                  <o:LastAuthor>Sriram</o:LastAuthor>
+                  <o:LastSaved>2005-01-02T07:46:23Z</o:LastSaved>
+                  <o:Version>10.2625</o:Version>
+                 </o:DocumentProperties>
+                 <o:OfficeDocumentSettings>
+                  <o:DownloadComponents/>
+                 </o:OfficeDocumentSettings>
+                </xml><![endif]-->
+                <style>
+                <!--table
+                    {mso-displayed-decimal-separator:"\.";
+                    mso-displayed-thousand-separator:"\,";}
+                @page
+                    {margin:1.0in .75in 1.0in .75in;
+                    mso-header-margin:.5in;
+                    mso-footer-margin:.5in;}
+                tr
+                    {mso-height-source:auto;}
+                col
+                    {mso-width-source:auto;}
+                br
+                    {mso-data-placement:same-cell;}
+                .style0
+                    {mso-number-format:General;
+                    text-align:general;
+                    vertical-align:bottom;
+                    white-space:nowrap;
+                    mso-rotate:0;
+                    mso-background-source:auto;
+                    mso-pattern:auto;
+                    color:windowtext;
+                    font-size:10.0pt;
+                    font-weight:400;
+                    font-style:normal;
+                    text-decoration:none;
+                    font-family:Arial;
+                    mso-generic-font-family:auto;
+                    mso-font-charset:0;
+                    border:none;
+                    mso-protection:locked visible;
+                    mso-style-name:Normal;
+                    mso-style-id:0;}
+                td
+                    {mso-style-parent:style0;
+                    padding-top:1px;
+                    padding-right:1px;
+                    padding-left:1px;
+                    mso-ignore:padding;
+                    color:windowtext;
+                    font-size:10.0pt;
+                    font-weight:400;
+                    font-style:normal;
+                    text-decoration:none;
+                    font-family:Arial;
+                    mso-generic-font-family:auto;
+                    mso-font-charset:0;
+                    mso-number-format:General;
+                    text-align:general;
+                    vertical-align:bottom;
+                    border:none;
+                    mso-background-source:auto;
+                    mso-pattern:auto;
+                    mso-protection:locked visible;
+                    white-space:nowrap;
+                    mso-rotate:0;}
+                .xl24
+                    {mso-style-parent:style0;
+                    white-space:normal;}
+                -->
+                </style>
+                <!--[if gte mso 9]><xml>
+                 <x:ExcelWorkbook>
+                  <x:ExcelWorksheets>
+                   <x:ExcelWorksheet>
+                    <x:Name>NOME_PLANILHA</x:Name>
+                    <x:WorksheetOptions>
+                     <x:Selected/>
+                     <x:ProtectContents>False</x:ProtectContents>
+                     <x:ProtectObjects>False</x:ProtectObjects>
+                     <x:ProtectScenarios>False</x:ProtectScenarios>
+                    </x:WorksheetOptions>
+                   </x:ExcelWorksheet>
+                  </x:ExcelWorksheets>
+                  <x:WindowHeight>10005</x:WindowHeight>
+                  <x:WindowWidth>10005</x:WindowWidth>
+                  <x:WindowTopX>120</x:WindowTopX>
+                  <x:WindowTopY>135</x:WindowTopY>
+                  <x:ProtectStructure>False</x:ProtectStructure>
+                  <x:ProtectWindows>False</x:ProtectWindows>
+                 </x:ExcelWorkbook>
+                </xml><![endif]-->
+                </head>
+
+                <body link=blue vlink=purple>
+                <table x:str border=0 cellpadding=0 cellspacing=0 style='border-collapse: collapse;table-layout:fixed;'><tr><td class=xl24 width=64 >1. Descrição da Despesa</td><td class=xl24 width=64 >2. Empresa</td><td class=xl24 width=64 >3. Valor</td><td class=xl24 width=64 >4. Doc. (descr. e nº)</td><td class=xl24 width=64 >5. Vcto</td><td class=xl24 width=64 >6. Pgto</td><td class=xl24 width=64 >7. Valor Pago</td><td class=xl24 width=64 >8. Módulo</td><td class=xl24 width=64 >9. Curso</td><td class=xl24 width=64 >10. Emissão</td><td class=xl24 width=64 >11. Cheque Nº</td><td class=xl24 width=64 >12. Nominal</td><td class=xl24 width=64 >13. Valor</td></tr><tr><td class=xl24 width=64 >Passagem Luciane Cruz Lopes</td><td class=xl24 width=64 >Lord Toyr Av Tursmo Ltda</td><td class=xl24 width=64 >415,22</td><td class=xl24 width=64 >1029</td><td class=xl24 width=64 >30/11/2013</td><td class=xl24 width=64 >14/11/2013</td><td class=xl24 width=64 >415,22</td><td class=xl24 width=64 >9</td><td class=xl24 width=64 >VII FC</td><td class=xl24 width=64 >05/11/2013</td><td class=xl24 width=64 >303748</td><td class=xl24 width=64 >Lord Tour av Turismo Ltda</td><td class=xl24 width=64 >415,22</td></tr><tr><td class=xl24 width=64 >Pagamento 13° salário</td><td class=xl24 width=64 >AMF</td><td class=xl24 width=64 >932,00</td><td class=xl24 width=64 >13°</td><td class=xl24 width=64 >30/11/2013</td><td class=xl24 width=64 >19/11/2013</td><td class=xl24 width=64 >932,00</td><td class=xl24 width=64 >0</td><td class=xl24 width=64 ></td><td class=xl24 width=64 >18/11/2013</td><td class=xl24 width=64 >303665</td><td class=xl24 width=64 >Carmen Cassemiro de Souza</td><td class=xl24 width=64 >932,00</td></tr><tr><td class=xl24 width=64 >Darf</td><td class=xl24 width=64 >AMF</td><td class=xl24 width=64 >17,70</td><td class=xl24 width=64 >Confins</td><td class=xl24 width=64 >25/11/2013</td><td class=xl24 width=64 >28/11/2013</td><td class=xl24 width=64 >17,70</td><td class=xl24 width=64 >0</td><td class=xl24 width=64 ></td><td class=xl24 width=64 >11/11/2013</td><td class=xl24 width=64 >303660</td><td class=xl24 width=64 >CEF</td><td class=xl24 width=64 >144,59</td></tr><tr><td class=xl24 width=64 >Darf</td><td class=xl24 width=64 >AMF</td><td class=xl24 width=64 >34,18</td><td class=xl24 width=64 >2013/43164</td><td class=xl24 width=64 >20/11/2013</td><td class=xl24 width=64 >11/11/2013</td><td class=xl24 width=64 >34,18</td><td class=xl24 width=64 >7</td><td class=xl24 width=64 >VII FC</td><td class=xl24 width=64 >07/11/2013</td><td class=xl24 width=64 >303658</td><td class=xl24 width=64 >CEF</td><td class=xl24 width=64 >34,18</td></tr><tr><td class=xl24 width=64 >Honorarios adcionais</td><td class=xl24 width=64 >AMF</td><td class=xl24 width=64 >275,00</td><td class=xl24 width=64 >2013/189</td><td class=xl24 width=64 >20/11/2013</td><td class=xl24 width=64 >20/11/2013</td><td class=xl24 width=64 >275,00</td><td class=xl24 width=64 >0</td><td class=xl24 width=64 ></td><td class=xl24 width=64 >18/11/2013</td><td class=xl24 width=64 >303666</td><td class=xl24 width=64 >Rocha Dourados e Associados</td><td class=xl24 width=64 >275,00</td></tr><tr><td class=xl24 width=64 >Guia recolhimento ISSQN</td><td class=xl24 width=64 >Newton Paiva</td><td class=xl24 width=64 >47,40</td><td class=xl24 width=64 >201343164</td><td class=xl24 width=64 >18/11/2013</td><td class=xl24 width=64 >14/11/2013</td><td class=xl24 width=64 >47,40</td><td class=xl24 width=64 >7</td><td class=xl24 width=64 >VII FC</td><td class=xl24 width=64 >07/11/2013</td><td class=xl24 width=64 >303657</td><td class=xl24 width=64 >CEF</td><td class=xl24 width=64 >47,40</td></tr><tr><td class=xl24 width=64 >devolução de Matricula</td><td class=xl24 width=64 >AMF</td><td class=xl24 width=64 >290,00</td><td class=xl24 width=64 >0000</td><td class=xl24 width=64 >13/11/2013</td><td class=xl24 width=64 >18/11/2013</td><td class=xl24 width=64 >290,00</td><td class=xl24 width=64 >1</td><td class=xl24 width=64 >OPME</td><td class=xl24 width=64 >11/11/2013</td><td class=xl24 width=64 >303659</td><td class=xl24 width=64 >Sandra Maria Frieza</td><td class=xl24 width=64 >290,00</td></tr><tr><td class=xl24 width=64 >Manutenção Site</td><td class=xl24 width=64 >AMF</td><td class=xl24 width=64 >391,00</td><td class=xl24 width=64 >Recibo</td><td class=xl24 width=64 >12/11/2013</td><td class=xl24 width=64 >13/11/2013</td><td class=xl24 width=64 >391,00</td><td class=xl24 width=64 >0</td><td class=xl24 width=64 ></td><td class=xl24 width=64 >12/11/2013</td><td class=xl24 width=64 >303664</td><td class=xl24 width=64 >LAURO ASSIS LIMA DE BRITTO</td><td class=xl24 width=64 >391,00</td></tr><tr><td class=xl24 width=64 >Conta de telefone fixo</td><td class=xl24 width=64 >Claro</td><td class=xl24 width=64 >60,29</td><td class=xl24 width=64 >0230724792</td><td class=xl24 width=64 >11/11/2013</td><td class=xl24 width=64 >14/11/2013</td><td class=xl24 width=64 >60,29</td><td class=xl24 width=64 >0</td><td class=xl24 width=64 ></td><td class=xl24 width=64 >06/11/2013</td><td class=xl24 width=64 >303656</td><td class=xl24 width=64 >Claro</td><td class=xl24 width=64 >60,29</td></tr><tr><td class=xl24 width=64 >Pagamento prof. Luciane Cruz Lopes</td><td class=xl24 width=64 >INAEF</td><td class=xl24 width=64 >1.773,00</td><td class=xl24 width=64 >000</td><td class=xl24 width=64 >11/11/2013</td><td class=xl24 width=64 >13/11/2013</td><td class=xl24 width=64 >1.773,00</td><td class=xl24 width=64 >0</td><td class=xl24 width=64 ></td><td class=xl24 width=64 ></td><td class=xl24 width=64 ></td><td class=xl24 width=64 ></td><td class=xl24 width=64 >0,00</td></tr><tr><td class=xl24 width=64 >Reembolso Carlão</td><td class=xl24 width=64 >Carlos Eduardo Pulz Araújo</td><td class=xl24 width=64 >305,25</td><td class=xl24 width=64 >ccf 071357</td><td class=xl24 width=64 >08/11/2013</td><td class=xl24 width=64 >13/11/2013</td><td class=xl24 width=64 >305,25</td><td class=xl24 width=64 >8</td><td class=xl24 width=64 >VII FC</td><td class=xl24 width=64 >05/11/2013</td><td class=xl24 width=64 >303746</td><td class=xl24 width=64 >Carlos Eduardo Pulz Araújo</td><td class=xl24 width=64 >305,25</td></tr><tr><td class=xl24 width=64 >Devolução matricula</td><td class=xl24 width=64 >AMF</td><td class=xl24 width=64 >215,00</td><td class=xl24 width=64 >000</td><td class=xl24 width=64 >08/11/2013</td><td class=xl24 width=64 >08/11/2013</td><td class=xl24 width=64 >215,00</td><td class=xl24 width=64 >1</td><td class=xl24 width=64 >OUTROS</td><td class=xl24 width=64 >16/10/2013</td><td class=xl24 width=64 >303633</td><td class=xl24 width=64 >Kelly Cristina de m. Moraes</td><td class=xl24 width=64 >215,00</td></tr><tr><td class=xl24 width=64 >devolução de Matricula</td><td class=xl24 width=64 >Cristal Pharma Ltda</td><td class=xl24 width=64 >365,00</td><td class=xl24 width=64 >0028</td><td class=xl24 width=64 >07/11/2013</td><td class=xl24 width=64 >14/11/2013</td><td class=xl24 width=64 >365,00</td><td class=xl24 width=64 >0</td><td class=xl24 width=64 ></td><td class=xl24 width=64 >06/11/2013</td><td class=xl24 width=64 >303655</td><td class=xl24 width=64 >Cristal Pharma Ltda</td><td class=xl24 width=64 >365,00</td></tr><tr><td class=xl24 width=64 >Vivo</td><td class=xl24 width=64 >AMF</td><td class=xl24 width=64 >413,91</td><td class=xl24 width=64 >0153606434</td><td class=xl24 width=64 >06/11/2013</td><td class=xl24 width=64 >14/11/2013</td><td class=xl24 width=64 >413,91</td><td class=xl24 width=64 >0</td><td class=xl24 width=64 ></td><td class=xl24 width=64 >01/11/2013</td><td class=xl24 width=64 >303749</td><td class=xl24 width=64 >Vivo</td><td class=xl24 width=64 >413,91</td></tr><tr><td class=xl24 width=64 >devolução de Matricula</td><td class=xl24 width=64 >AMF</td><td class=xl24 width=64 >240,00</td><td class=xl24 width=64 >008925401</td><td class=xl24 width=64 >04/11/2013</td><td class=xl24 width=64 >14/11/2013</td><td class=xl24 width=64 >240,00</td><td class=xl24 width=64 >0</td><td class=xl24 width=64 ></td><td class=xl24 width=64 >06/11/2013</td><td class=xl24 width=64 >303745</td><td class=xl24 width=64 >Daniela Ribeiro Rosa</td><td class=xl24 width=64 >240,00</td></tr><tr><td class=xl24 width=64 >Reemolso Carlão</td><td class=xl24 width=64 >AMF</td><td class=xl24 width=64 >924,30</td><td class=xl24 width=64 >0000</td><td class=xl24 width=64 >04/11/2013</td><td class=xl24 width=64 >04/11/2013</td><td class=xl24 width=64 >924,30</td><td class=xl24 width=64 >8</td><td class=xl24 width=64 >VII FC</td><td class=xl24 width=64 >04/11/2013</td><td class=xl24 width=64 >303642</td><td class=xl24 width=64 >Carlos Eduardo Pulz Araújo</td><td class=xl24 width=64 >924,30</td></tr><tr><td class=xl24 width=64 >Pagamento Coordenadora</td><td class=xl24 width=64 >AMF</td><td class=xl24 width=64 >2.160,00</td><td class=xl24 width=64 >0000</td><td class=xl24 width=64 >01/11/2013</td><td class=xl24 width=64 >01/11/2013</td><td class=xl24 width=64 >2.126,31</td><td class=xl24 width=64 >8</td><td class=xl24 width=64 >VII FC</td><td class=xl24 width=64 >01/11/2013</td><td class=xl24 width=64 >303648</td><td class=xl24 width=64 >Maria das Dores Graciano Silva</td><td class=xl24 width=64 >2.126,31</td></tr></table></body></html>

@@ -1,0 +1,9 @@
+Coordenador Projeto BoletoPhp - Elizeu Alcantara 
+Projeto PhpBoleto - João Prado Maia e Pablo Martins F. Costa
+Projeto BBBoletoFree - Daniel William Schultz
+Boleto Banco do Brasil - Daniel William Schultz / Leandro Maniezo / Rogério Dias Pereira
+Boleto Unibanco - Elizeu Alcantara
+Boleto Caixa - Elizeu Alcantara
+Boleto Itaú - Glauber Portella
+Boleto Hsbc - Bruno Leonardo
+Boleto Bradesco - Ramon Soares

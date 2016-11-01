@@ -1,0 +1,81 @@
+<?php
+include("application/classes/excelwriter.inc.php");
+
+$filename = $this->filename;
+$excel=new ExcelWriter($filename);
+
+if($excel==false){
+	echo $excel->error;
+	exit;
+	}
+
+$colunas = array(
+	'1. Descrição da Despesa',
+	'2. Empresa',
+	'3. Valor',
+	'4. Doc. (descr. e nº)',
+	'5. Vcto',
+	'6. Pgto',
+	'7. Valor Pago',
+	'8. Módulo',
+	'9. Curso',
+	'10. Emissão',
+	'11. Cheque Nº',
+	'12. Nominal',
+	'13. Valor');
+
+
+$header = null;
+foreach ($colunas as $k):
+   $header[] = $k;
+endforeach;
+
+$excel->writeLine($header);
+foreach($this->dbtable as $rs):
+	$dados = null;
+//	$this->fc->debug($rs); die();
+	//foreach ($rs as $k => $v):
+	$dados[] = $rs->historico;
+	$dados[] = $rs->empresa;
+	$dados[] = $rs->valor;
+	$dados[] = $rs->numDoc;
+	$dados[] = $rs->vcto;
+	$dados[] = $rs->pgto;
+	$dados[] = $rs->total;
+	$dados[] = $rs->modulo;
+	$dados[] = $rs->curso;
+	$dados[] = $rs->emissao;
+	$dados[] = $rs->numCheque;
+	$dados[] = $rs->nominal;
+	$dados[] = $rs->valorCheque;
+	//endforeach;
+	$excel->writeLine($dados);
+endforeach;
+$excel->close();
+
+
+
+
+
+
+
+
+
+//die('ok');
+//$filename = 'seminarios.xls';
+$fd = fopen ($filename, "r");
+$size = filesize($filename);
+header("Pragma: ");
+header("Cache-Control: ");
+header("Content-type: application/octet-stream");
+header("Content-Disposition: attachment; filename=\"".$filename."\"");
+header("Content-length: $size");
+while(!feof($fd))
+	{
+	$buffer = fread($fd, 2048);
+	print $buffer;
+	}			
+fclose ($fd);
+//	exit;
+//	}
+?>

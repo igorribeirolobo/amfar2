@@ -1,0 +1,322 @@
+<html>
+	<head>
+	<meta http-equiv=Content-Type content="text/html; charset=windows-1252">
+	<meta name=Generator content="Microsoft Word 10 (filtered)">
+	<title>CONTRATO DE PRESTAÇÃO DE SERVIÇOS EDUCACIONAIS</title>
+	
+	<style>
+	<!--
+		*{font: 14px Arial, Helvetica, Sans-Serif, Tahoma, Verdana}
+		p {text-align:justify;margin:6px 0}
+		.titulo{font-weight:bolder;font-size:18px;text-align:center}
+		b{font-weight:bolder}
+		.clausula{font-weight:bolder;font-size:16px;margin:0;margin-top:20px}
+		.itens {margin:6px 0 6px 20px}
+		ul {list-style-type:lower-alpha}
+		p.oblique {font-style:italic}
+	-->
+	</style>
+	
+	</head>
+
+	<body>
+	
+		<p class="titulo">CONTRATO DE PRESTAÇÃO DE SERVIÇOS EDUCACIONAIS</p>
+	
+		<p>&nbsp;</p>
+	
+	
+		<?
+		if($uid==1928 || $uid==1929){
+			$sacado = mssql_fetch_object(mssql_query("SELECT * FROM cadastro WHERE idCadastro=1937"));
+			//$rsCurso->nome = $sacado->nome;
+			//$rsCurso->ender = $sacado->ender;
+			//$rsCurso->num = $sacado->num;
+			//$rsCurso->bairro = $sacado->bairro;
+			//$rsCurso->cidade = $sacado->cidade;
+			//$rsCurso->uf = $sacado->uf;
+			$sacado->cpf = formatCPF($sacado->cpf);
+			//$rsCurso->rg = 'ISENTO';
+
+			echo"<p><b>CONTRATANTE:</b>  
+				$sacado->nome, estabelecida na $sacado->ender, $sacado->num $sacado->compl,&nbsp; 
+				$sacado->bairro, $sacado->cidade, $sacado->uf,
+				inscrito no CNPJ nº $sacado->cpf para o(a) aluno(a) $rsCurso->nome, portador do RG nº $rsCurso->rg e CPF nº $rsCurso->cpf</p>
+			<br />";
+			$rsCurso->nome = $sacado->nome;
+			}
+		elseif($uid==1922){
+			$sacado = mssql_fetch_object(mssql_query("SELECT * FROM cadastro WHERE idCadastro=1966"));
+			//$rsCurso->nome = $sacado->nome;
+			//$rsCurso->ender = $sacado->ender;
+			//$rsCurso->num = $sacado->num;
+			//$rsCurso->bairro = $sacado->bairro;
+			//$rsCurso->cidade = $sacado->cidade;
+			//$rsCurso->uf = $sacado->uf;
+			$sacado->cpf = formatCPF($sacado->cpf);
+			//$rsCurso->rg = 'ISENTO';
+
+			echo"<p><b>CONTRATANTE:</b>  
+				$sacado->nome, estabelecida na $sacado->ender, $sacado->num $sacado->compl,&nbsp; 
+				$sacado->bairro, $sacado->cidade, $sacado->uf,
+				inscrito no CNPJ nº $sacado->cpf para o(a) aluno(a) $rsCurso->nome, portador do RG nº $rsCurso->rg e CPF nº $rsCurso->cpf</p>
+			<br />";
+			$rsCurso->nome = $sacado->nome;
+			}
+		else { ?>
+			<p><b>CONTRATANTE:</b>  
+				<?=$rsCurso->nome?>, residente na <?=$rsCurso->ender?>, <?=$rsCurso->num?> <?=$rsCurso->compl?>,&nbsp; 
+				<?=$rsCurso->bairro?>, <?=$rsCurso->cidade?>, <?=$rsCurso->uf?>,
+				portador do RG nº <?=$rsCurso->rg?> e CPF nº <?=$rsCurso->cpf?>.</p>
+			<br />		
+	<?	}
+	
+	if($uid==1894) $parcela = 450;
+	//echo "idCadastro=$idCadastro";
+	if($uid==1940){
+		$parcela = 367.5;
+		$parcelas = 20;
+		}
+	elseif($uid==1812){
+		$total = 6000;
+		$parcela = 300;
+		$parcelas = 20;
+		}
+	?>
+		
+		
+		
+		<p><b>CONTRATADA</b> ASSOCIAÇÃO MINEIRA DE FARMACÊUTICOS – AMF, associação civil, inscrita no CNPJ sob o 
+		nº 17.431.743/0001-19, sediada nesta capital, na Avenida do Contorno, 9215, salas 501/502, neste ato representada por sua Presidente, 
+		Jacqueline Mansur Peixoto, brasileira, divorciada, Farmacêutica, CPF nº. 553.399.486-68.</p>
+		
+		<br />
+		
+		<p>O (A) CONTRATANTE e a CONTRATADA celebram, pelo presente instrumento, um contrato de prestação de serviços educacionais, regulado 
+		pelas cláusulas e condições seguintes:</p>
+	
+		<p class="clausula">CLÁUSULA PRIMEIRA - DO OBJETO</p>
+		<p>O objeto do presente contrato é a prestação de serviços educacionais prestados pela Contratada ao Contratante, referente ao 
+		Curso de Pós-Graduação <span class="oblique">Lato Sensu</span>, <?=$rsCurso->titulo?>, promovido pela CONTRATADA em acordo técnico científico com o INSTITUTO 
+		CULTURAL NEWTON PAIVA FERREIRA LTDA., CNPJ 16.521.155/0001-03, com sede em Belo Horizonte/MG, na Rua Goitacazes, 1762, Bairro 
+		Barro Preto, CEP 30190-052, bem como complementar à homologação dos respectivos encargos, nos termos dos Arts. 121, 125, 427, 
+		432, 476, 594 e 842 do novo Código Civil (Lei 10.406/02), e Arts. 2º, 3º, § 2º, 50 e 54, § 3º (ADESÃO) da Lei 8078, de 11 de 
+		setembro de 1990; Lei 8880/94; Lei 9069/95; 
+		Lei 9870/99 de 23 de novembro de 1999; Medida Provisória 2173-24, de 23/8/01, em vigor conforme Art.2º da Emenda Constitucional 
+		nº 32, de 12/9/01 e Decreto 3274, de 6/12/99.</p>
+	
+		<p class="clausula">CLÁUSULA SEGUNDA – DA DURAÇÃO DO CURSO</p>
+	
+		<p>O Curso deverá ser ministrado com uma carga horária total de 432 (quatrocentos e trinta e duas) horas, sendo 360 (trezentos e 
+		sessenta) horas presenciais e 72 (setenta e duas) horas destinadas a trabalhos práticos e elaboração de Trabalho de Conclusão  
+		de Curso (TCC) a serem desenvolvidos 
+		no período determinado pela CONTRATADA. Nestas inclusas a carga horária de seminários de áreas afins e/ou visitas técnicas e 
+		seminários de orientação, quando o Contratante se comprometerá a elaborar um trabalho de conclusão.</p>
+		
+		<p class="itens"><b>§ 1º</b> - O curso tem início previsto para <b><?=$rsCurso->inicio?></b> com previsão de 15 (quinze) meses de duração, 
+		em datas a ser oportunamente informadas, observados os recessos previstos no Calendário, com aulas ministradas no período vespertino 
+		e noturno das sextas-feiras; matutino e vespertino dos sábados e domingos, com intervalos para lanche/almoço, que não 
+		estão incluídos no valor do curso.</p>
+		
+		<p class="itens"><b>§2º</b> - A oferta de cursos e/ou disciplinas à distância não obriga a Contratada a fornecer ou disponibilizar ao 
+		CONTRATANTE, em qualquer circunstância, equipamentos de informática e/ou laboratórios.</p>
+		
+		<p class="itens"><b>§3º</b> - O cronograma do curso poderá ser alterado pela CONTRATADA caso haja conveniência administrativa e 
+		didático-pedagógica, visando permitir o melhor aproveitamento e efetivação do respectivo curso, hipótese em que o aluno será 
+		comunicado previamente.</p> 
+	
+		<p class="clausula">CLÁUSULA TERCEIRA – DAS RESPONSABILIDADES DA CONTRATADA</p>
+	
+		<p>A Contratada poderá:</p>
+		<ul>
+			<li>alterar a seqüência das disciplinas, substituir docentes em seus impedimentos e, conseqüentemente, ajustar conteúdos 
+			programáticos de disciplinas, sem  prejuízo da qualidade do curso;</li>
+			<li>ministrar disciplinas comuns na mesma área de concentração em conjunto com alunos de outros cursos, respeitados os dias 
+			e os horários das aulas do curso ora contratado.</li>
+			<li>autorizar aproveitamento de estudos, após criteriosa análise da coordenação acadêmica, porém não implicará na redução 
+			do valor das parcelas do curso no qual ele obtiver dispensa de disciplina, apenas, quando for o caso, possibilitará na 
+			conclusão antecipada ou com freqüência reduzida de disciplina.</li>
+		</ul>
+	
+			
+		<p class="clausula">CLÁUSULA QUARTA – DO LOCAL DE REALIZAÇÃO DO CURSO</p>	
+		<p>O curso objeto deste contrato será ministrado, preferencialmente, na Av. Alfredo Balena, 189, 3º andar, Santa Efigênia.</p>
+		<p class="itens"><b>§ Único</b> - O local da realização do curso poderá ser alterado para outra localidade de Belo Horizonte/MG, a critério da CONTRATADA, 
+		desde que, para isso, seja afixado um aviso, na aula imediatamente anterior à mudança em lugar de destaque e acessível 
+		a todos os(as) alunos(as).</p>
+			
+		<p class="clausula">CLÁUSULA QUINTA – DA FREQUÊNCIA DO(A) CONTRATANTE</p>
+		<p>A <b>freqüência mínima</b> obrigatória às aulas é de <b>75% (setenta e cinco por cento)</b> por disciplina, não havendo o abono de faltas em nenhuma hipótese.</p> 
+	
+		<p class="clausula">CLÁUSULA SEXTA – DO APROVEITAMENTO E CERTIFICADO</p>
+		
+		<p>Será conferido Certificado de Conclusão aos participantes que observarem a freqüência mínima, obtiverem 75% (setenta e cinco por cento) 
+		dos pontos atribuídos às avaliações de cada disciplina, tenham sido aprovados no trabalho de conclusão e, quitado suas obrigações: financeira, 
+		acadêmica e documental nos prazos previstos.</p>
+	
+		
+		<p class="itens"><b>§1°</b> - O TCC deverá ser entregue pelo(a) aluno(a) antes da conclusão do curso, de acordo 
+		com as regras da ABNT e conforme orientação da CONTRATADA. O TCC deverá ser apresentado na forma de comunicação oral 
+		diante de uma comissão integrada por professores convidados da AMF e aberta a comunidade 
+		profissional e acadêmica, devendo o aluno obter 75% (setenta e cinco por cento) 
+		de aproveitamento da nota integral.</p>
+		
+		<p class="itens"><b>§2°</b> - A avaliação dos trabalhos do(a) aluno(a) por disciplina e do TCC será feita conforme critérios estabelecidos 
+		pelo INSTITUTO CULTURAL NEWTON PAIVA FERREIRA LTDA e divulgados pela Associação Mineira de Farmacêuticos.</p>
+		
+		<p class="itens"><b>§3°</b> - A emissão do certificado será de responsabilidade exclusiva do INSTITUTO CULTURAL NEWTON PAIVA FERREIRA LTDA.</p>
+			
+		
+		<p class="clausula">CLÁUSULA SÉTIMA – DA RESCISÃO</p>
+	
+		<p>A requisição por parte do(a) Contratante poderá ser efetivada, obedecidos aos seguintes requisitos:</p> 
+		<ul>
+			<li>na hipótese de o cancelamento da matrícula ser feito 5 dias antes do início das aulas, este terá devolvido 80% 
+			do valor pago referente à matrícula;</li>	
+			<li>na hipótese de o cancelamento da matrícula for requerido após o prazo estipulado na alínea anterior, não haverá 
+			devolução do valor pago;</li>
+			<li>na hipótese de o cancelamento da matrícula ocorrer após o início das aulas, este deverá estar com suas obrigações 
+			financeiras regularizadas até a data de entrada do pedido, sendo devido o pagamento da penalidade equivalente a 50% 
+			(cinqüenta por cento) do valor que restar a pagar no momento da notificação.</li>
+		</ul>
+		
+		<p class="itens"><b>§1°</b> - No caso de o(a) CONTRATANTE desistir de continuar o curso, deverá 
+		comunicar o fato, por escrito, à Secretaria do curso.</p>
+		
+		<p class="itens"><b>§2°</b> - Após a matrícula efetivada, a infrequência às aulas e/ou a não participação nas atividades 
+		escolares não desobrigam a Contratante ao cumprimento integral do estabelecido no presente documento.</p>
+	
+	
+		<p class="clausula">CLÁUSULA OITAVA – DO CONHECIMENTO DO PROGRAMA</p>
+		<p>O(A) Contratante declara, neste ato, ter conhecido, lido e concordado com o Edital do Programa de Pós-Graduação do Curso <?=$rsCurso->titulo?>, 
+		mantido pela Contratada.</p>
+	
+		<p>No caso de o (a) CONTRATANTE desistir de continuar o curso, deverá comunicar o fato, por escrito, à Secretaria do curso.</p>
+		
+		<p class="itens"><b>§ único</b> – Nestes casos obriga-se o(a) CONTRATANTE ao pagamento da penalidade equivalente a 50% 
+		(cinqüenta por cento) do valor que restar a pagar no momento da notificação, além de possíveis débitos pendentes, 
+		que serão corrigidos conforme a Cláusula Terceira deste instrumento e, no que couber, das perdas e danos, dos juros de 
+		atualização monetária pelo IGP-M/FGV, dos honorários advocatícios e das custas judiciais.</p>
+		
+		<p class="clausula">CLÁUSULA NONA – DO VALOR E CONDIÇÕES DE PAGAMENTO</p>
+		<p>Pela Prestação de Serviços Educacionais objeto deste Contrato, o(a) Contratante pagará à Contratada o valor de 
+		R$ <?=number_format($total,2,',','.')?> (<?=trim(valorPorExtenso($total))?>), pago em <?=$parcelas?> (<?=exParcelas($parcelas)?>) de R$ <?=number_format($parcela,2,',','.')?>  
+		(<?=trim(valorPorExtenso($parcela))?>). A primeira parcela terá vencimento no dia 12/04/2013 a título de matrícula no Curso de 
+		Pós Graduação <span class="oblique">Lato Sensu</span>, <?=$rsCurso->titulo?> e as demais parcelas terão vencimento todo dia 15 (quinze) de cada mês da prestação dos serviços.</p> 
+		
+		<p>Caso o pagamento <b>não seja feito até a data do vencimento</b>, será cobrado multa de 2% (dois por cento) mais juros diários de 0,03% sobre  
+		o valor da parcela. Parcelas com vencimento superior a 30 dias poderão ser cobradas em juízo, incorrendo as despesas judiciais a cargo do aluno 
+		além da suspensão dos serviços prestados.</p>
+		
+		<p class="itens"><b>§1º</b> - A primeira parcela será paga como sinal, arras e princípio de pagamento e condição para concretização e 
+		celebração do presente Acordo de Prestação de Serviços Educacionais, além da apresentação, por parte do(a) contratante, da documentação exigida.</p>
+		
+		<p class="itens"><b>§2º</b> - Se o pagamento da primeira parcela for em <u>cheque, este será recebido em caráter  “pro solvendo”, <b>podendo não se 
+		concretizar a matrícula</b>, a critério da Contratada, se <b>não houver fundos suficientes</b> ou <b>qualquer motivo</b> para o seu regular desconto</u>.</p>
+		
+		<p class="itens"><b>§3º</b> - A CONTRATADA não se responsabilizará por baixa de pagamentos efetuados através de depósito em conta corrente 
+		ou transferência bancária, por não ser esta a forma eleita para pagamento, mas sim através de boleto bancário.</p>
+		
+		<p class="itens"><b>§4º</b> - Fica o Contratado desde já autorizado a emitir títulos de crédito, sob a forma de boleto bancário ou documento 
+		equivalente, podendo negociá-los no mercado financeiro sob a forma de caução ou desconto.</p>
+		
+		<p class="itens"><b>§5º</b> - O documento utilizado para cobrança das parcelas poderá servir, também, para a cobrança de outras obrigações 
+		contraídas pelo(a) Contratante e não abrangidas pela contraprestação dos serviços educacionais</p>
+		
+		<p class="itens"><b>§6º</b> - Havendo atraso de pagamento de qualquer parcela por prazo superior ao mencionado no caput desta Cláusula, 
+		o(a) Contratante pagará o valor principal total da parcela, atualizado por índice aplicável a contratos de outorga de crédito, calculado 
+		de juros de mora e multa de 2% (dois por cento).</p>
+		
+		<p class="itens"><b>§7°</b> - Vencida e não paga qualquer uma das parcelas, caracterizando a inadimplência do(a) Contratante, reserva-se a 
+		Contratada o direito da cobrança judicial do débito e aplicação de medidas administrativas permitidas em lei, ficando ainda a Contratada, 
+		<b>desde já, autorizada, também, a cadastrar o(a) Contratante nos serviços disponíveis de proteção ao crédito.</b></p>
+		
+		<p class="itens"><b>§8°</b> - Na hipótese de qualquer mudança legislativa ou normativa alterar a equação econômica-financeira do presente 
+		instrumento, fica assegurada à CONTRATADA a possibilidade de revisão do preço de modo a preservar o equilíbrio contratual.</p>
+	
+		<p class="clausula">CLÁUSULA DÉCIMA – DA VIGÊNCIA</p>
+		<p>O presente Termo de Acordo terá seu início na data de sua assinatura, e se extinguirá na mesma data de encerramento dos serviços 
+		educacionais, independentemente da exigibilidade do débito vencido, nos termos do disposto no Art. 476 do Código Civil.</p>
+		
+		<p class="clausula">CLÁUSULA DÉCIMA PRIMEIRA – DISPOSIÇÕES GERAIS</p>
+		<p>O(A) Contratante declara ter tomado conhecimento de que a conclusão do Curso ora contratado não gera direito a habilitação profissional, 
+		nos termos da legislação específica nacional.</p>
+		<p>Declara o (a) CONTRATANTE, neste instrumento, que tomou amplo conhecimento sobre a carga horária do curso, dos critérios de avaliação, 
+		da freqüência, do cronograma e das normas da CONTRATADA e do INSTITUTO CULTURAL NEWTON PAIVA FERREIRA LTDA., sendo a observância destes 
+		requisitos condição de realização e aprovação no curso ora contratado.</p>
+		
+		<p class="clausula">CLÁUSULA DÉCIMA SEGUNDA – DO FORO</p>
+		<p>As partes elegem como foro do presente o da Comarca de Belo Horizonte (MG), desistindo de qualquer outro, por mais privilegiado que seja.</p>
+		<p>E assim, por estarem justos e acordados, assinam o presente documento em duas vias de igual teor, também assinado por duas testemunhas.</p>
+		
+		<p><br /></p>
+		
+		<p>Belo Horizonte, <?=date('d')?> de <?=$_meses[(int)date('m')]?> de <?=date('Y')?></p>
+		
+		<p><br /><br /><br /></p>
+		<div align=center>
+			<table border=0 cellspacing=8 cellpadding=8>
+			 <tr>
+			  <td width=288 valign=top style='width:216.1pt;padding:0cm 5.4pt 0cm 5.4pt;border-top:solid 1px #000'>
+				  <p align=center style='margin:0cm;margin-bottom:.0001pt;text-align:center'><span
+				  style='font-size:10.0pt;font-family:Arial'>Associação Mineira de
+				  Farmacêuticos</span></p>
+			  </td>
+			  <td width=288 valign=top style='width:216.1pt;padding:0cm 5.4pt 0cm 5.4pt;border-top:solid 1px #000'>
+				  <p align=center style='margin:0cm;margin-bottom:.0001pt;text-align:center'><span
+				  style='font-size:10.0pt;font-family:Arial'><?=$rsCurso->nome?></span></p>
+			  </td>
+			 </tr>
+			 <tr>
+			  <td width=288 valign=top style='width:216.1pt;padding:0cm 5.4pt 0cm 5.4pt'>
+				  <p align=center style='margin:0cm;margin-bottom:.0001pt;text-align:center'><span
+				  style='font-size:10.0pt;font-family:Arial'>Jacqueline Mansur Peixoto</span></p>
+			  </td>
+			  <td width=288 valign=top style='width:216.1pt;padding:0cm 5.4pt 0cm 5.4pt'>
+				  <p align=center style='margin:0cm;margin-bottom:.0001pt;text-align:center'><span
+				  style='font-size:10.0pt;font-family:Arial'>Contratante</span></p>
+			  </td>
+			 </tr>
+			 <tr>
+			  <td width=288 valign=top style='width:216.1pt;padding:0cm 5.4pt 0cm 5.4pt'>
+				  <p align=center style='margin:0cm;margin-bottom:.0001pt;text-align:center'><span
+				  style='font-size:10.0pt;font-family:Arial'>Presidente</span></p>
+			  </td>
+			  <td>&nbsp;</td>
+			 </tr>
+			</table>	
+		</div>
+	
+		<p><br /><br /><br /><br /></p>
+	
+	
+		<div align=center>
+			<table border=0 cellspacing=8 cellpadding=8>		
+			 <tr>
+			  <td width=288 valign=top style='width:216.1pt;padding:0cm 5.4pt 0cm 5.4pt;border-top:solid 1px #000'>
+				  <p align=center style='margin:0cm;margin-bottom:.0001pt;text-align:center'><span
+				  style='font-size:10.0pt;font-family:Arial'>Maria das Dores Graciano Silva</span></p>
+			  </td>
+
+			  <td width=288 valign=top style='width:216.1pt;padding:0cm 5.4pt 0cm 5.4pt;border-top:solid 1px #000'>
+			  <p align=center style='margin:0cm;margin-bottom:.0001pt;text-align:center'><span
+			  style='font-size:10.0pt;font-family:Arial'>Andréa Gomes Mendes</span></p>
+			  </td>
+
+			 </tr>		
+			 <tr>
+			  <td width=288 valign=top style='width:216.1pt;padding:0cm 5.4pt 0cm 5.4pt'>
+				  <p align=center style='margin:0cm;margin-bottom:.0001pt;text-align:center'><span
+				  style='font-size:10.0pt;font-family:Arial'>CPF: 610.699.656-34</span></p>
+			  </td>
+
+			  <td width=288 valign=top style='width:216.1pt;padding:0cm 5.4pt 0cm 5.4pt'>
+				  <p align=center style='margin:0cm;margin-bottom:.0001pt;text-align:center'><span
+				  style='font-size:10.0pt;font-family:Arial'>CPF: 581.627.806-10</span></p>
+			  </td>
+
+			 </tr>
+			</table>	
+		</div>
+	</body>
+</html>

@@ -1,0 +1,215 @@
+<?php
+$rs = $this->boleto;
+//echo "rs->pgto = $rs->pgto";
+if(!$rs->pgto || $rs->pgto=='1900-01-01') $rs->pgto = '00/00/0000';
+$sacado = $rs->sacado;
+$aluno = $rs->aluno;
+//$db = Zend_Registry::get('db');
+//$db->setFetchMode(Zend_Db::FETCH_OBJ);
+
+$action = "$this->baseUrl/boletos/save/curso/$rs->idCurso/inscricao/$rs->idInscricao/id/$rs->idFinanceiro";
+
+?>
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+	<head>
+		<title>AMF - Associação Mineira de Farmacêuticos</title>
+		<meta http-equiv="content-type" content="text/html; charset=iso-8859-1">
+		<link rel="stylesheet" type="text/css" media="screen" href="<?=$this->baseUrl?>/public/styles/style.css" />	
+		<script type="text/javascript" type="text/javascript" src="<?=jsLib?>/jquery-1.3.2.js"></script>
+		<script type="text/javascript" type="text/javascript" src="<?=jsLib?>/prototypes.js"></script>
+		<script type="text/javascript" type="text/javascript" src="<?=jsLib?>/jquery.maskedinput-1.2.2.min.js"></script>
+		<script type="text/javascript" type="text/javascript" src="<?=jsLib?>/jquery.limit-1.0.source.js"></script>
+		<link id="lnkRelShortCutIcon" rel="shortcut icon" href="<?=$this->baseImg?>/favicon.png" /> 
+		<link type="text/css" href="<?=jsLib?>/themes/base/ui.all.css" rel="stylesheet" />
+		<script type="text/javascript" src="<?=jsLib?>/ui/ui.datepicker.js"></script>
+		<script type="text/javascript" src="<?=jsLib?>/ui/ui.core.js"></script>
+			
+		<script>
+			$(document).ready(function(){
+				hoje = new Date()
+				dia = hoje.getDate()
+				if (dia < 10) dia='0'+dia;
+				mes = hoje.getMonth()+1;
+				if (mes < 10) mes='0'+mes;
+				ano = hoje.getFullYear();
+				var hoje = ano+mes+dia;
+		
+				function toFloat(s){var t=s.replace('.','');t=t.replace(',','.');return parseFloat(t);}			
+				
+				$(".data").mask("99/99/9999");
+		
+				$('.text').focus(function(){$(this).css('background','#E3EEF7')}).blur(function(){$(this).css('background','#fff')})
+				$('.upper').keyup(function(){$(this).val($(this).val().upper())})
+				$('.lower').keyup(function(){$(this).val($(this).val().lower())})	
+				
+				/*
+				$('.data').datepicker({  
+					dateFormat: 'dd/mm/yy',  
+					dayNames:['Domingo','Segunda','Terça','Quarta','Quinta','Sexta','Sábado','Domingo'],  
+					dayNamesMin:['D','S','T','Q','Q','S','S','D'],  
+					dayNamesShort:['Dom','Seg','Ter','Qua','Qui','Sex','Sáb','Dom'],  
+					monthNames:['Janeiro','Fevereiro','Março','Abril','Maio','Junho','Julho','Agosto','Setembro','Outubro','Novembro','Dezembro'],  
+					monthNamesShort:['Jan','Fev','Mar','Abr','Mai','Jun','Jul','Ago','Set','Out','Nov','Dez'],  
+					nextText:'Próximo',prevText: 'Anterior'
+					});
+				*/	
+				$('.valores').keyup(function(event){
+					if (event.charCode && (event.charCode != 44 && event.charCode < 48 || event.charCode > 57)) {
+						alert("Somente numeros por favor!\n\nUse ',' virgula para casas decimais");
+						event.preventDefault();
+						}
+					valor = toFloat($('#valor').val());
+					acrescimo = toFloat($('#acrescimo').val());
+					total = eval(valor + acrescimo).toDecimal();
+					$('#total').val(total);
+					}); 	
+				
+		
+					
+				$('#btBaixa').click(function(){
+					var alerta ="Verifique se está tudo correto para atualizar o registro.\n\n";
+					alerta += "Caso a data de pagamento esteja preenchida, o status \n";
+					alerta += "do registro será alterado para PAGO ou RECEBIDO\n";
+					alerta += "Confirme a atualização do registro.\n\n";
+					if($('#vcto').val()==''){alert('Digite a data de vencimento!');$('#vcto').focus();return false;}
+					t = $('#vcto').val().split('/');
+					vcto = t[2]+t[1]+t[0];
+					//if($('#pgto').val()==''){alert('Digite a data de Pagamento!');$('#pgto').focus();return false;}
+					//t = $('#pgto').val().split('/');
+					//pgto = t[2]+t[1]+t[0];
+					if(!confirm(alerta)) return false;
+					return true;
+					})
+				$('#clear').click(function(){$('#pgto').val('00/00/0000')})
+					
+				if($('#msg').val().length > 0){			
+					if($('#msg').val()=='Boleto atualizado com sucesso!')self.close();
+					else alert($('#msg').val());
+					}
+				$('#btEmail').click(function(){
+					if(!confirm('Enviar link para o email acima?')) return false;
+					return true;
+					})
+					
+				if($('#vcto').val()=='') $('#vcto').focus();	
+				else $('#valor').focus();
+				})
+		</script>		
+			
+		<style>
+			body{overflow:hidden}
+			.edit{width:100%;font:12px Arial, Helvetica, Sans-Serif, Tahoma, Verdana}
+			.edit caption{font-size:16px;font-weight:bolder;background:#6F8799;padding:4px;color:#fff}
+			.edit th{background:#A6BCCD;padding:4px;text-align:right;width:75px}
+			.edit td{border:solid 1px silver; padding:2px;}
+			.edit .button{cursor:pointer;font-weight:bolder}
+			.edit .button:hover{color:#f60}
+			.edit .data{width:80px;text-align:center}
+			.edit .valores{width:70px;text-align:right}
+			.edit .historico{}
+			.edit select{width:120px}
+			.edit .matricula{width:80px;text-align:center}
+			.edit .left{text-align:left}
+			
+		</style>
+	</head>
+	<body>
+		<table cellspacing="0" cellpadding="0" border="0" width="100%">
+			<tr>
+				<td valign="top" class="palestras">
+					<form name="fBaixa" id="fBAixa" method="POST" action="<?=$action?>">		
+						<input type="hidden" id="msg" value="<?=$this->message?>"/>					
+		
+						<table class="edit" cellpadding="2" cellspacing="2" border="0" width="100%">
+							<caption>Alteração/Baixa de Boleto</caption>
+							<tr>
+								<th>Favorecido:</th>
+								<td>
+									<b><?=$aluno->nome?></b> - CPF: <?=$this->fc->formatCPF($aluno->cpf)?><br />
+									<?=$aluno->ender?>, <?=$aluno->num?>  <?=$aluno->compl?> <?=$aluno->bairro?><br />
+									CEP: <?=$this->fc->formatCEP($aluno->cep)?> - <?="$aluno->cidade / $aluno->uf"?>
+								</td>
+							</tr>
+							<tr>
+								<th>Sacado:</th>
+								<td>
+									<b><?=$sacado->nome?></b> - CPF/CNPJ: <?=$this->fc->formatCPF($sacado->cpf)?><br />
+									<?=$sacado->ender?>, <?=$sacado->num?>  <?=$sacado->compl?> <?=$sacado->bairro?><br />
+									CEP: <?=$this->fc->formatCEP($sacado->cep)?> - <?="$sacado->cidade / $sacado->uf"?>
+								</td>
+							</tr>
+						</table>
+
+
+						<table class="edit" cellpadding="2" cellspacing="2" border="0" width="100%">							
+							<caption>Dados do Boleto</caption>
+							<tr>
+								<th nowrap>ID Fin.:</th>
+								<td><?=sprintf("%06d",$rs->idFinanceiro)?></td>
+								<th>Emissão:</th>
+								<td><?=$this->fc->Ymd2dmY($rs->dataLct)?></td>
+								<th>N. Doc.:</th>
+								<td><?=$rs->numDoc?></td>
+							</tr>
+							<tr>
+								<th>Valor:</th>
+								<td>
+									<input type="text" class="text valores" name="valor" id="valor" value="<?=number_format($rs->valor, 2, ',','.')?>"/>					
+								</td>
+									<th>Juros:</th>
+								<td>
+									<input type="text" class="text valores" name="acrescimo" id="acrescimo" value="<?=number_format($rs->acrescimo, 2, ',','.')?>"/>
+								</td>
+								<th>Total:</th>
+								<td>
+									<input type="text" readonly class="text valores" name="total" id="total" value="<?=number_format($rs->total, 2, ',','.')?>"/>
+								</td>
+							</tr>
+							<tr>
+								<th>Vcto:</th>
+								<td><input type="text" readonly class="text data" name="vcto" id="vcto" value="<?=$this->fc->Ymd2dmY($rs->vcto)?>"/></td>
+								<th>Pgto:</th>
+								<td colspan="3">
+									<input type="text" class="text data" name="pgto" id="pgto" value="<?=$this->fc->Ymd2dmY($rs->pgto)?>"/>
+									<input type='button' id='clear' value=" Limpar ">
+								</td>
+							</tr>
+							<tr>
+								<th>Hist.:</th>
+								<td colspan="5">
+									<input type="text" style="width:100%" class="text historico" name="historico"
+										maxlength="100" id="historico" value="<?=substr($rs->historico,0,100)?>"/>
+								</td>
+							</tr>
+							<tr>
+								<th>Obs.:</th>
+								<td colspan="5">
+									<input type="text" style="width:100%" class="text historico" name="observacoes" id="observacoes" value="<?=$rs->observacoes?>" />
+								</td>
+							</tr>
+							<tr>
+								<th nowrap>Tipo Lcto:</th>
+								<td>
+									<select name="status" id="status" size="1" class="text">
+										<option <?=($rs->status==1)?'selected':''?> value="1">A PAGAR</option>
+										<option <?=($rs->status==2)?'selected':''?> value="2">A RECEBER</option>
+										<option <?=($rs->status==3)?'selected':''?> value="3">PAGAS</option>
+										<option <?=($rs->status==4)?'selected':''?> value="4">RECEBIDAS</option>
+									</select>
+								</td>
+								<td colspan="4" style='text-align:center'>
+									<b style='color:red'>ATENÇÃO: Digite virgula para separar decimais. Pontos serão desconsiderados</b><br />
+								</td>
+							</tr>
+							<tr>
+								<td colspan="6" style='text-align:center;padding:8px 0'>
+									<input type="submit" name="btBaixa" id="btBaixa" class="button" value="Atualizar" />
+								</td>
+							</tr>
+						</table>
+					</form>
+				</td>
+			</tr>
+		</table>
+	</body>
+</html>

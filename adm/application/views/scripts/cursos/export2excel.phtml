@@ -1,0 +1,9 @@
+<?php
+//$this->fc->debug($this->dados);
+Zend_Loader::loadClass('MidExcel');
+$mid_excel = new MidExcel();
+
+//$this->fc->debug($this->dados);
+//echo "base = $this->baseUrl";
+$mid_excel->mid_sqlparaexcel($this->baseUrl, $this->dbtable, "Relatorio de Reserva de Cursos");
+?>

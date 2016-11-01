@@ -1,0 +1,33 @@
+<style>
+	.eventos {font-size:13px;width:100%;border-collapse:collapse;border-color:black}
+	.eventos td{padding:4px 8px}
+	.eventos th{text-align:center;background:#369;color:#fff}
+	.eventos a{text-decoration:none;color:#808080;font-weight:bolder}
+	.eventos a:hover{text-decoration:underline;color:#f90}
+</style>
+
+
+<table class="eventos" border="1" cellpadding="0" cellspacing="0">
+	<tr>
+		<th>Data</th>
+		<th>Descrição do Evento</th>
+	</tr><?
+	if(!$this->paginator):
+		echo"<tr><td colspan='2' class='none'>Nenhum Registro Localizado!</td></tr></table>";
+		exit;
+	endif;
+
+	foreach($this->paginator as $rs):
+		$rs->site = trim($rs->site);
+		$titulo = ($rs->banner) ? "<img src='$this->baseImg/eventos/$rs->banner' border='0' />" : $rs->titulo;		
+		if(!empty($rs->site))
+			$titulo = "<a href='$rs->site' target='_evento'>$rs->titulo</a>";
+
+		echo"
+		<tr>
+			<td style='text-align:center;width:80px' valign='top'>$rs->fData</td>
+			<td>$titulo</td>
+		</tr>";
+	endforeach; ?>
+</table>
+<?php echo $this->paginationControl($this->paginator, 'Sliding', 'paginator.phtml'); ?>

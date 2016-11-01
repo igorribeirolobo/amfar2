@@ -1,0 +1,112 @@
+<style>
+	#cursos {width:100%; margin-top:0; border:0; background:#fff;font-size:12px}
+	#cursos td {border-bottom:1px solid #c0c0c0}
+	#cursos p{padding-left:14px;margin:4px 0;font-size:9pt;color:#006;text-align:justify}
+	#cursos ol{margin-top:0;text-align:left;color:#000;font-weight:normal;font-size:12px}
+	#cursos .bgyellow{background:yellow}
+	#cursos .bgred{background:red}
+	#cursos .button{font-size:10pt; font-weight:bolder; color:#f60}
+	#cursos table{border-collapse:collapse;border-color:black;}
+	#cursos table caption{background:#E0E4F9}
+	#cursos td{padding:2px 8px;font-size:12px}
+	#cursos .label{text-align:right;font-size:12px}
+</style>
+
+<script>
+	$(document).ready(function(){
+		//$('#btConfirm').attr('disabled', ($('#concordo').is(':checked')||$('#idCurso')==152) ? false : true);
+		$('#concordo').click(function(){
+			$('#btConfirm').attr('disabled', ($(this).is(':checked')) ? false : true);
+			})
+		$('#concordo').change(function(){
+			$('#btConfirm').attr('disabled', ($(this).is(':checked')) ? false : true);
+			})
+		})
+</script>
+
+<form name="cursos" id="cursos" action="" method="POST">
+	<input type="hidden" id="msg" value="<?=$this->message?>" />
+	<input type="hidden" id="idCurso" value="<?=$this->id?>" />
+	<center>
+		<table cellpadding="1" cellspacing="1" border="1">
+			<caption>Dados do Aluno(a)</caption>
+			<tr>
+				<td class="label">Nome:</td>
+				<td colspan="3"><b><?=$this->curso->nome?></b></td>
+			</tr>
+			<tr>
+				<td class="label">CPF:</td>
+				<td><b><?=$this->fc->formatCPF($this->curso->cpf)?></b></td>
+				<td class="label">RG:</td>
+				<td><b><?=$this->curso->rg?></b></td>
+			</tr>
+			<tr>
+				<td class="label">Curso:</td>
+				<td colspan="3"><b><?=$this->curso->titulo?></b></td>
+			</tr>
+			<tr>
+				<td class="label">Início:</td>
+				<td><b><?=$this->fc->Ymd2dmY($this->curso->inicio)?></b></td>
+				<td class="label">Final:</td>
+				<td><b><?=$this->fc->Ymd2dmY($this->curso->final)?></b></td>
+			</tr>
+			<tr>
+				<td class="label">Valor Total:</td>
+				<td align="center"><b>R$ <?=number_format($this->curso->valor,2,',','.')?></b></td>
+				<td class="label">Parcelas:</td>
+				<td align="center"><b><?=$this->curso->parcelas?> X R$ <?=number_format($this->curso->valor/$this->curso->parcelas,2,',','.')?></b></td>
+			</tr>
+		</table>
+	</center>
+	
+	<p style="margin-top:20px">Prezado Aluno,</p>
+
+	<p>Aproveitamos para reafirmar o nosso compromisso e empenho em manter a qualidade do serviço 
+		oferecido pela Associação Mineira de Farmacêuticos em parceria com o Centro Universitário Newton Paiva, que tem o 
+		reconhecimento e respeito da comunidade acadêmica a nível nacional.</p>	
+	
+	<p class="bgyellow"><b>VAGAS LIMITADAS - Para assegurar a sua vaga junto a AMF, você deverá:</b></p>
+		
+	<ol>
+		<li><b>Imprimir e pagar o boleto</b> referente à primeira parcela (nos casos de cursos com parcelamento);</li>
+		<li><b>Imprimir e assinar o contrato de prestação de serviços</b> (para cursos de especializações);</li>
+		<li><b>Enviar para a AMF os documentos abaixo para efetivar a matrícula:</b>
+			<ul>
+				<li>Contrato assinado</li>
+				<li>Currículo Vitae mais histórico escolar da graduação</li>
+				<li>Uma foto 3 x 4</li>
+				<li>Cópia do Certificado de Graduação Autenticada</li>
+				<li>Cópia do CPF e Cópia do RG</li>
+			</ul>
+		</li>
+		<li><b class="bgyellow">Caso o pagamento da primeira parcela para cursos de especialização 
+			não seja pago dentro do prazo estipulado, a inscrição será cancelada sem qualquer aviso; 
+			exceto nos casos de negociação prévia do aluno com a AMF antes do prazo estipulado.</b>
+		</li>
+	</ol>
+
+	<p>
+		<b>As vagas serão reservadas somente para inscrições efetivadas até 15 dias antes do início do curso selecionado. 
+		Após este prazo não aceitaremos qualquer reclamação ou solicitação de prorrogação para pagamento.</b>
+	</p>
+	<p style="text-align:center;margin:20px 0"><?
+		$disabled = '';
+		if($this->id != 152):
+			$disabled = 'disabled';	?>
+			<a href="<?=$this->links?>/contrato/uid/<?=$this->user->idCadastro?>/id/<?=$this->id?>" target="_contrato">
+				Clique aqui para ler e imprimir o contrato de prestação de serviços</a><br /><br />	
+			<input <?=($_POST['concordo'])? 'checked' : ''?> type="checkbox" id="concordo" name="concordo" value="1"/> 
+			Declaro que li o contrato e estou de acordo com o mesmo!<?
+		endif; ?>
+		<br /><br /><br />
+		
+		<input <?=$disabled?> type="submit"  name="btConfirm" id="btConfirm" value="Confirmar Inscrição" class="button" />
+	</p>
+</form>
+<?
+if($this->idBoleto):
+	echo"<p align='center'><b>Utilize o link abaixo para imprimir o boleto referente à primeira parcela.<br /><br />
+		<a href='http://www.amfar.com.br/boletos/boleto.php?id={$this->idBoleto}' target='_boleto'>
+			http://www.amfar.com.br/boletos/boleto.php?id={$this->idBoleto}</a></p>";
+	endif;
+?>

@@ -1,0 +1,102 @@
+<style>
+	#tbCursos{margin-top:10px;margin-right:10px;width:100%}
+	#tbCursos td{font-size:9pt}
+	#tbCursos caption{background:#066;font:16pt bolder Verdana, Tahoma, Arial, Helvetica, Sans-Serif;color:#fff}
+	#tbCursos th{font-weight:normal;letter-spacing:0;background:#E2FADE;color:#066;padding:4px;border:solid 1px #60c660}
+	#tbCursos td{padding:4px;border:solid 1px #60c660}
+	b{font-weight:bolder}
+	.msgErr{background:#f00;color:#fff;font-weight:bolder;text-align:center}
+</style>
+
+
+<?php
+$dataLimite = date("Y-m-d", time() + (86400 * 7)); // vai mostrar o ultimo dia do mes atual
+//echo "dataLimite = $dataLimite";
+if ($this->user->status > 0):
+	if ($this->user->validade < date('Y-m-d'))
+		$status = sprintf("<b>VENCIDA em %s</b> - $this->dataVal Clique no link Renovar minha Inscrição ao lado
+			para gerar o Boleto da renovação da sua Inscrição.", $this->fc->ymd2dmY($this->user->validade));
+	elseif($this->user->validade <= $dataLimite)
+		$status = sprintf("<b>A VENCER EM %s</b> - Clique no link Renovar minha Inscrição ao lado
+		para gerar boleto de renovação da sua inscrição.", $this->fc->ymd2dmY($dataLimite));
+	else 
+		$status = "<b>ATIVO - Nenhuma pendência de pagamento até o momento.</b>";
+endif;	
+//$this->fc->debug($this->user);
+?>
+
+
+<p align="center"><b>CURSO DE ESPECIALIZAÇÃO <i>LATO SENSU</i><br>
+	PENDÊNCIA TRABALHO DE CONCLUSÃO DE CURSO /TCC</b></p>
+
+<p align="justify">
+	Os alunos reprovados ou que não apresentaram TCC, caso queiram, poderão se 
+	rematricular na disciplina Elaboração de TCC até o dia 18/04/2013.</p>
+
+<p><b>Orientação TCC opções:</b></p>
+
+<ol>
+  <li align="justify">O aluno poderá indicar o orientador que deverá ser aprovado pela coordenação 
+		do curso e unidade acadêmica certificadora.</li>
+  <li>A AMF indicará o orientador. Nesse, caso a linha de pesquisa será definida 
+		pelo orientador</li>
+</ol>
+<p align="justify"><b>Observação</b>: O aluno deverá escolher a sua opção no ato da rematricula.<br>
+A confirmação do nome / contato do orientador e regras gerais serão encaminhadas 
+para o email do aluno até o dia 22/04/2013.</p>
+
+<p align="justify"><b>Data da apresentação do TCC</b>: A apresentação definitiva será agendada para o 
+período de 24 a 29 de junho de 2013. Caso o aluno tenha condições a apresentação 
+poderá ser antecipada.</p>
+
+<p><b>Valor da Disciplina Elaboração de TCC</b>: R$ 490,00</p>
+
+<p><b>Forma de pagamento:</b> Boleto bancário gerado no ato da rematricula no site 
+www.amfar.com.br/site/. Após o pagamento do boleto, favor digitalizar e enviar para o 
+email: <a href="mailto:mariadasdores@amfar.com.br">mariadasdores@amfar.com.br.</a></p>
+
+<p><b> Nota importante:</b> a regularização na disciplina de Elaboração do TCC não inclui a resolução de 
+pendências em outras disciplinas, frequência e /ou situação financeira.</p>
+
+<p><b>Informações:</b> mariadasdores@amfar.com.br 9866-9504</p>
+
+
+<script>
+	$(document).ready(function(){
+		$('#btSend').click(function(){
+			if(!$('#tipo').is(':checked') && !$('#tipo2').is(':checked')){
+				alert('Por favor, selecione quem indicará o Orientador.');
+				return false;
+				}
+			
+			if(!$('#concordo').is(':checked')){
+				alert('Por favor, marque a caixa que concorda com o regulamento.');
+				return false;
+				}
+			})
+		})
+</script>
+<form name="rematricula" id="rematricula" method="POST" action="">
+	<input type="hidden" name="id" value="<?=$this->id?>" />
+	<pre>
+Id Cadastro Nº	: <?=sprintf("%06d", $this->user->idCadastro)?>
+		<br />Cadastrado em	: <?=$this->fc->msql2dmY($this->user->dataReg, true)?>
+		<br />Nome		: <?=$this->user->nome?>
+		<br />Email		: <?=$this->user->email?>
+		<br />Fone		: <?=$this->user->fone?>
+		<br />Cel		: <?=$this->user->fone2?>
+	</pre><?
+	//$this->fc->debug($this->curso);
+	if((int)$this->id > 0): ?>
+		<input type="radio" name="orientador" id="tipo2" value="ALUNO" />Aluno indicará o Orientador<br />
+		<input type="radio" name="orientador" id="tipo" value="AMF" />AMF indicará o Orientador<br /><br />
+		
+		
+		<input type="checkbox" name="concordo" id="concordo">Declaro que li o regulamento acima e estou de acordo com os termos apresentados e que deverei pagar
+		 a quantia de R$ 490,00 através de boleto bancário a vencer em 18/04/2013
+		<p align="center"><input type="submit" name="btSend" id="btSend" value="<< Enviar >>" class="button" /></p><?
+		if($this->boleto)
+			echo"<p align='center'><a href='http://www.amfar.com.br/boletos/boleto.php?id=$this->boleto' target='_boleto'>Clique Aqui para imprimir o boleto</a></p>";
+	endif; ?>
+	
+</form>

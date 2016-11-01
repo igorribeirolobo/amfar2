@@ -1,0 +1,127 @@
+<?php
+Zend_Loader::loadClass('html2pdf');	
+ini_set("allow_url_fopen", 1);
+
+
+$curso = $this->curso;
+
+//$this->fc->debug($curso);
+//die();
+
+$newfilename = sprintf('..%s/public/temp/%06d_%04d.pdf', $this->baseUrl, $this->id, $curso->idCurso);
+//die("this->fullpath = $this->fullpath");
+$html = null;
+if ($fdo = fopen (sprintf("..%s/public/contratos/%s", $this->baseUrl, $curso->contrato), "r")) {
+	while(!feof($fdo)) {
+		$source .= fread($fdo, 2048);
+		}			
+	fclose ($fdo);		
+	}
+//header(sprintf('Location:%s', str_replace('..','', $newfilename)));
+
+
+$_meses = array('','Janeiro','Fevereiro','Março','Abril','Maio','Junho','Julho','Agosto','Setembro','Outubro','Novembro','Dezembro');
+
+$dia = date('d');
+$mes = $_meses[(int)date('m')];
+$ano = date('Y');
+
+$curso->cpf = $this->fc->formatCPF($curso->cpf);
+
+if($this->uid==1928 || $this->uid==1929){
+	$sacado = $this->fc->dbReader($this->db, sprintf("SELECT * FROM cadastro WHERE idCadastro=%d", ($this->uid==1928)? 1937 : 1966));
+	$sacado->cnpj = $this->fc->formatCPF($sacado->cnpj);
+
+	$contratante = "$sacado->nome, estabelecida na $sacado->ender, $sacado->num $sacado->compl,&nbsp; 
+		$sacado->bairro, $sacado->cidade, $sacado->uf,
+		inscrito no CNPJ nº $sacado->cnpj para o(a) aluno(a) $curso->nome, 
+		portador do RG nº $curso->rg e CPF nº $curso->cpf";
+	}
+else {
+	$contratante = "$curso->nome, residente na $curso->ender, $curso->num $curso->compl,&nbsp; 
+		$curso->bairro, $curso->cidade, $curso->uf,
+		portador do RG nº $curso->rg e CPF nº $curso->cpf";
+	}
+
+$curso->parcela = $curso->valor / $curso->parcelas;	
+/*
+if($this->uid == 1894)
+	$curso->parcela = 450;
+elseif($this->uid == 1940){
+	$curso->parcela = 367.5;
+	$curso->parcelas = 20;
+	}
+elseif($this->uid == 1812){
+	$curso->valor = 6000;
+	$curso->parcela = 300;
+	$curso->parcelas = 20;
+	}
+*/
+//$this->fc->debug($curso); die();	
+
+$source = str_replace("#contratante", $contratante, $source);
+$source = str_replace("#nome", $curso->nome, $source);
+$source = str_replace("#titulo", $curso->titulo, $source);
+$source = str_replace("#inicio", $this->fc->Ymd2dmY($curso->inicio), $source);
+$source = str_replace("#valorPorExtenso", trim($this->fc->ufWords($this->fc->valorPorExtenso($curso->valor))), $source);
+$source = str_replace("#valorTotal", number_format($curso->valor, 2, ',','.'), $source);
+$source = str_replace("#parcelas", $curso->parcelas, $source);
+$source = str_replace("#exParcelas", $this->fc->exParcelas($curso->parcelas), $source);
+$source = str_replace("#valorParcela", number_format($curso->valorParcelas, 2, ',','.'), $source);
+$source = str_replace("#exvalorParcela", trim($this->fc->ufWords($this->fc->valorPorExtenso($curso->valorParcelas))), $source);
+$source = str_replace("#dia", $dia, $source);
+$source = str_replace("#mes", $mes, $source);
+$source = str_replace("#ano", $ano, $source);
+$source = str_replace("#vctoInicio", $this->inicio, $source);
+$source = str_replace("#vcto", '15/04/'.date('Y'), $source);
+
+
+$html = $source;
+//die($html);
+	
+try{
+    /* Aqui estamos instanciando um novo objeto que irá criar o 
+     * pdf. Então vamos aos parametros passados:
+     * 1º parâmetro: Utilize “P” para exibir o documento no 
+     *               formato retrato e “L” para o formato 
+     *               paisagem. 
+     * 2º parâmetro: Formato da folha A4, A5....... 
+     * 3º parâmetro: Caso ocorra alguma exceção durante a 
+     *               conversão. Em qual idioma é para 
+     *               exibir o erro. No caso o idioma escolhido 
+     *               foi o português “pt”. 
+     * 4º parâmetro: Informe TRUE caso o html de entrada esteja
+     *               no formato unicode e FALSE caso negativo. 
+     * 5º parâmetro: Codificação a ser utilizada. ISO-8859-15, UTF8 ...... 
+     * 6º parâmetro: Margem do documento. Você pode informa um 
+     *               único valor como no exemplo acima. 
+     *               Outra forma é informa um array setando as 
+     *               margens separadamente.: Exemplo: 
+     * $html2pdf = new HTML2PDF(
+     *   'P',
+     *   'A4',
+     *   'pt',
+     *   false,
+     *   'ISO-8859-15',
+     *   array(5,5,5,8));
+     * Sendo que a primeira posição do array representa a margem esquerda depois      
+     * topo, direita e rodapé. */
+    $html2pdf = new HTML2PDF('P','A4','pt', false, 'ISO-8859-15', 10,10,10,10);
+     
+    # Passamos o html que queremos converte.
+    $html2pdf->writeHTML($html); 
+     
+    /* Exibe o pdf:
+     * 1º parãmetro: Nome do arquivo pdf. O nome que você quer dar ao pdf gerado. 
+     * 2º parâmetro: Tipo de saída: 
+                     I: Abre o pdf gerado no navegador. 
+                     D: Abre a janela para você realizar o download do pdf. 
+                     F: Salva o pdf em alguma pasta do servidor. */
+	$html2pdf->Output($newfilename, 'F');
+	header(sprintf('Location:%s', str_replace('..','', $newfilename)));
+	}
+catch(HTML2PDF_exception $e) 
+	{ 
+		echo $e; 
+	}
+?>

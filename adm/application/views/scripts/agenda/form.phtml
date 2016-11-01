@@ -1,0 +1,84 @@
+<?php
+$rs = $this->agenda;
+?>
+
+<link type="text/css" href="<?=jsLib?>/themes/base/ui.all.css" rel="stylesheet" />
+<script type="text/javascript" src="<?=jsLib?>/ui/ui.datepicker.js"></script>
+<script type="text/javascript" src="<?=jsLib?>/ui/ui.core.js"></script>
+<link type="text/css" href="<?=$this->baseCss?>/demos.css" rel="stylesheet" />
+	
+<script>
+	$(document).ready(function(){
+		$('.data').datepicker({  
+			dateFormat: 'dd/mm/yy',  
+			dayNames:['Domingo','Segunda','Terça','Quarta','Quinta','Sexta','Sábado','Domingo'],  
+			dayNamesMin:['D','S','T','Q','Q','S','S','D'],  
+			dayNamesShort:['Dom','Seg','Ter','Qua','Qui','Sex','Sáb','Dom'],  
+			monthNames:['Janeiro','Fevereiro','Março','Abril','Maio','Junho','Julho','Agosto','Setembro','Outubro','Novembro','Dezembro'],  
+			monthNamesShort:['Jan','Fev','Mar','Abr','Mai','Jun','Jul','Ago','Set','Out','Nov','Dez'],  
+			nextText:'Próximo',prevText: 'Anterior'
+			});
+
+			
+		$('#btSave').click(function(){
+			if($('#data').val()==''){alert('Digite a data da agenda!');$('#data').focus();return false;}
+			//if($('#userId').val()==''){alert('Selecione o(a) diretor(a)!');$('#userId').focus();return false;}
+			updateTextArea('descricao');
+			if($('#descricao').val()==''){alert('Digite a descrição da agenda!');$('#descricao').focus();return false;}
+			return true;
+			})
+			
+		})
+
+	// settings para o editor		
+	var imagesDir = "<?=jsLib?>/wysiwyg/icons/"; // Images Directory
+	var cssDir = "<?=jsLib?>/wysiwyg/styles/";	// CSS Directory
+	var popupsDir = "<?=jsLib?>/wysiwyg/popups/";	// Popups Directory
+	var wysiwygWidth = 770;
+	var wysiwygHeight = 150;	// WYSIWYG Width and Height
+</script>		
+<script type="text/javascript" src="<?=jsLib?>/wysiwyg.js"></script>
+<style>
+	#agenda{width:100%;font:12px Arial, Helvetica, Sans-Serif, Tahoma, Verdana}
+	#agenda caption{background:#369;color:#fff;font-size:16px;padding:2px}
+	#agenda caption a{color:#fff;text-decoration:none}
+	#agenda caption a:hover{text-decoration:underline;color:red}
+	#agenda th{background:#A6BCCD;padding:4px;text-align:right;width:75px}
+	#agenda td{border:solid 1px silver; padding:2px}
+	
+	#agenda .text {width:400px;border:solid 1px #369;padding:2px}
+	#agenda .data{width:100px;text-align:center}
+	#agenda .descricao{height:200px}
+</style>
+
+<form name="fAgenda" id="fAgenda" method="POST" action="<?=$this->baseSave?>/<?=$this->agenda->id?>">		
+	<input type="hidden" id="msg" value="<?=$this->message?>"/>
+	<table id="agenda" class="list" cellpadding="2" cellspacing="2" border="0" width="100%">
+		<tr>
+			<td colspan="2" style="border:0;text-align:right">
+				<a href="<?=$this->baseUrl?>/agenda/list"><img src="<?=$this->baseImg?>/Undo.png" border="0" /></a></td>
+		</tr>
+		<tr>
+			<th>ID Agenda</th>
+			<td><?=sprintf("%06d",$rs->id)?></td>
+		</tr>
+		<tr>
+			<th>Data</th>
+			<td><input type="text" class="text data" name="data" id="data" value="<?=$this->fc->Ymd2dmY($rs->data)?>"/></td>
+		</tr>
+		<tr>
+			<td colspan="2">
+				<span>Descrição</span>
+				<textarea class="text descricao" name="descricao" id="descricao" maxlength="2048"><?=$rs->descricao?></textarea>						
+				<script>generate_wysiwyg('descricao')</script>
+			</td>
+		</tr>
+		<tr>
+			<td colspan="4" style='text-align:center;border:0'>
+				<input type="image" name="btSave" id="btSave" src="<?=$this->baseImg?>/btOut.png" 
+					onmouseover= "this.src='<?=$this->baseImg?>/btOver.png'"
+					onmouseout = "this.src='<?=$this->baseImg?>/btOut.png'"/>
+			</td>
+		</tr>
+	</table>
+</form>

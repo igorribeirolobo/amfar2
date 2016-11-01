@@ -1,0 +1,109 @@
+<form action="#" style="width:360px" method="post" name="indique" id="indique" onsubmit="return checkForm(this.id)">
+	<input type="hidden" name="process" value="0"/>
+	<table border="0" cellspacing="0" cellpadding="0" width="100%">
+		<tr>
+			<td align=center colspan=2 class="tbCaption"><b style="color:#fff"><?= $titulo?></td></tr>
+				
+		<tr>
+			<td class="label">Seu Nome:</td>
+			<td><input type="text" size="50" id="nome" name="nome" value="<?= $nome ?>" maxlength="50" 
+				onchange="toUpper(this)" class="required"/></td></tr>
+				
+		<tr>
+			<td class="label">Seu E-mail:</td>
+			<td><input type="text" size="50" name="email" id="email" value="<?= $email ?>" maxlength="50" 
+				onchange="checkEmail(this)" class="required"></td></tr>
+					
+		<tr>
+			<td class="label">Estado:</td>
+			<td>
+				<select name="uf" id="estado" size="1" value="" class="required">						
+					<option value="AC">Acre</option>
+					<option value="AL">Alagoas</option>
+					<option value="AP">Amapá</option>
+					<option value="AM">Amazonas</option>
+					<option value="BA">Bahia</option>
+					<option value="CE">Ceará</option>
+					<option value="DF">Distrito Federal</option>
+					<option value="ES">Espírito Santo</option>
+					<option value="GO">Goiás</option>
+					<option value="MA">Maranhão</option>
+					<option value="MT">Mato Grosso</option>
+					<option value="MS">Mato Grosso Sul</option>
+					<option value="MG" selected>Minas Gerais</option>
+					<option value="PA">Pará</option>
+					<option value="PB">Paraíba</option>
+					<option value="PR">Paraná</option>
+					<option value="PE">Pernambuco</option>
+					<option value="PI">Piauí</option>
+					<option value="RJ">Rio de Janeiro</option>
+					<option value="RN">R. G. do Norte</option>
+					<option value="RS">R. G. do Sul</option>
+					<option value="RO">Rondonia</option>
+					<option value="RR">Roraima</option>
+					<option value="SC">S. Catarina</option>
+					<option value="SP">São Paulo</option>
+					<option value="SE">Sergipe</option>
+					<option value="TO">Tocantins</option>
+				</select>
+			</td></tr>
+			
+		<tr>
+			<td align="center" colspan="2" nowrap>				
+				<input type="checkbox" name="chbox" value="ON" checked>
+					<b class="negrito">Autorizo o envio e E-mailing para o e-mail acima.</small>
+			</td></tr>
+			
+		<tr><td colspan="2"><hr size=1"></td></tr>
+			
+		<tr>
+			<td class="label">Amigo(a):</td>
+			<td><input type="text" size="50" id="amigo(a)" maxlength="50" name="nameTo" value=""
+				onchange="toUpper(this)" class="required"></td></tr>
+				
+		<tr>
+			<td class="label">E-mail:</td>
+			<td><input type="text" size="50" maxlength="50" id="email" name="mailTo" value=""
+				onchange="checkEmail(this)" class="required"></td></tr>
+		<tr>
+			<td class="label">Estado:</td>
+			<td>
+				<select name="ufTo" id="estado" size="1" value="" class="required">						
+					<option value="AC">Acre</option>
+					<option value="AL">Alagoas</option>
+					<option value="AP">Amapá</option>
+					<option value="AM">Amazonas</option>
+					<option value="BA">Bahia</option>
+					<option value="CE">Ceará</option>
+					<option value="DF">Distrito Federal</option>
+					<option value="ES">Espírito Santo</option>
+					<option value="GO">Goiás</option>
+					<option value="MA">Maranhão</option>
+					<option value="MT">Mato Grosso</option>
+					<option value="MS">Mato Grosso Sul</option>
+					<option value="MG" selected>Minas Gerais</option>
+					<option value="PA">Pará</option>
+					<option value="PB">Paraíba</option>
+					<option value="PR">Paraná</option>
+					<option value="PE">Pernambuco</option>
+					<option value="PI">Piauí</option>
+					<option value="RJ">Rio de Janeiro</option>
+					<option value="RN">R. G. do Norte</option>
+					<option value="RS">R. G. do Sul</option>
+					<option value="RO">Rondonia</option>
+					<option value="RR">Roraima</option>
+					<option value="SC">S. Catarina</option>
+					<option value="SP">São Paulo</option>
+					<option value="SE">Sergipe</option>
+					<option value="TO">Tocantins</option>
+				</select>
+			</td></tr>				
+
+		<tr>
+			<td align="center" colspan=2 height=30>
+				<br><div id="dvBtSend">
+				<input type="submit" id="btSend" name="btIndique" value="Enviar"/>
+			</td>
+		</tr>
+	</table>
+</form>

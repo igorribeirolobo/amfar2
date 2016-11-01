@@ -1,0 +1,152 @@
+<style>
+	#cursos {width:100%; margin-top:0; border:0; background:#fff;font-size:12px}
+	#cursos td {border-bottom:1px solid #c0c0c0}
+	#cursos p{padding-left:14px;margin:4px 0;font-size:12px;color:#006;text-align:justify}
+	#cursos p b{padding-left:14px;margin:4px 0;font-size:12px;color:#006;text-align:justify}
+	#cursos ol{margin-top:0;text-align:left;color:#000;font-weight:normal;font-size:12px}
+	#cursos .bgyellow{background:yellow;font-size:12px}
+	#cursos .bgred{background:red;font-size:12px}
+	#cursos table{border-collapse:collapse;border-color:black;}
+	#cursos table caption{background:#599da1;color:#fff;font-size:14px}
+	#cursos td{padding:2px 8px;font-size:12px}
+	#cursos .label{text-align:right;font-size:12px}
+	#cursos table th{background:#599da1;color:#fff;font-size:11px}
+	#cursos td {padding:2px 8px;font-size:12px}
+	#cursos td .bold{font-weight:bolder; color:#599da1}
+	#cursos li b{font-weight:bolder; color:#000000;font-size:12px}
+</style>
+
+<script>
+	$(document).ready(function(){
+		$('#btConfirm').attr('disabled', ($('#concordo').is(':checked') ? false : true);
+		$('#concordo').click(function(){
+			$('#btConfirm').attr('disabled', ($(this).is(':checked')) ? false : true);
+			})
+		$('#btConfirm').click(function(){
+			if($('#situacao').val()==''){
+				alert('Selecione o tipo de matrícula.\n\n');
+				return false;			
+				}
+			if(!$('#concordo').is(':checked')){
+				alert('Por favor, leia o contrato e marque a caixa.\n\n');
+				return false;
+				}
+			})
+
+		})
+</script>
+
+<form name="cursos" id="cursos" action="" method="POST">
+	<input type="hidden" id="msg" value="<?=$this->message?>" />
+	<input type="hidden" id="idCurso" value="<?=$this->id?>" />
+
+	<table cellpadding="1" cellspacing="1" border="1" width="100%">
+		<caption>Dados do Aluno(a)</caption>
+		<tr>
+			<td class="label">Nome:</td>
+			<td><b><?=$this->curso->nome?></b></td>
+		</tr>
+		<tr>
+			<td class="label">CPF:</td>
+			<td><b><?=$this->fc->formatCPF($this->curso->cpf)?></b></td>
+		</tr>
+		<tr>
+			<td class="label">RG:</td>
+			<td><b><?=$this->curso->rg?></b></td>
+		</tr>
+		<tr>
+			<td class="label">Curso Selecionado:</td>
+			<td><b><?=$this->curso->titulo?></b></td>
+		</tr>
+		<tr>
+			<td class="label">Início do Curso:</td>
+			<td><b><?=$this->fc->Ymd2dmY($this->curso->inicio)?></b></td>
+		</tr>	
+		<tr>
+			<td class="label" nowrap>Valor Total do Curso:</td>
+			<td colspan="4"><b>R$ <?=number_format($this->curso->valor,2,',','.')?>  (17 x R$ 490,00) + Inscrição que deverá ser paga antes do início do curso.</b></td>
+		</tr>
+	</table>
+	<br />
+	<table cellpadding="2" cellspacing="2" border="1">
+		<tr>
+			<td colspan="5" align="center"><b>SELECIONE O TIPO DE INSCRIÇÃO ABAIXO:</b></td>
+		</tr>
+		<tr>
+			<th>Tipo</th>
+			<th>Descrição</th>
+			<th nowrap>Até 17/02</th>
+			<th nowrap>Até 18/03</th>
+			<th nowrap>Após 18/03</th>
+		</tr><?
+		foreach($this->matricula as $rs):?>
+			<tr>
+				<td align='center'>
+					<input <?=($_POST['situacao']==$rs->situacao) ? 'checked' : ''?> type="radio" name="situacao" id="<?=$rs->situacao?>" value="<?=$rs->situacao?>" />
+				</td>
+				<td><?=$rs->descricao?></td>
+				<td <?=($_POST['valor']==$rs->ate1002) ? "class='bold'" : ''?>><?=number_format($rs->ate1002,2,',','.')?></td>
+				<td <?=($_POST['valor']==$rs->ate1003) ? "class='bold'" : ''?>><?=number_format($rs->ate1003,2,',','.')?></td>
+				<td <?=($_POST['valor']==$rs->apos) ? "class='bold'" : ''?>><?=number_format($rs->apos,2,',','.')?></td>
+			</tr><?
+		endforeach; ?>
+		<tr>
+			<td colspan="5">
+				A situação junto as entidades farmacêuticas será verificada pela secretaria da AMF. Em caso de divergências 
+				a AMF fará contato com o farmacêutico.O aluno que for funcionário público deverá encaminhar documento comprobatório 
+				junto com os outros documentos exigidos na inscrição.
+			</td>
+		</tr>
+	</table>	
+
+
+	<p style="margin-top:20px">Prezado Aluno,</p>
+	
+	<p>Aproveitamos para reafirmar o nosso compromisso e empenho em manter a qualidade do serviço 
+		oferecido pela Associação Mineira de Farmacêuticos em parceria com o Centro Universitário Newton Paiva, que tem o 
+		reconhecimento e respeito da comunidade acadêmica a nível nacional.</p>	
+		
+	<p class="bgyellow"><b>VAGAS LIMITADAS - Para assegurar a sua vaga junto a AMF, você deverá:</b></p>
+			
+	<ol>
+		<li><b>Imprimir e pagar o boleto</b> referente à matrícula;</li>
+		<li><b>Imprimir e assinar o contrato de prestação de serviços</b>;</li>
+		<li><b>Enviar para a AMF os documentos abaixo para efetivar a matrícula:</b>
+			<ul>
+				<li>Contrato assinado;</li>
+				<li>Comprovante de endereço (Extrato bancário, fatura de cartão de crédito, conta de luz ou telefone);</li>
+				<li>Uma foto 3 x 4;</li>
+				<li>Cópia do Certificado de Graduação Autenticada;</li>
+				<li>Cópia do CPF e Cópia do RG.</li>
+			</ul>
+		</li>
+		<li><b class="bgyellow">Caso o pagamento da matrícula	não seja pago dentro do prazo estipulado, 
+			a inscrição será cancelada sem qualquer aviso; 
+			exceto nos casos de negociação prévia do aluno com a AMF antes do prazo estipulado.</b>
+		</li>
+	</ol><?
+	if((int)$_POST['idInscricao']==0){?>
+
+		<p><input <?=($_POST['concordo'])? 'checked' : ''?> type="checkbox" id="concordo" name="concordo" value="1"/> 
+				Declaro que li e estou de acordo com as regras acima!</p>
+
+		<p style="text-align:center;color:#a4a4a4;margin-top:20px">Caso o botão Enviar esteja desabilitado, marque a caixa acima</p>
+		
+		<p style="text-align:center">
+			<input <?=($_POST['idInscricao']) ? 'disabled' : ''?> type="submit"  name="btConfirm" id="btConfirm" value="Confirmar Inscrição" class="button" />
+		</p><?
+		}
+	else
+		echo"<p style='text-align:center;margin:20px 0'>
+			<a href='$this->links/contrato/id/{$_POST['idInscricao']}/' target='_contrato'>
+				Clique aqui para ler e imprimir o contrato de prestação de serviços</a>
+		</p>";
+	 ?>
+</form>
+<?
+if($this->idBoleto):
+	echo"<p align='center' style='font-size:12px'><b>Utilize o link abaixo para imprimir o boleto referente à matrícula.<br /><br />
+		<a href='http://www.amfar.com.br/boletos/boleto.php?id={$this->idBoleto}' target='_boleto'>
+			http://www.amfar.com.br/boletos/boleto.php?id={$this->idBoleto}</a></p>";
+	endif;
+?>

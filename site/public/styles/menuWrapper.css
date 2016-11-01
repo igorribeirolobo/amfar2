@@ -1,0 +1,126 @@
+	
+
+	.menu-wrapper {
+		padding: 0px 10px;
+		background-color: #14b7cd;
+		clear:both;
+		border:0;
+		height:24px;
+		}
+	.ddsmoothmenu {
+		font-family:Arial,Helvetica,Sans-Serif,Verdana, Tahoma;
+		background: #14b7cd scroll;
+		width: 100%;
+		padding: 3px 0 0 0;
+		}
+	.ddsmoothmenu ul {
+		z-index:100;
+		margin: 0;
+		padding: 0;
+		list-style-type: none;
+		float: left;
+		box-shadow: none;	
+		}
+	/*Top level list items*/
+	.ddsmoothmenu ul li {
+		position: relative;
+		display: inline;
+		float: left;
+		}
+	/*Top level menu link items style*/
+	.ddsmoothmenu ul {
+		margin-left: 0px;
+		}
+	.ddsmoothmenu ul ul {
+		margin-left: 0px;
+		margin-top: 2px;
+		border-top: 2px solid #ffffff;
+		}
+	.ddsmoothmenu ul ul ul {
+		margin-left: 0px;
+		margin-top: 0px;
+		border-top: 0px solid #14b7cd;
+		}
+	.ddsmoothmenu ul li a {
+		display: block;
+		color: #FFFFFF;
+		text-decoration: none;
+		outline: none;
+		word-spacing: 3px;
+		font-size: 13px;
+		font-weight: 300;
+		padding: 0;
+		line-height: 1em;
+		}
+	.ddsmoothmenu ul li {
+		padding: 3px 15px 3px 15px;
+		border-right: 1px solid #fff;
+		}
+/*
+	.ddsmoothmenu ul li:last-child {
+		border-right: 0px;
+		}
+*/
+	* html .ddsmoothmenu ul li a { /*IE6 hack to get sub menu links to behave correctly*/
+		display: inline-block;
+		color: #FFF;
+		}
+	.ddsmoothmenu ul li a:link, .ddsmoothmenu ul li a:visited {
+		color: #FFF;
+		-moz-transition: all 0.3s ease;
+		-webkit-transition: all 0.3s ease;
+		-o-transition: all 0.3s ease;
+		transition: all 0.3s ease;
+		margin-right: 2px;
+		}
+	.ddsmoothmenu ul li a.selected, .ddsmoothmenu ul li ul li a.selected { /*CSS class that's dynamically added to the currently active menu items' LI A element*/
+		color: #A2D2FF!important;
+		}
+	.ddsmoothmenu ul li a:hover, .ddsmoothmenu ul li ul li a:hover {
+		color: #A2D2FF!important;
+		}
+	/*1st sub level menu*/
+	.ddsmoothmenu ul li ul {
+		position: absolute;
+		left: 0px;
+		display: none; /*collapse all sub menus to begin with*/
+		visibility: hidden;
+		box-shadow: none !important;
+		background: #14b7cd;
+		/*
+		border-left: 1px solid #ffffff;
+		border-right: 1px solid #ffffff;
+		*/
+		}
+	/*Sub level menu list items (undo style from Top level List Items)*/
+	.ddsmoothmenu ul li ul li {
+		display: list-item;
+		float: none;
+		text-align:left;
+		box-shadow: none !important;
+		background: url(nav-item-divider.png) repeat-x bottom;
+		padding: 6px 0px 6px 4px;
+		/*border-left: 1px solid #ffffff;
+		border-right: 1px solid #ffffff;
+		border-bottom: solid 1px #ffffff; */
+		}
+	/*All subsequent sub menu levels vertical offset after 1st level sub menu */
+	.ddsmoothmenu ul li ul li ul {
+		top: 0;
+		}
+	/* Sub level menu links style */
+	.ddsmoothmenu ul li ul li a {
+		font-family:Arial,Helvetica,Sans-Serif,Verdana, Tahoma;
+		width: 170px; /*width of sub menus*/
+		margin: 0;
+		color: #fff !important;
+		line-height: 1em;
+		font-size: 13px !important;
+		border-right: 0px;
+		padding: 0;
+		}
+	/* Holly Hack for IE \*/
+	* html .ddsmoothmenu {
+		height: 1%;
+		} /*Holly Hack for IE7 and below*/
+	/* ######### CSS classes applied to down and right arrow images  ######### *

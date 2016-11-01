@@ -1,0 +1,59 @@
+<style>
+	.list{font-size:12px;width:100%}
+	.list caption{background:#599da1;color:#fff;font-size:16px;padding:2px}
+	.list caption a{color:#fff;text-decoration:none}
+	.list caption a:hover{text-decoration:underline;color:red}
+	.list th{background:#def2f5;color:#006;font-size:11px;font-weight:normal}
+	.list th a{color:#fff;text-decoration:none}
+	.list th a:hover{text-decoration:underline;color:yellow}
+	.list td a{color:#006;text-decoration:none}
+	.list td a:hover{text-decoration:underline;color:red}
+</style>
+
+<script>
+	$(document).ready(function(){
+		$('.del').click(function(){
+			if(!confirm('Tem certeza que deseja excluir este registro?\n\nUma vez excluído, não tem como recuperar este registro.\n\nConfirma a Exclusão?'))
+				return false;
+			return true;
+			})
+		})	
+</script>
+<table class='list' cellpadding='2' cellspacing='2' border='0'>
+	<caption><?=$this->caption?>
+		<span style="float:right">
+			<a href="<?=$this->links?>/reservas/export/1/" target='_excel'>
+				<img src="<?=$this->baseImg?>/excel.gif" style="border:solid 1px white" border="0" Alt="Exportar tabela para Excel" title="Exportar para Excel" />
+				<small>Exportar p/Excel</small>
+			</a>
+		</span>
+	</caption>
+	<thead>
+		<tr>
+			<th>Data</th>
+			<th>Nome/E-mail</th>
+			<th>Fone</th>
+			<th>Cel</th>
+			<th>Curso</th>
+		</tr>
+	</thead>
+	<tbody><?
+	$count = 0;
+	//$query = $this->fc->dbReader($this->db, "SELECT * FROM alunosCursos WHERE (idCurso=$this->id) AND (monitor=1)", true); 			
+	foreach($this->monitores as $rs):
+		$count++;
+		//$user = $this->fc->dbReader($this->db, "SELECT nome, email, fone, cel FROM cadastro WHERE idCadastro=$rs->idAluno");
+		$bg = ($count%2==0) ? '#dddddd' : '#ffffff';
+		echo"
+		<tr bgcolor='$bg'>
+			<td width='70'>" . $this->fc->Ymd2dmY($rs->data) . "</td>
+			<td>$rs->nome<br />$rs->email</td>
+			<td align='center'>$rs->fone</td>
+			<td align='center'>$rs->cel</td>
+			<td align='center'>$this->curso</td>
+		</tr>";
+	endforeach;
+	?>
+	</tbody>
+</table>
+<?//php echo $this->paginationControl($this->paginator, 'Sliding', 'paginator.phtml'); ?>

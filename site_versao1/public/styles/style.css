@@ -1,0 +1,30 @@
+@font-face{font-family:Georgia; src:url(http://www.amfar.com.br/site/public/fonts/georgia.ttf)}
+@font-face{font-family:Georgia Italic BT; src:url(http://www.amfar.com.br/site/public/fonts/georgiai.ttf)}
+@font-face{font-family:Georgia Bold; src:url(http://www.amfar.com.br/site/public/fonts/georgiab.ttf)}
+@font-face{font-family:Georgia Bold Italic BT; src:url(http://www.amfar.com.br/site/public/fonts/georgiaz.ttf)}
+
+
+body {
+	margin:0;
+	font-family:Georgia, Arial, Helvetica, Sans-Serif, Tahoma, Verdana;
+	font-size:12px;
+	overflow-y:scroll;
+	color:#808080
+	}
+
+table td{color:#808080}
+
+p{line-height:150%}
+
+.button{cursor:pointer}
+
+.button:hover{color:#f60}
+
+.text{
+	padding:2px;
+	width:340px;
+	border-top:solid 1px #ABADB3;
+	border-right:solid 1px #DBDFE6;
+	border-bottom:solid 1px #E3E9EF;
+	border-left:solid 1px #E2E3EA
+	}
